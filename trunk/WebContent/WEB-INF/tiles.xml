@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+	<definition name="baseLayout" template="/tiles/baseLayout.jsp">
+		<put-attribute name="header" value="/tiles/header.jsp" />
+		<put-attribute name="title" value="" />
+		<put-attribute name="menu" value="/tiles/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/tiles/footer.jsp" />
+	</definition>
+
+
+	<!-- Home Page -->
+	<definition name="/home.tile" extends="baseLayout">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="body" value="/pages/home.jsp" />
+	</definition>
+	
+	<!-- GuestHome Page -->
+	<definition name="/GuestHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Guest" />
+		<put-attribute name="body" value="/pages/guest/home.jsp" />
+	</definition>
+
+<!-- DiscountHome Page -->
+	<definition name="/DiscountHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Discount" />
+		<put-attribute name="body" value="/pages/discount/home.jsp" />
+	</definition>
+
+<!-- AgentHome Page -->
+	<definition name="/AgentHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Agent" />
+		<put-attribute name="body" value="/pages/agent/home.jsp" />
+	</definition>
+	
+	<!-- ResevationtypeHome Page -->
+	<definition name="/ResevationtypeHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Resevationtype" />
+		<put-attribute name="body" value="/pages/resevationtype/home.jsp" />
+	</definition>
+
+<!-- RoomtypeHome Page -->
+	<definition name="/RoomtypeHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Room Type" />
+		<put-attribute name="body" value="/pages/roomtype/home.jsp" />
+	</definition>
+	
+	<!-- SpouseHome Page -->
+	<definition name="/SpouseHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Spouse" />
+		<put-attribute name="body" value="/pages/spouse/home.jsp" />
+	</definition>
+	
+	<!-- RoomHome Page -->
+	<definition name="/RoomHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Room" />
+		<put-attribute name="body" value="/pages/room/home.jsp" />
+	</definition>
+	
+	<!-- RoomcalanderHome Page -->
+	<definition name="/RoomcalanderHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Roomcalander" />
+		<put-attribute name="body" value="/pages/roomcalander/home.jsp" />
+	</definition>
+
+</tiles-definitions>
