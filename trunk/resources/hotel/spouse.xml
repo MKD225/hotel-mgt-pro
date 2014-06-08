@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="ajxSpouse" namespace="/spouse" extends="json-default">
+
+		<action name="ajxSearch" class="com.hotel.action.SpouseAction"
+			method="search">
+			<result type="json">
+				<param name="root">spouses</param>
+			</result>
+		</action>
+		
+		<action name="ajxAddOrUpdate" class="com.hotel.action.SpouseAction"
+			method="addOrUpdate">
+			<result type="json"></result>
+		</action>
+
+	</package>
+
+	<package name="ActSpouse" namespace="/spouse" extends="default">
+
+		<action name="home">
+			<result name="success" type="tiles">/SpouseHome.tile</result>
+		</action>
+
+	</package>
+
+</struts>

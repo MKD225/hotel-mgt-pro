@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="ajxGuest" namespace="/guest" extends="json-default">
+
+		<action name="ajxSearch" class="com.hotel.action.GuestAction"
+			method="search">
+			<result type="json">
+				<param name="root">guests</param>
+			</result>
+		</action>
+		
+		<action name="ajxAddOrUpdate" class="com.hotel.action.GuestAction"
+			method="addOrUpdate">
+			<result type="json"></result>
+		</action>
+		
+		<action name="ajxDelete" class="com.hotel.action.GuestAction"
+			method="delete">
+			<result type="json"></result>
+		</action>
+
+	</package>
+
+	<package name="ActGuest" namespace="/guest" extends="default">
+
+		<action name="home">
+			<result name="success" type="tiles">/GuestHome.tile</result>
+		</action>
+
+	</package>
+
+</struts>
