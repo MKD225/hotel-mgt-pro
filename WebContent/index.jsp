@@ -1,4 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-home Page!
+<s:action name="home" namespace="/" executeResult="true" />
