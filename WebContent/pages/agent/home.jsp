@@ -283,6 +283,11 @@
 					id="agentId" name="agentId" readonly="readonly" /></td>
 			</tr>
 			<tr>
+				<td>Title</td>
+				<td><input type="text" id="title" name="title"
+					class="text-input" title="title" /></td>
+			</tr>
+			<tr>
 				<td>First Name</td>
 				<td><input type="text" id="firstName" name="firstName"
 					class="text-input" title="firstName" /></td>
