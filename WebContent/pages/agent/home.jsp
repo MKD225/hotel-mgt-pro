@@ -44,7 +44,28 @@
             theme: theme
         });
 		
-		
+        var url = "/hotel/pages/sampleData/country.txt";
+        // prepare the data
+        var source =
+        {
+            datatype: "json",
+            datafields: [{ name: 'name' }],
+            url: url,
+            async: false
+        };
+        var dataAdapter = new $.jqx.dataAdapter(source);
+        // Create a jqxComboBox
+        $("#country").jqxComboBox({ 
+        	selectedIndex: -1,
+        	source: dataAdapter,
+        	displayMember: "name",
+        	valueMember: "name",
+        	promptText: "Select country...",
+        	autoComplete: true,
+        	width: 210,
+        	height: 25,
+            theme: theme
+        });
 
 		// update the edited row when the user clicks the 'Save' button.
 		$("#save").click(function() {
@@ -312,8 +333,8 @@
 			<tr>
 				<td>Title</td>
 				<td>
-                    	<div id='title'></div>
-                    </td>
+					<div id='title'></div>
+				</td>
 			</tr>
 			<tr>
 				<td>First Name</td>
@@ -325,10 +346,12 @@
 				<td><input type="text" id="lastName" name="lastName"
 					class="text-input" title="lastName" /></td>
 			</tr>
+
 			<tr>
-				<td>Country</td>
-				<td><input type="text" id="country" name="country"
-					class="text-input" title="country " /></td>
+				<td>Country:</td>
+				<td>
+					<div id="country"></div>
+				</td>
 			</tr>
 			<tr>
 				<td>Email Address</td>
@@ -379,11 +402,11 @@
 					</td>
 				</tr>
 
-				
+
 				<tr>
-					
-					<td colspan="2"><input type="hidden" id="agentIdDelete" name="agentId"
-						class="text-input" readonly="readonly" /></td>
+
+					<td colspan="2"><input type="hidden" id="agentIdDelete"
+						name="agentId" class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>First Name :</td>
@@ -397,7 +420,7 @@
 				</tr>
 
 				<tr>
-					<td>Country:</td>
+					<td>Country</td>
 					<td><input type="text" id="countryDelete" name="country"
 						class="text-input" readonly="readonly" /></td>
 				</tr>
