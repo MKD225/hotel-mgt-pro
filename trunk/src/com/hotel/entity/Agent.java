@@ -2,50 +2,53 @@ package com.hotel.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
+import java.util.List;
 
 /**
  * The persistent class for the agent database table.
  * 
  */
 @Entity
-@Table(name="Agent")
+@Table(name = "Agent")
 public class Agent implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="agentId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "agentId")
 	private int agentId;
 
-	@Column(name="country")
+	@Column(name = "title")
+	private String title;
+
+	@Column(name = "country")
 	private String country;
 
-	@Column(name="emailAddress")
+	@Column(name = "emailAddress")
 	private String emailAddress;
 
-	@Column(name="firstName")
+	@Column(name = "firstName")
 	private String firstName;
 
-	@Column(name="lastName")
+	@Column(name = "lastName")
 	private String lastName;
 
-	@Column(name="permitNumber")
+	@Column(name = "permitNumber")
 	private String permitNumber;
 
-	@Column(name="remarks")
+	@Column(name = "remarks")
 	private String remarks;
 
-	@Column(name="status")
+	@Column(name = "status")
 	private String status;
 
-	@Column(name="telephoneNumber")
+	@Column(name = "telephoneNumber")
 	private String telephoneNumber;
 
-//	//bi-directional many-to-one association to Reservation
-//	@OneToMany(mappedBy="agent", fetch=FetchType.EAGER)
-//	private List<Reservation> reservations;
+	// //bi-directional many-to-one association to Reservation
+	// @OneToMany(mappedBy="agent", fetch=FetchType.EAGER)
+	// private List<Reservation> reservations;
 
 	public Agent() {
 	}
@@ -56,6 +59,14 @@ public class Agent implements Serializable {
 
 	public void setAgentId(int agentId) {
 		this.agentId = agentId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getCountry() {
@@ -122,12 +133,12 @@ public class Agent implements Serializable {
 		this.telephoneNumber = telephoneNumber;
 	}
 
-//	public List<Reservation> getReservations() {
-//		return this.reservations;
-//	}
-//
-//	public void setReservations(List<Reservation> reservations) {
-//		this.reservations = reservations;
-//	}
+	// public List<Reservation> getReservations() {
+	// return this.reservations;
+	// }
+	//
+	// public void setReservations(List<Reservation> reservations) {
+	// this.reservations = reservations;
+	// }
 
 }
