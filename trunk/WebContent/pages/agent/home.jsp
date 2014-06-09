@@ -197,7 +197,7 @@
 																				
 									$("#firstNameDelete").val(dataRecord.firstName);
 											
-									$("#LastNameDelete").val(dataRecord.LastName);
+									$("#LastNameDelete").val(dataRecord.lastName);
 											
 									$("#countryDelete").val(dataRecord.country);
 											
