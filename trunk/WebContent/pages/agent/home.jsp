@@ -1,107 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <script type="text/javascript">
-	function initialize(theme) {
-
-		$('.text-input').jqxInput({
-			height : '25px',
-			width : '207px',
-			theme : theme
-		});
-		$('.text-input').addClass('jqx-rc-all');
+	function initialize(theme){
+		$("#jqxButton").jqxButton({ width: '150', theme: theme });
 		
-
-		$("#save").jqxButton({
-			width : "100px",
-			theme : theme
-		});
-		$("#clear").jqxButton({
-			width : "100px",
-			theme : theme
-		});
-		
-		var url = "/hotel/pages/sampleData/memberTitles.txt";
-        // prepare the data
-        var source =
-        {
-            datatype: "json",
-            datafields: [{ name: 'memberTitle' }],
-            url: url,
-            async: false
-        };
-        var dataAdapter = new $.jqx.dataAdapter(source);
-
-        // Create a jqxDropDownList
-        $("#title").jqxDropDownList({
-            selectedIndex: -1,
-            source: dataAdapter,
-            displayMember: "memberTitle",
-            valueMember: "memberTitle",
-            promptText: "Select title...",
-            autoDropDownHeight: true,
-            width: 150,
-            height: 25,
-            theme: theme
+		$("#jqxButton").on('click', function () {
+			window.location.replace("/slia/Member/insert");
         });
 		
-        var url = "/hotel/pages/sampleData/country.txt";
-        // prepare the data
-        var source =
-        {
-            datatype: "json",
-            datafields: [{ name: 'name' }],
-            url: url,
-            async: false
-        };
-        var dataAdapter = new $.jqx.dataAdapter(source);
-        // Create a jqxComboBox
-        $("#country").jqxComboBox({ 
-        	selectedIndex: -1,
-        	source: dataAdapter,
-        	displayMember: "name",
-        	valueMember: "name",
-        	promptText: "Select country...",
-        	autoComplete: true,
-        	width: 210,
-        	height: 25,
-            theme: theme
-        });
-
-		// update the edited row when the user clicks the 'Save' button.
-		$("#save").click(function() {
-			var onSuccess = $('#membershipTypeForm').jqxValidator('validate');
-			if (onSuccess) {
-				var formInput = $("#membershipTypeForm").serialize();
-				$.ajax({
-					type : 'post',
-					url : '/hotel/agent/ajxAddOrUpdate',
-					data : formInput,
-					success : function(data) {
-						var dataAdapter = new $.jqx.dataAdapter(source);
-						$("#jqxgrid").jqxGrid({
-							source : dataAdapter
-						});
-					}
-				});
-				clearText();
-			}
-		});
-
-		$("#clear").click(function() {
-			clearText();
-		});
-
-		$("#popupDelete").jqxWindow({
-			width : 400,
-			resizable : false,
-			theme : theme,
-			isModal : true,
-			autoOpen : false,
-			cancelButton : $("#cancelDelete"),
-			modalOpacity : 0.5,
-			showAnimationDuration : 500,
-			animationType : 'fade'
-		});
+		$('.text-log').jqxInput({ height: '25px',theme: theme });
+		$('.text-log').addClass('jqx-rc-all');
+		
 
 		// Prepare the data
 		var url = "/hotel/agent/ajxSearch";
@@ -150,51 +60,26 @@
 		// initialize jqxGrid
 		$("#jqxgrid").jqxGrid(
 				{
-					width : '50%',
-					source : dataAdapter,
-					theme : theme,
-					autoheight : true,
+					 width: '100%',
+			            autoheight: true,
+			            source: dataAdapter,
+			            showfilterrow: true,
+			            filterable: true,
+			            columnsresize: true,
+			            pageable: true,
+			            pagesize: 20,
+			            autorowheight: true,
+			            rowsheight: 80,
+			            theme: theme,
 					columns : [
-							{
-								text : 'firstName',
-								datafield : 'firstName',
-								align : 'left'
-							},
-							{
-								text : 'LastName',
-								datafield : 'lastName',
-								align : 'left'
-							},
-							{
-								text : 'country',
-								datafield : 'country',
-								align : 'left'
-							},
-							{
-								text : 'emailAddress',
-								datafield : 'emailAddress',
-								align : 'left'
-							},
-							{
-								text : 'telephoneNumber',
-								datafield : 'telephoneNumber',
-								align : 'left'
-							
-							},
-							{
-								text : 'permitNumber',
-								datafield : 'permitNumber',
-								align : 'left'
-							},
-							{
-								text : 'remarks',
-								datafield : 'remarks',
-								align : 'left'
-							},
-							{
-								text : 'status',
-								datafield : 'status',
-								align : 'left'
+							{text : 'firstName',datafield : 'firstName',align : 'left'},
+							{text : 'LastName',datafield : 'lastName',align : 'left'},
+							{text : 'country',datafield : 'country',align : 'left'},
+							{text : 'emailAddress',datafield : 'emailAddress',align : 'left'},
+							{text : 'telephoneNumber',datafield : 'telephoneNumber',align : 'left'},
+							{text : 'permitNumber',datafield : 'permitNumber',align : 'left'},
+							{text : 'remarks',datafield : 'remarks',align : 'left'},
+							{text : 'status',datafield : 'status',align : 'left'
 							},
 							
 							{
@@ -263,73 +148,96 @@
 								}
 							} ]
 				});
-
-		$('#membershipTypeForm').jqxValidator({
-			rules : [ {
-				input : '#firstName',
-				message : 'Membership Type is required!',
-				action : 'keyup, blur',
-				rule : 'required'
-			} ],
-			theme : theme,
-			scroll : false
-		});
-
-		$("#cancelDelete").jqxButton({
-			width : "100px",
-			theme : theme
-		});
-
-		$("#cancelDelete").click(function() {
-			$("#popupDelete").jqxWindow('hide');
-		});
-
-		$("#delete").jqxButton({
-			width : "100px",
-			theme : theme
-		});
-		// delete row when the user clicks the 'Delete' button.
-		$("#delete").click(function() {
-			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
-			//             if (onSuccess) {
-			var formInput = $("#membershipTypeDeleteForm").serialize();
-			$.ajax({
-				type : 'post',
-				url : '/hotel/agent/ajxDelete',
-				data : formInput,
-				success : function(data) {
-					var dataAdapter = new $.jqx.dataAdapter(source);
-					$("#jqxgrid").jqxGrid({
-						source : dataAdapter
-					});
-				}
-			});
-			$("#popupDelete").jqxWindow('hide');
-		});
-
-		clearText();
-	}
-
-	function clearText() {
-		$("#membershipTypeId").val('');
-		$("#membershipType").val('');
-		$('#membershipTypeForm').jqxValidator('hide');
+        
+        $("#viewWindow").jqxWindow({
+            width: '75%',
+            resizable: false,
+            theme: theme,
+            isModal: true,
+            autoOpen: false,
+            cancelButton: $("#Cancel"),
+            showAnimationDuration: 1000,
+            modalOpacity: 0.45           
+        });
+        
+        $("#Cancel").jqxButton({ 
+        	theme: theme
+        });
+        
+        $("#loginWindow").jqxWindow({
+            width: 250,
+            resizable: false,
+            theme: theme,
+            isModal: true,
+            autoOpen: false,
+            cancelButton: $("#cancelButton"),
+            showAnimationDuration: 1000,
+            modalOpacity: 0.45,
+            initContent: function () {
+            	$("#detailPannel").jqxPanel({
+					width: '100%',
+					height: 200,
+					theme: theme
+				});
+            }
+             
+        });
+        
+        $("#loginButton").jqxButton({ 
+        	theme: theme
+        });
+        
+        $("#cancelButton").jqxButton({ 
+        	theme: theme
+        });
+        
+        $('#cancelButton').on('click', function () {
+        	$('#loginWindow').jqxValidator('hide');
+        });
+        
+        $('#loginWindow').jqxValidator({
+            animationDuration: 50,
+            rules: [{
+                input: '#username',
+                message: 'Username is required!',
+                action: 'keyup, blur',
+                rule: 'required'
+            },{
+                input: '#password',
+                message: 'Password is required!',
+                action: 'keyup, blur',
+                rule: 'required'
+            }, {
+	            input: '#username',
+	            message: 'Your username must be between 3 and 12 characters!',
+	            action: 'keyup, blur',
+	            rule: 'length=3,12'
+	        }],
+            theme: theme
+        });
 	}
 </script>
 
+<div>
+	<input type="button" value="Add Member" id='jqxButton' />
+</div>
+<div class="clr" style="height: 8px; width: '100%'"></div>
+<div id="jqxgrid"></div>
 
-<div id="jqxgrid" style="float: left;"></div>
-<div style="overflow: hidden; position: relative;">
-	<form method="post" action="" id="membershipTypeForm"
-		style="margin-left: 80px; margin-top: 20px;">
-		<table>
-			<tr>
-				<td colspan="2" align="center"><b>Agent</b></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">&nbsp;<input type="hidden"
-					id="agentId" name="agentId" readonly="readonly" /></td>
-			</tr>
+<div id="viewWindow">
+   <div>Member View</div>
+   <div style="overflow-y: scroll;">
+	   <div id='detailPannel'>
+<div align="center" style="width: 300px;height: '100%';float: left;">
+            <div id="upload" style="position: fixed;">
+                <div class="file-preview" id="perview" style="" align="center">
+                	<img alt="user" width="auto" height="auto" src="/slia/images/default-user.png"/>
+                </div>
+            </div>
+        </div>
+        <div style="overflow: hidden; margin-left: 200px;" align="left">
+            <table class="register-table">
+               
 			<tr>
 				<td>Title</td>
 				<td>
@@ -379,87 +287,44 @@
 					class="text-input" title="status " /></td>
 			</tr>
 
-
-
-			<tr>
-				<td>&nbsp;</td>
-				<td style="padding-top: 10px;"><input type="button" id="save"
-					value="Save" style="margin-right: 5px;" /> <input id="clear"
-					type="button" value="Clear" /></td>
-			</tr>
-		</table>
-	</form>
+                <tr>
+                    <td colspan="2" style="padding: 5px;">
+                        <div id="acceptInput" style="margin-left: 100px;">I accept terms</div>
+                    </td>
+                </tr>
+                <tr>
+		            <td align="right"></td>
+		            <td style="padding-top: 10px;" align="right"><input id="Cancel" type="button" value="Close" /></td>
+		        </tr>
+            </table>
+        </div>
+	   </div>
+   </div>
 </div>
 
-<div id="popupDelete">
-	<div>Delete Membership Type</div>
-	<div style="overflow: hidden;">
-		<form method="post" action="" id="membershipTypeDeleteForm">
-			<table>
-				<tr>
-					<td colspan="2">Do you really want to <b>Delete</b> following
-						<b>Membership Type</b>?
-					</td>
-				</tr>
-
-
-				<tr>
-
-					<td colspan="2"><input type="hidden" id="agentIdDelete"
-						name="agentId" class="text-input" readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>First Name :</td>
-					<td><input type="text" id="firstNameDelete" name="firstName"
-						class="text-input" readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>Last Name :</td>
-					<td><input type="text" id="LastNameDelete" name="lastName"
-						class="text-input" readonly="readonly" /></td>
-				</tr>
-
-				<tr>
-					<td>Country</td>
-					<td><input type="text" id="countryDelete" name="country"
-						class="text-input" readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>Email Address :</td>
-					<td><input type="text" id="emailAddressDelete"
-						name="emailAddress" class="text-input" readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>Telephone Number :</td>
-					<td><input type="text" id="telephoneNumberDelete"
-						name="telephoneNumber" class="text-input" readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>Permit Number:</td>
-					<td><input type="text" id="permitNumberDelete"
-						name="permitNumber" class="text-input" readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>Remarks :</td>
-					<td><input type="text" id="remarksDelete" name="remarks"
-						class="text-input" readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>Status :</td>
-					<td><input type="text" id="statusDelete" name="status"
-						class="text-input" readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td style="padding-top: 10px;" align="center" colspan="2"><input
-						style="margin-right: 5px;" type="button" id="delete"
-						value="Delete" /><input id="cancelDelete" type="button"
-						value="Cancel" /></td>
-				</tr>
-				<tr>
-					<td colspan="2">&nbsp;</td>
-				</tr>
-			</table>
-		</form>
-	</div>
+<div id="loginWindow">
+   <div>Login</div>
+   <div style="overflow: hidden;">
+        <table>
+            <tr>
+                <td>Username :</td>
+                <td>
+                    <input type="text" placeHolder="Username" id="username" name="username" title="user-name" class="text-log"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Password :</td>
+                <td>
+                    <input type="password" placeHolder="Password" id="password" name="password" title="password" class="text-log"/>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td style="padding-top: 10px;">
+                    <input type="submit" value="Login" style="margin-bottom: 5px;" id="loginButton" />
+                    <input type="button" value="Cancel" id="cancelButton" />
+                </td>
+            </tr>
+        </table>
+   </div>
 </div>
-
