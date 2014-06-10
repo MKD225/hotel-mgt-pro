@@ -95,22 +95,23 @@
 									//get the clicked row's data and initialize the input fields.
 									var dataRecord = $("#jqxgrid").jqxGrid(
 											'getrowdata', row);
-									$("#membershipTypeId").val(
+									$("#membershipTypeIdEdit").val(
 											dataRecord.membershipTypeId);
-									$("#membershipTypeId").val(
+									$("#membershipTypeIdEdit").val(
 											dataRecord.membershipTypeId);
-									$("#membershipTypeId").val(
+									$("#membershipTypeIdEdit").val(
 											dataRecord.membershipTypeId);
-									$("#membershipTypeId").val(
+									$("#membershipTypeIdEdit").val(
 											dataRecord.membershipTypeId);
-									$("#membershipTypeId").val(
+									$("#membershipTypeIdEdit").val(
 											dataRecord.membershipTypeId);
-									$("#membershipTypeId").val(
+									$("#membershipTypeIdEdit").val(
 											dataRecord.membershipTypeId);
-									$("#membershipTypeId").val(
+									$("#membershipTypeIdEdit").val(
 											dataRecord.membershipTypeId);
-									$("#membershipType").val(
+									$("#membershipTypeEdit").val(
 											dataRecord.membershipType);
+									$("#popupEdit").jqxWindow('open');
 								}
 							},
 							{
@@ -154,6 +155,16 @@
 				});
         
         $("#popupView").jqxWindow({
+            width: '75%',
+            resizable: false,
+            theme: theme,
+            isModal: true,
+            autoOpen: false,
+            cancelButton: $("#Cancel"),
+            showAnimationDuration: 1000,
+            modalOpacity: 0.45           
+        });
+        $("#popupEdit").jqxWindow({
             width: '75%',
             resizable: false,
             theme: theme,
@@ -297,6 +308,86 @@
 	</div>
 	</div>
 	</div>
+</div>
+
+<!-- edit form -->
+<div id="popupEdit">
+	<div>Edit Agent<input id=fname/></div>
+	 <div style="overflow-y: scroll;">
+	 <div id='detailPannel'>
+	<div style="overflow: hidden;">
+	<form method="post" action="" id="membershipTypeForm"
+		style="margin-left: 80px; margin-top: 20px;">
+		<table>
+			<tr>
+				<td colspan="2" align="center"><b>Agent</b></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">&nbsp;<input type="hidden"
+					id="agentId" name="agentId" readonly="readonly" /></td>
+			</tr>
+			<tr>
+				<td>Title</td>
+				<td>
+					<div id='title'></div>
+				</td>
+			</tr>
+			<tr>
+				<td>First Name</td>
+				<td><input type="text" id="firstName" name="firstName"
+					class="text-input" title="firstName" /></td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td><input type="text" id="lastName" name="lastName"
+					class="text-input" title="lastName" /></td>
+			</tr>
+
+			<tr>
+				<td>Country:</td>
+				<td>
+					<div id="country"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>Email Address</td>
+				<td><input type="text" id="emailAddress" name="emailAddress"
+					class="text-input" title="emailAddress " /></td>
+			</tr>
+			<tr>
+				<td>Telephone Number</td>
+				<td><input type="text" id="telephoneNumber"
+					name="telephoneNumber" class="text-input" title="telephoneNumber " /></td>
+			</tr>
+			<tr>
+				<td>Permit Number</td>
+				<td><input type="text" id="permitNumber" name="permitNumber"
+					class="text-input" title="permitNumber" /></td>
+			</tr>
+			<tr>
+				<td>Remarks</td>
+				<td><input type="text" id="remarks" name="remarks"
+					class="text-input" title="remarks " /></td>
+			</tr>
+			<tr>
+				<td>Status</td>
+				<td><input type="text" id="status" name="status"
+					class="text-input" title="status " /></td>
+			</tr>
+
+
+
+			<tr>
+				<td>&nbsp;</td>
+				<td style="padding-top: 10px;"><input type="button" id="save"
+					value="Save" style="margin-right: 5px;" /> <input id="clear"
+					type="button" value="Clear" /></td>
+			</tr>
+		</table>
+	</form>
+</div>
+</div>
+</div>
 </div>
 
 
