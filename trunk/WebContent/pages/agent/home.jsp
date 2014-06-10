@@ -128,7 +128,8 @@
 											'getrowdata', row);
 // 									var name = $("#firstNameView").val(dataRecord.firstName);
 // 									$("#fname").val(name);
-									$("#fname:text").val(dataRecord.firstName);
+// 									$("#fname:text").val(dataRecord.firstName);
+
 									$("#agentIdView").val(dataRecord.agentId);
 																				
 									$("#firstNameView").val(dataRecord.firstName);
@@ -232,7 +233,7 @@
 	 <div style="overflow-y: scroll;">
 	 <div id='detailPannel'>
 	<div style="overflow: hidden;">
-		<form method="post" action="" id="membershipTypeDeleteForm">
+		<form method="post" action="" id="membershipTypeViewForm">
 			<table>
 				
 
