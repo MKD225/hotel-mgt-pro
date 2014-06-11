@@ -22,6 +22,9 @@
 				name : 'agentId',
 				type : 'int'
 			}, {
+				name : 'title',	
+				type : 'String'
+			}, {
 				name : 'firstName',
 				type : 'String'
 			}, {
@@ -72,6 +75,7 @@
 			            rowsheight: 80,
 			            theme: theme,
 					columns : [
+							{text : 'title',datafield : 'title',align : 'left'},
 							{text : 'firstName',datafield : 'firstName',align : 'left'},
 							{text : 'LastName',datafield : 'lastName',align : 'left'},
 							{text : 'country',datafield : 'country',align : 'left'},
@@ -95,22 +99,16 @@
 									//get the clicked row's data and initialize the input fields.
 									var dataRecord = $("#jqxgrid").jqxGrid(
 											'getrowdata', row);
-									$("#membershipTypeIdEdit").val(
-											dataRecord.membershipTypeId);
-									$("#membershipTypeIdEdit").val(
-											dataRecord.membershipTypeId);
-									$("#membershipTypeIdEdit").val(
-											dataRecord.membershipTypeId);
-									$("#membershipTypeIdEdit").val(
-											dataRecord.membershipTypeId);
-									$("#membershipTypeIdEdit").val(
-											dataRecord.membershipTypeId);
-									$("#membershipTypeIdEdit").val(
-											dataRecord.membershipTypeId);
-									$("#membershipTypeIdEdit").val(
-											dataRecord.membershipTypeId);
-									$("#membershipTypeEdit").val(
-											dataRecord.membershipType);
+									$("#agentIdEdit").val(dataRecord.agentId);
+									$("#titleEdit").val(dataRecord.title);											
+									$("#firstNameEdit").val(dataRecord.firstName);				
+									$("#lastNameEdit").val(dataRecord.lastName);
+									$("#countryEdit").val(dataRecord.country);
+									$("#emailAddressEdit").val(dataRecord.emailAddress);
+									$("#telephoneNumberEdit").val(dataRecord.telephoneNumber);
+									$("#permitNumberEdit").val(dataRecord.permitNumber);
+									$("#remarksEdit").val(dataRecord.remarks);
+									$("#statusEdit").val(dataRecord.status);
 									$("#popupEdit").jqxWindow('open');
 								}
 							},
@@ -132,6 +130,8 @@
 // 									$("#fname:text").val(dataRecord.firstName);
 
 									$("#agentIdView").val(dataRecord.agentId);
+									
+									$("#titleView").val(dataRecord.title);
 																				
 									$("#firstNameView").val(dataRecord.firstName);
 											
@@ -178,6 +178,42 @@
         $("#Cancel").jqxButton({ 
         	theme: theme
         });
+        
+        
+        $("#cancelEdit").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+
+		$("#cancelEdit").click(function() {
+			$("#popupEdit").jqxWindow('hide');
+		});
+
+		$("#save").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+		// delete row when the user clicks the 'Delete' button.
+		$("#save").click(function() {
+			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
+			//             if (onSuccess) {
+			var formInput = $("#agentEditForm").serialize();
+			$.ajax({
+				type : 'post',
+				url : '/hotel/agent/ajxAddOrUpdate',
+				data : formInput,
+				success : function(data) {
+					var dataAdapter = new $.jqx.dataAdapter(source);
+					$("#jqxgrid").jqxGrid({
+						source : dataAdapter
+					});
+				}
+			});
+			$("#popupEdit").jqxWindow('hide');
+		});
+
+		clearText();
+	}
         
 //         $("#loginWindow").jqxWindow({
 //             width: 250,
@@ -230,7 +266,7 @@
 // 	        }],
 //             theme: theme
 //         });
-	}
+	
 </script>
 
 <div>
@@ -253,6 +289,11 @@
 
 					<td colspan="2"><input type="hidden" id="agentIdView"
 						name="agentId" class="text-input" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Title :</td>
+					<td><input type="text" id="titleView" name="title"
+						class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>First Name :</td>
@@ -316,7 +357,7 @@
 	 <div style="overflow-y: scroll;">
 	 <div id='detailPannel'>
 	<div style="overflow: hidden;">
-	<form method="post" action="" id="membershipTypeForm"
+	<form method="post" action="" id="agentEditForm"
 		style="margin-left: 80px; margin-top: 20px;">
 		<table>
 			<tr>
@@ -324,54 +365,54 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">&nbsp;<input type="hidden"
-					id="agentId" name="agentId" readonly="readonly" /></td>
+					id="agentIdEdit" name="agentId" readonly="readonly" /></td>
 			</tr>
+			
 			<tr>
 				<td>Title</td>
-				<td>
-					<div id='title'></div>
-				</td>
+				<td><input type="text" id="titleEdit" name="title"
+					class="text-input" title="title" /></td>
 			</tr>
 			<tr>
 				<td>First Name</td>
-				<td><input type="text" id="firstName" name="firstName"
+				<td><input type="text" id="firstNameEdit" name="firstName"
 					class="text-input" title="firstName" /></td>
 			</tr>
 			<tr>
 				<td>Last Name</td>
-				<td><input type="text" id="lastName" name="lastName"
+				<td><input type="text" id="lastNameEdit" name="lastName"
 					class="text-input" title="lastName" /></td>
 			</tr>
 
 			<tr>
-				<td>Country:</td>
-				<td>
-					<div id="country"></div>
-				</td>
+					<td>Country</td>
+					<td><input type="text" id="countryEdit" name="country"
+						class="text-input" title="country" /></td>
+				</tr>
 			</tr>
 			<tr>
 				<td>Email Address</td>
-				<td><input type="text" id="emailAddress" name="emailAddress"
+				<td><input type="text" id="emailAddressEdit" name="emailAddress"
 					class="text-input" title="emailAddress " /></td>
 			</tr>
 			<tr>
 				<td>Telephone Number</td>
-				<td><input type="text" id="telephoneNumber"
+				<td><input type="text" id="telephoneNumberEdit"
 					name="telephoneNumber" class="text-input" title="telephoneNumber " /></td>
 			</tr>
 			<tr>
 				<td>Permit Number</td>
-				<td><input type="text" id="permitNumber" name="permitNumber"
+				<td><input type="text" id="permitNumberEdit" name="permitNumber"
 					class="text-input" title="permitNumber" /></td>
 			</tr>
 			<tr>
 				<td>Remarks</td>
-				<td><input type="text" id="remarks" name="remarks"
+				<td><input type="text" id="remarksEdit" name="remarks"
 					class="text-input" title="remarks " /></td>
 			</tr>
 			<tr>
 				<td>Status</td>
-				<td><input type="text" id="status" name="status"
+				<td><input type="text" id="statusEdit" name="status"
 					class="text-input" title="status " /></td>
 			</tr>
 
@@ -380,8 +421,8 @@
 			<tr>
 				<td>&nbsp;</td>
 				<td style="padding-top: 10px;"><input type="button" id="save"
-					value="Save" style="margin-right: 5px;" /> <input id="clear"
-					type="button" value="Clear" /></td>
+					value="Save" style="margin-right: 5px;" /> <input id="cancelEdit"
+					type="button" value="Cancel" /></td>
 			</tr>
 		</table>
 	</form>
