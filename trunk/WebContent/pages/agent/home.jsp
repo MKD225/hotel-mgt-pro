@@ -6,7 +6,7 @@
 		$("#jqxButton").jqxButton({ width: '150', theme: theme });
 		
 		$("#jqxButton").on('click', function () {
-			window.location.replace("/slia/Member/insert");
+			window.location.replace("/hotel/agent/insert");
         });
 		
 		$('.text-log').jqxInput({ height: '25px',theme: theme });
@@ -189,6 +189,14 @@
 			$("#popupEdit").jqxWindow('hide');
 		});
 
+		  $("#closeView").jqxButton({
+				width : "100px",
+				theme : theme
+			});
+
+			$("#closeView").click(function() {
+				$("#popupView").jqxWindow('hide');
+			});
 		$("#save").jqxButton({
 			width : "100px",
 			theme : theme
@@ -269,6 +277,8 @@
 	
 </script>
 
+
+
 <div>
 	<input type="button" value="Add Agent" id='jqxButton' />
 </div>
@@ -338,7 +348,7 @@
 				</tr>
 				<tr>
 					<td style="padding-top: 10px;" align="center" colspan="1">
-					<input id="Cancel" type="button"
+					<input id="closeView" type="button"
 						value="Close" /></td>
 				</tr>
 				<tr>
@@ -389,7 +399,7 @@
 					<td><input type="text" id="countryEdit" name="country"
 						class="text-input" title="country" /></td>
 				</tr>
-			</tr>
+		
 			<tr>
 				<td>Email Address</td>
 				<td><input type="text" id="emailAddressEdit" name="emailAddress"
