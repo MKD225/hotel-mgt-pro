@@ -34,8 +34,14 @@
 
 <!-- AgentHome Page -->
 	<definition name="/AgentHome.tile" extends="baseLayout">
-		<put-attribute name="title" value="Agent" />
+		<put-attribute name="title" value="Agent Home" />
 		<put-attribute name="body" value="/pages/agent/home.jsp" />
+	</definition>
+	
+<!-- agent insert	 -->
+	<definition name="/AgentInsert.tile" extends="baseLayout">
+		<put-attribute name="title" value="New Agent" />
+		<put-attribute name="body" value="/pages/agent/insert.jsp" />
 	</definition>
 	
 	<!-- ResevationtypeHome Page -->
