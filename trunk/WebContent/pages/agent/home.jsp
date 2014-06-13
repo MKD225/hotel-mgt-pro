@@ -160,7 +160,7 @@
             theme: theme,
             isModal: true,
             autoOpen: false,
-            cancelButton: $("#Cancel"),
+            cancelButton: $("#closeView"),
             showAnimationDuration: 1000,
             modalOpacity: 0.45           
         });
@@ -170,7 +170,7 @@
             theme: theme,
             isModal: true,
             autoOpen: false,
-            cancelButton: $("#Cancel"),
+            cancelButton: $("#cancelEdit"),
             showAnimationDuration: 1000,
             modalOpacity: 0.45           
         });
