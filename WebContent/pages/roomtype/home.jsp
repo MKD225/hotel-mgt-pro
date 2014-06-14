@@ -92,7 +92,7 @@
 			theme : theme,
 			isModal : true,
 			autoOpen : false,
-			cancelButton : $("#cancelDelete"),
+			cancelButton : $("#cancelEdit"),
 			modalOpacity : 0.5,
 			showAnimationDuration : 500,
 			animationType : 'fade'
