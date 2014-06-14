@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+
 
 <script type="text/javascript">
 	function initialize(theme){
@@ -223,57 +223,57 @@
 		clearText();
 	}
         
-//         $("#loginWindow").jqxWindow({
-//             width: 250,
-//             resizable: false,
-//             theme: theme,
-//             isModal: true,
-//             autoOpen: false,
-//             cancelButton: $("#cancelButton"),
-//             showAnimationDuration: 1000,
-//             modalOpacity: 0.45,
-//             initContent: function () {
-//             	$("#detailPannel").jqxPanel({
-// 					width: '100%',
-// 					height: 200,
-// 					theme: theme
-// 				});
-//             }
+        $("#loginWindow").jqxWindow({
+            width: 250,
+            resizable: false,
+            theme: theme,
+            isModal: true,
+            autoOpen: false,
+            cancelButton: $("#cancelButton"),
+            showAnimationDuration: 1000,
+            modalOpacity: 0.45,
+            initContent: function () {
+            	$("#detailPannel").jqxPanel({
+					width: '100%',
+					height: 200,
+					theme: theme
+				});
+            }
              
-//         });
+        });
         
-//         $("#loginButton").jqxButton({ 
-//         	theme: theme
-//         });
+        $("#loginButton").jqxButton({ 
+        	theme: theme
+        });
         
-//         $("#cancelButton").jqxButton({ 
-//         	theme: theme
-//         });
+        $("#cancelButton").jqxButton({ 
+        	theme: theme
+        });
         
-//         $('#cancelButton').on('click', function () {
-//         	$('#loginWindow').jqxValidator('hide');
-//         });
+        $('#cancelButton').on('click', function () {
+        	$('#loginWindow').jqxValidator('hide');
+        });
         
-//         $('#loginWindow').jqxValidator({
-//             animationDuration: 50,
-//             rules: [{
-//                 input: '#username',
-//                 message: 'Username is required!',
-//                 action: 'keyup, blur',
-//                 rule: 'required'
-//             },{
-//                 input: '#password',
-//                 message: 'Password is required!',
-//                 action: 'keyup, blur',
-//                 rule: 'required'
-//             }, {
-// 	            input: '#username',
-// 	            message: 'Your username must be between 3 and 12 characters!',
-// 	            action: 'keyup, blur',
-// 	            rule: 'length=3,12'
-// 	        }],
-//             theme: theme
-//         });
+        $('#loginWindow').jqxValidator({
+            animationDuration: 50,
+            rules: [{
+                input: '#username',
+                message: 'Username is required!',
+                action: 'keyup, blur',
+                rule: 'required'
+            },{
+                input: '#password',
+                message: 'Password is required!',
+                action: 'keyup, blur',
+                rule: 'required'
+            }, {
+	            input: '#username',
+	            message: 'Your username must be between 3 and 12 characters!',
+	            action: 'keyup, blur',
+	            rule: 'length=3,12'
+	        }],
+            theme: theme
+        });
 	
 </script>
 
