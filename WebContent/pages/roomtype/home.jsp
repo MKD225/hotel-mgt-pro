@@ -55,6 +55,19 @@
 			animationType : 'fade'
 		});
 
+		
+		$("#popupEdit").jqxWindow({
+			width : 400,
+			resizable : false,
+			theme : theme,
+			isModal : true,
+			autoOpen : false,
+			cancelButton : $("#cancelDelete"),
+			modalOpacity : 0.5,
+			showAnimationDuration : 500,
+			animationType : 'fade'
+		});
+		
 		// Prepare the data
 		var url = "/hotel/roomtype/ajxSearch";
 		var source = {
@@ -130,8 +143,14 @@
 				buttonclick : function(row) {
 					//get the clicked row's data and initialize the input fields.
 					var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', row);
-					$("#membershipTypeId").val(dataRecord.membershipTypeId);
-					$("#membershipType").val(dataRecord.membershipType);
+					$("#roomTypeIdEdit").val(dataRecord.roomTypeId);
+					$("#roomTypeNameEdit").val(dataRecord.roomTypeName);
+					$("#a_cEdite").val(dataRecord.a_c);
+					$("#viewEdit").val(dataRecord.view);
+					$("#roomRateEdit").val(dataRecord.roomRate);
+					$("#descriptionEdit").val(dataRecord.description);
+					
+					$("#popupEdit").jqxWindow('open');
 				}
 			}, {
 				text : 'Delete',
@@ -176,6 +195,15 @@
 		$("#cancelDelete").click(function() {
 			$("#popupDelete").jqxWindow('hide');
 		});
+		
+		 $("#cancelEdit").jqxButton({
+				width : "100px",
+				theme : theme
+			});
+
+			$("#cancelEdit").click(function() {
+				$("#popupEdit").jqxWindow('hide');
+			});
 
 		$("#delete").jqxButton({
 			width : "100px",
@@ -202,6 +230,31 @@
 
 		clearText();
 	}
+		
+	$("#edit").jqxButton({
+		width : "100px",
+		theme : theme
+	});
+	// delete row when the user clicks the 'Edit' button.
+	$("#edit").click(function() {
+		//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
+		//             if (onSuccess) {
+		var formInput = $("#agentEditForm").serialize();
+		$.ajax({
+			type : 'post',
+			url : '/hotel/roomType/ajxAddOrUpdate',
+			data : formInput,
+			success : function(data) {
+				var dataAdapter = new $.jqx.dataAdapter(source);
+				$("#jqxgrid").jqxGrid({
+					source : dataAdapter
+				});
+			}
+		});
+		$("#popupEdit").jqxWindow('hide');
+	});
+
+	clearText();
 
 	function clearText() {
 		$("#membershipTypeId").val('');
@@ -322,3 +375,59 @@
 	</div>
 </div>
 
+<div id="popupEdit">
+	<div>Delete Membership Type</div>
+	<div style="overflow: hidden;">
+		<form method="post" action="" id="membershipTypeDeleteForm">
+			<table>
+				<tr>
+					<td colspan="2">Do you really want to <b>Delete</b> following
+						<b>Room Type</b>?
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2" align="center">&nbsp;<input type="hidden"
+						id="roomTypeIdDelete" name="roomTypeId" readonly="readonly" /></td>
+				</tr>
+
+				<tr>
+					<td>A/C</td>
+					<td><input type="text" id="a_cDelete" name="a_c"
+						class="text-input" readonly="readonly" /></td>
+				</tr>
+
+				<tr>
+					<td>Description</td>
+					<td><input type="text" id="descriptionDelete"
+						name="description" class="text-input" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Room Rate</td>
+					<td><input type="text" id="roomRateDelete" name="roomRate"
+						class="text-input" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Room Type Name</td>
+					<td><input type="text" id="roomTypeNameDelete"
+						name="roomTypeName" class="text-input" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>View</td>
+					<td><input type="text" id="viewDelete" name="view"
+						class="text-input" readonly="readonly" /></td>
+				</tr>
+
+				<tr>
+					<td style="padding-top: 10px;" align="center" colspan="2"><input
+						style="margin-right: 5px;" type="button" id="edit"
+						value="Edit" /><input id="cancelEdit" type="button"
+						value="Cancel" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">&nbsp;</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
