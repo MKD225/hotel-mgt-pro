@@ -70,6 +70,7 @@
 
 		$("#clear").click(function() {
 			clearText();
+			
 		});
 
 		$("#popupDelete").jqxWindow({
@@ -299,10 +300,17 @@
      });
 	}
 	function clearText() {
-		$("#membershipTypeId").val('');
-		$("#membershipType").val('');
+		$("#roomTypeId").val('');
+		$("#roomTypeName").val('');
+		$("#a_c").val('');
+		$("#roomRate").val('');
+		$("#view").val('');
+		$("#description").val('');
+		
 		$('#membershipTypeForm').jqxValidator('hide');
 	}
+	
+	
 </script>
 
 
@@ -424,7 +432,7 @@
 		<form method="post" action="" id="agentEditForm">
 			<table>
 				<tr>
-					<td colspan="2">Do you really want to <b>Delete</b> following
+					<td colspan="2">Do you really want to <b>Edit</b> following
 						<b>Room Type</b>?
 					</td>
 				</tr>
@@ -433,13 +441,21 @@
 					<td colspan="2" align="center">&nbsp;<input type="hidden"
 						id="roomTypeIdEdit" name="roomTypeId" /></td>
 				</tr>
-
+				<tr>
+					<td> Name</td>
+					<td><input type="text" id="roomTypeNameEdit"
+						name="roomTypeName" class="text-input"  /></td>
+				</tr>
 				<tr>
 					<td>A/C</td>
 					<td><input type="text" id="a_cEdit" name="a_c"
 						class="text-input" /></td>
 				</tr>
-
+				<tr>
+					<td>View</td>
+					<td><input type="text" id="viewEdit" name="view"
+						class="text-input"  /></td>
+				</tr>
 				<tr>
 					<td>Description</td>
 					<td><input type="text" id="descriptionEdit"
@@ -450,16 +466,8 @@
 					<td><input type="text" id="roomRateEdit" name="roomRate"
 						class="text-input" /></td>
 				</tr>
-				<tr>
-					<td>Room Type Name</td>
-					<td><input type="text" id="roomTypeNameEdit"
-						name="roomTypeName" class="text-input"  /></td>
-				</tr>
-				<tr>
-					<td>View</td>
-					<td><input type="text" id="viewEdit" name="view"
-						class="text-input"  /></td>
-				</tr>
+				
+				
 
 				<tr>
 					<td style="padding-top: 10px;" align="center" colspan="2"><input
