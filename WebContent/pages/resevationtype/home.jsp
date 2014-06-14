@@ -85,26 +85,27 @@
 		// initialize jqxGrid
 		$("#jqxgrid").jqxGrid(
 				{
-					width : '50%',
+					width : '58%',
 					source : dataAdapter,
 					theme : theme,
 					autoheight : true,
 					columns : [
+							
 							{
-								text : 'description',
-								datafield : 'description',
-								align : 'left'
-							},
-							{
-								text : 'reservationTypeCode',
+								text : 'Code',
 								datafield : 'reservationTypeCode',
 								align : 'left'
 							},
 							{
-								text : 'reservationTypeName',
+								text : 'Name',
 								datafield : 'reservationTypeName',
 								align : 'left'
 							
+							},
+							{
+								text : 'Description',
+								datafield : 'description',
+								align : 'left'
 							},
 							{
 								text : 'Edit',
@@ -217,21 +218,22 @@
 				<td colspan="2" align="center">&nbsp;<input type="hidden"
 					id="resevationTypeId" name="resevationTypeId" readonly="readonly" /></td>
 			</tr>
+			
 			<tr>
-				<td>Description</td>
-				<td><input type="text" id="description" name="description"
-					class="text-input" title="description " /></td>
-			</tr>
-			<tr>
-				<td>Reservation Type Code</td>
+				<td> Code</td>
 				<td><input type="text" id="reservationTypeCode" name="reservationTypeCode"
 					class="text-input" title="reservationTypeCode" /></td>
 			</tr>
 
 			<tr>
-				<td>Reservation Type Name</td>
+				<td> Name</td>
 				<td><input type="text" id="reservationTypeName" name="reservationTypeName"
 					class="text-input" title="reservationTypeName " /></td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td><input type="text" id="description" name="description"
+					class="text-input" title="description " /></td>
 			</tr>
 			
 			<tr>
