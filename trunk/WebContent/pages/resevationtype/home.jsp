@@ -55,6 +55,17 @@
 			animationType : 'fade'
 		});
 
+		$("#popupEdit").jqxWindow({
+			width : 400,
+			resizable : false,
+			theme : theme,
+			isModal : true,
+			autoOpen : false,
+			cancelButton : $("#cancelEdit"),
+			modalOpacity : 0.5,
+			showAnimationDuration : 500,
+			animationType : 'fade'
+		});
 		// Prepare the data
 		var url = "/hotel/resevationtype/ajxSearch";
 		var source = {
@@ -118,12 +129,16 @@
 								},
 								buttonclick : function(row) {
 									//get the clicked row's data and initialize the input fields.
-									var dataRecord = $("#jqxgrid").jqxGrid(
-											'getrowdata', row);
-									$("#membershipTypeId").val(
-											dataRecord.membershipTypeId);
-									$("#membershipType").val(
-											dataRecord.membershipType);
+									var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', row);
+									$("#resevationTypeIdEdit").val(
+											dataRecord.resevationTypeId);
+									$("#descriptionEdit").val(
+											dataRecord.description);
+									$("#reservationTypeCodeEdit").val(
+											dataRecord.reservationTypeCode);
+									$("#reservationTypeNameEdit").val(
+											dataRecord.reservationTypeName);
+									$("#popupEdit").jqxWindow('open');
 								}
 							},
 							{
@@ -171,6 +186,16 @@
 		$("#cancelDelete").click(function() {
 			$("#popupDelete").jqxWindow('hide');
 		});
+		
+		 $("#cancelEdit").jqxButton({
+				width : "100px",
+				theme : theme
+			});
+
+			$("#cancelEdit").click(function() {
+				$("#popupEdit").jqxWindow('hide');
+			});
+
 
 		$("#delete").jqxButton({
 			width : "100px",
@@ -196,11 +221,40 @@
 		});
 
 		clearText();
+	
+		
+	$("#edit").jqxButton({
+		width : "100px",
+		theme : theme
+	});
+	// delete row when the user clicks the 'Edit' button.
+	$("#edit").click(function() {
+		//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
+		//             if (onSuccess) {
+		var formInput = $("#resevationtypeEditForm").serialize();
+		$.ajax({
+			type : 'post',
+			url : '/hotel/resevationtype/ajxAddOrUpdate',
+			data : formInput,
+			success : function(data) {
+				var dataAdapter = new $.jqx.dataAdapter(source);
+				$("#jqxgrid").jqxGrid({
+					source : dataAdapter
+				});
+			}
+		});
+		$("#popupEdit").jqxWindow('hide');
+	});
+
+	clearText();
 	}
 
 	function clearText() {
-		$("#membershipTypeId").val('');
+		$("#resevationTypeId").val('');
 		$("#membershipType").val('');
+		$("#reservationTypeCode").val('');
+		$("#reservationTypeName").val('');
+		$("#description").val('');
 		$('#membershipTypeForm').jqxValidator('hide');
 	}
 </script>
@@ -292,3 +346,48 @@
 	</div>
 </div>
 
+<div id="popupEdit">
+	<div>Delete Membership Type</div>
+	<div style="overflow: hidden;">
+		<form method="post" action="" id="resevationtypeEditForm">
+			<table>
+				<tr>
+					<td colspan="2">Do you really want to <b>Edit</b> following
+						<b>Membership Type</b>?
+					</td>
+				</tr>
+				
+				<tr>
+				<td colspan="2"><input type="hidden"
+					id="resevationTypeIdEdit" name="resevationTypeId" /></td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td><input type="text" id="descriptionEdit" name="description"
+					class="text-input"/></td>
+			</tr>
+			<tr>
+				<td>Reservation Type Code</td>
+				<td><input type="text" id="reservationTypeCodeEdit" name="reservationTypeCode"
+					class="text-input"  /></td>
+			</tr>
+
+			<tr>
+				<td>Reservation Type Name</td>
+				<td><input type="text" id="reservationTypeNameEdit" name="reservationTypeName"
+					class="text-input"  /></td>
+			</tr>
+			
+				<tr>
+					<td style="padding-top: 10px;" align="center" colspan="2"><input
+						style="margin-right: 5px;" type="button" id="edit"
+						value="Edit" /><input id="cancelEdit" type="button"
+						value="Cancel" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">&nbsp;</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
