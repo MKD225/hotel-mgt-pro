@@ -18,6 +18,35 @@
 			width : "100px",
 			theme : theme
 		});
+		
+		$("#AcYes").jqxRadioButton({ width: 70, height: 25});
+        $("#AcNo").jqxRadioButton({ width: 70, height: 25});
+		
+		//get data from view.text
+		var url = "/hotel/pages/sampleData/roomViews.txt";
+        // prepare the data
+        var source =
+        {
+            datatype: "json",
+            datafields: [{ name: 'roomView' }],
+            url: url,
+            async: false
+        };
+        var dataAdapter = new $.jqx.dataAdapter(source);
+		console.info(source);
+       
+        // Create a jqxDropDownList
+        $("#view").jqxDropDownList({
+            selectedIndex: -1,
+            source: dataAdapter,
+            displayMember: "roomView",
+            valueMember: "roomView",
+            promptText: "Select room view...",
+            autoDropDownHeight: true,
+            width: 150,
+            height: 25,
+            theme: theme
+        });
 
 		// update the edited row when the user clicks the 'Save' button.
 		$("#save").click(function() {
@@ -255,7 +284,19 @@
 	});
 
 	clearText();
-
+	
+	 $('#memberForm').jqxValidator({
+         animationDuration: 50,
+         rules: [{
+        	 input: '#a_c',
+             message: 'Please select gender!',
+             action: 'change',
+             rule: function(input, commit) {
+                 return ($("#AcYes").val() || $("#AcNo").val());
+             }
+         }],
+         theme: theme
+     });
 	function clearText() {
 		$("#membershipTypeId").val('');
 		$("#membershipType").val('');
@@ -284,10 +325,12 @@
 			</tr>
 			<tr>
 				<td>A/C</td>
-				<td><input type="text" id="a_c" name="a_c" class="text-input"
-					title="a_c " /></td>
-			</tr>
-
+				
+				<td><div id='a_c' class='rad'>
+                    <table><tr><td><div id='AcYes' name="AcYes" value="true" style="margin-top: 5px;"><span>Yes</span></div></td>
+                    <td><div id='AcNo' name="AcNo" value="false" style="margin-top: 5px;"><span>No</span></div></td></tr></table>
+                    </div></td>
+			 </tr>
 			
 			<tr>
 				<td>Room Rate</td>
@@ -297,8 +340,7 @@
 			
 			<tr>
 				<td>View</td>
-				<td><input type="text" id="view" name="view" class="text-input"
-					title="view " /></td>
+				<td><div id="view" ></div></td>
 			</tr>
 
 			<tr>
