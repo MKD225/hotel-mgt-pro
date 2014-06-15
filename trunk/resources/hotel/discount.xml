@@ -32,6 +32,11 @@
 			<result name="success" type="tiles">/DiscountHome.tile</result>
 			
 		</action>
+		
+		<!-- Add discount button to insert page -->
+		<action name="insert">
+			<result name="success" type="tiles">/DiscountInsert.tile</result>
+		</action>
 
 	</package>
 
