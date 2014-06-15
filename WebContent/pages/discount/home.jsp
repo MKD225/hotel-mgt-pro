@@ -54,6 +54,18 @@
 			showAnimationDuration : 500,
 			animationType : 'fade'
 		});
+		
+		$("#popupEdit").jqxWindow({
+			width : 400,
+			resizable : false,
+			theme : theme,
+			isModal : true,
+			autoOpen : false,
+			cancelButton : $("#cancelEdit"),
+			modalOpacity : 0.5,
+			showAnimationDuration : 500,
+			animationType : 'fade'
+		});
 
 		// Prepare the data
 		var url = "/hotel/discount/ajxSearch";
@@ -162,13 +174,18 @@
 										},
 										buttonclick : function(row) {
 											//get the clicked row's data and initialize the input fields.
-											var dataRecord = $("#jqxgrid")
-													.jqxGrid('getrowdata', row);
-											$("#membershipTypeId")
-													.val(
-															dataRecord.membershipTypeId);
-											$("#membershipType").val(
-													dataRecord.membershipType);
+											var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', row);
+											$("#discounttIdEdit").val(dataRecord.discounttId);
+											$("#typeEdit").val(dataRecord.type);
+											$("#initializedDateEdit").val(dataRecord.initializedDate);
+											$("#closedDateEdit").val(dataRecord.closedDate);
+											$("f_bpercentageEdit").val(dataRecord.f_bpercentage);
+											$("#minibarpercentageEdit").val(dataRecord.minibarpercentage);
+											$("#roompercentageEdit").val(dataRecord.roompercentage);
+											$("#otherDiscountPercentageEdit").val(dataRecord.otherDiscountPercentage);
+											$("#statusEdit").val(dataRecord.status);
+											
+											$("#popupEdit").jqxWindow('open');
 										}
 									},
 									{
@@ -227,6 +244,15 @@
 		$("#cancelDelete").click(function() {
 			$("#popupDelete").jqxWindow('hide');
 		});
+		
+		$("#cancelEdit").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+
+		$("#cancelEdit").click(function() {
+			$("#popupEdit").jqxWindow('hide');
+		});
 
 		$("#delete").jqxButton({
 			width : "100px",
@@ -236,7 +262,7 @@
 		$("#delete").click(function() {
 			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
 			//             if (onSuccess) {
-			var formInput = $("#membershipTypeDeleteForm").serialize();
+			var formInput = $("#discountDeleteForm").serialize();
 			$.ajax({
 				type : 'post',
 				url : '/hotel/discount/ajxDelete',
@@ -249,6 +275,27 @@
 				}
 			});
 			$("#popupDelete").jqxWindow('hide');
+		});
+
+		clearText();
+		
+		// delete row when the user clicks the 'Edit' button.
+		$("#edit").click(function() {
+			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
+			//             if (onSuccess) {
+			var formInput = $("#discountEditForm").serialize();
+			$.ajax({
+				type : 'post',
+				url : '/hotel/discount/ajxAddOrUpdate',
+				data : formInput,
+				success : function(data) {
+					var dataAdapter = new $.jqx.dataAdapter(source);
+					$("#jqxgrid").jqxGrid({
+						source : dataAdapter
+					});
+				}
+			});
+			$("#popupEdit").jqxWindow('hide');
 		});
 
 		clearText();
@@ -331,10 +378,85 @@
 	</form>
 </div>
 
+<div id="popupEdit">
+	<div>Delete Membership Type</div>
+	<div style="overflow: hidden;">
+		<form method="post" action="" id="discountEditForm">
+			<table>
+				<tr>
+					<td colspan="2">Do you really want to <b>Edit</b> following
+						<b>Discount Type</b>?
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2"><input type="hidden" id="discounttIdEdit"
+						name="discounttId" class="text-input"  /></td>
+				</tr>
+				<tr>
+					<td>type</td>
+					<td><input type="text" id="typeEdit" name="type"
+						class="text-input"  /></td>
+				</tr>
+				<tr>
+					<td>Initialized Date</td>
+					<td><input type="text" id="initializedDateEdit"
+						name="initializedDate" class="text-input"  /></td>
+				</tr>
+				<tr>
+					<td>Closed Date</td>
+					<td><input type="text" id="closedDateEdit" name="closedDate"
+						class="text-input"  /></td>
+				</tr>
+
+				<tr>
+					<td>F n B percentage</td>
+					<td><input type="text" id="f_bpercentageEdit"
+						name="f_bpercentage" class="text-input"  /></td>
+				</tr>
+
+
+				<tr>
+					<td>Minibar percentage</td>
+					<td><input type="text" id="minibarpercentageEdit"
+						name="minibarpercentage" class="text-input"  /></td>
+				</tr>
+				<tr>
+					<td>Room percentage</td>
+					<td><input type="text" id="roompercentageEdit"
+						name="roompercentage" class="text-input"  /></td>
+				</tr>
+				<tr>
+					<td>Other Discount Percentage</td>
+					<td><input type="text" id="otherDiscountPercentageEdit"
+						name="otherDiscountPercentage" class="text-input"
+						 /></td>
+				</tr>
+
+				<tr>
+					<td>status</td>
+					<td><input type="text" id="statusEdit" name="status"
+						class="text-input"  /></td>
+				</tr>
+
+				<tr>
+					<td style="padding-top: 10px;" align="center" colspan="2"><input
+						style="margin-right: 5px;" type="button" id="edit"
+						value="Edit" /><input id="cancelEdit" type="button"
+						value="Cancel" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">&nbsp;</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
 <div id="popupDelete">
 	<div>Delete Membership Type</div>
 	<div style="overflow: hidden;">
-		<form method="post" action="" id="membershipTypeDeleteForm">
+		<form method="post" action="" id="discountDeleteForm">
 			<table>
 				<tr>
 					<td colspan="2">Do you really want to <b>Delete</b> following
@@ -405,4 +527,3 @@
 		</form>
 	</div>
 </div>
-
