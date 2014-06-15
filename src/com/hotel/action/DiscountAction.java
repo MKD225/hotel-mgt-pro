@@ -31,7 +31,7 @@ public class DiscountAction extends ActionSupport implements ModelDriven {
 
 	public String addOrUpdate() {
 		try {
-			System.out.println(discount.getType());
+			System.out.println(discount.getRoompercentage());
 			this.discount = new DiscountManager().saveOrUpdate(this.discount);
 		} catch (Exception e) {
 			e.printStackTrace();
