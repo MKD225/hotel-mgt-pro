@@ -9,6 +9,15 @@
 			theme : theme
 		});
 		$('.text-input').addClass('jqx-rc-all');
+		
+		 var date = new Date();
+         date.setFullYear(2000, 0, 1);
+         $('#initializedDate').jqxDateTimeInput({ theme: theme, height: 22, value: $.jqx._jqxDateTimeInput.getDateTime(date) });
+		
+         var date = new Date();
+         date.setFullYear(2000, 0, 1);
+         $('#closedDate').jqxDateTimeInput({ theme: theme, height: 22, value: $.jqx._jqxDateTimeInput.getDateTime(date) });
+
 
 		$("#save").jqxButton({
 			width : "100px",
@@ -328,13 +337,13 @@
 			</tr>
 			<tr>
 				<td>Initialized Date</td>
-				<td><input type="text" id="initializedDate"
-					name="initializedDate" class="text-input" title="initializedDate" /></td>
+				<td><div id="initializedDate"></div>
+					</td>
 			</tr>
 			<tr>
 				<td>Closed Date</td>
-				<td><input type="text" id="closedDate" name="closedDate"
-					class="text-input" title="closedDate" /></td>
+				<td><div id="closedDate"></div>
+					</td>
 			</tr>
 
 			<tr>
