@@ -31,6 +31,12 @@
 		<put-attribute name="title" value="Discount" />
 		<put-attribute name="body" value="/pages/discount/home.jsp" />
 	</definition>
+	
+	<!-- Discount insert	 -->
+	<definition name="/DiscountInsert.tile" extends="baseLayout">
+		<put-attribute name="title" value="New Discount" />
+		<put-attribute name="body" value="/pages/discount/insert.jsp" />
+	</definition>
 
 <!-- AgentHome Page -->
 	<definition name="/AgentHome.tile" extends="baseLayout">
