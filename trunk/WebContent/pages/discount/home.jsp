@@ -10,47 +10,12 @@
 		});
 		$('.text-input').addClass('jqx-rc-all');
 		
-		 var date = new Date();
-         date.setFullYear(2000, 0, 1);
-         $('#initializedDate').jqxDateTimeInput({ theme: theme, height: 22, value: $.jqx._jqxDateTimeInput.getDateTime(date) });
+		$("#jqxButton").on('click', function () {
+			window.location.replace("/hotel/discount/insert");
+        });
 		
-         var date = new Date();
-         date.setFullYear(2000, 0, 1);
-         $('#closedDate').jqxDateTimeInput({ theme: theme, height: 22, value: $.jqx._jqxDateTimeInput.getDateTime(date) });
 
 
-		$("#save").jqxButton({
-			width : "100px",
-			theme : theme
-		});
-		$("#clear").jqxButton({
-			width : "100px",
-			theme : theme
-		});
-
-		// update the edited row when the user clicks the 'Save' button.
-		$("#save").click(function() {
-			var onSuccess = $('#membershipTypeForm').jqxValidator('validate');
-			if (onSuccess) {
-				var formInput = $("#membershipTypeForm").serialize();
-				$.ajax({
-					type : 'post',
-					url : '/hotel/discount/ajxAddOrUpdate',
-					data : formInput,
-					success : function(data) {
-						var dataAdapter = new $.jqx.dataAdapter(source);
-						$("#jqxgrid").jqxGrid({
-							source : dataAdapter
-						});
-					}
-				});
-				clearText();
-			}
-		});
-
-		$("#clear").click(function() {
-			clearText();
-		});
 
 		$("#popupDelete").jqxWindow({
 			width : 400,
@@ -75,7 +40,6 @@
 			showAnimationDuration : 500,
 			animationType : 'fade'
 		});
-
 		// Prepare the data
 		var url = "/hotel/discount/ajxSearch";
 		var source = {
@@ -124,7 +88,7 @@
 		$("#jqxgrid")
 				.jqxGrid(
 						{
-							width : '50%',
+							width : '100%',
 							source : dataAdapter,
 							theme : theme,
 							autoheight : true,
@@ -132,51 +96,59 @@
 									{
 										text : 'type',
 										datafield : 'type',
-										align : 'left'
+										align : 'left',
+										width:'14%'
 									},
 
 									{
-										text : 'initializedDate',
+										text : 'Start Date',
 										datafield : 'initializedDate',
-										align : 'left'
+										align : 'left',
+										width:'10%'
 									},
 									{
-										text : 'closedDate',
+										text : 'End Date',
 										datafield : 'closedDate',
-										align : 'left'
+										align : 'left',
+										width:'10%'
 									},
 
 									{
-										text : 'f_bpercentage',
+										text : 'FnB',
 										datafield : 'f_bpercentage',
-										align : 'left'
+										align : 'left',
+										width:'10%'
 									},
 									{
-										text : 'minibarpercentage',
+										text : 'Minibar',
 										datafield : 'minibarpercentage',
-										align : 'left'
+										align : 'left',
+										width:'10%'
 									},
 									{
-										text : 'roompercentage',
+										text : 'Room',
 										datafield : 'roompercentage',
-										align : 'left'
+										align : 'left',
+										width:'10%'
 									},
 									{
-										text : 'otherDiscountPercentage',
+										text : 'Other discounts',
 										datafield : 'otherDiscountPercentage',
-										align : 'left'
+										align : 'left',
+										width:'10%'
 									},
 									{
 										text : 'status',
 										datafield : 'status',
-										align : 'left'
+										align : 'left',
+										width:'10%'
 
 									},
 									{
 										text : 'Edit',
 										datafield : 'Edit',
 										columntype : 'button',
-										width : 100,
+										width : '8%',
 										align : 'center',
 										cellsrenderer : function() {
 											return "Edit";
@@ -184,16 +156,24 @@
 										buttonclick : function(row) {
 											//get the clicked row's data and initialize the input fields.
 											var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', row);
-											$("#discounttIdEdit").val(dataRecord.discounttId);
-											$("#typeEdit").val(dataRecord.type);
-											$("#initializedDateEdit").val(dataRecord.initializedDate);
-											$("#closedDateEdit").val(dataRecord.closedDate);
-											$("f_bpercentageEdit").val(dataRecord.f_bpercentage);
-											$("#minibarpercentageEdit").val(dataRecord.minibarpercentage);
-											$("#roompercentageEdit").val(dataRecord.roompercentage);
-											$("#otherDiscountPercentageEdit").val(dataRecord.otherDiscountPercentage);
-											$("#statusEdit").val(dataRecord.status);
-											
+											$("#discounttIdEdit").val(
+													dataRecord.discounttId);
+											$("#typeEdit").val(
+													dataRecord.type);
+											$("#initializedDateEdit").val(
+													dataRecord.initializedDate);
+											$("#closedDateEdit").val(
+													dataRecord.closedDate);
+											$("#f_bpercentageEdit").val(
+													dataRecord.f_bpercentage);
+											$("#minibarpercentageEdit").val(
+													dataRecord.minibarpercentage);
+											$("#roompercentageEdit").val(
+													dataRecord.roompercentage);
+											$("#otherDiscountPercentageEdit").val(
+													dataRecord.otherDiscountPercentage);
+											$("#statusEdit").val(
+													dataRecord.status);
 											$("#popupEdit").jqxWindow('open');
 										}
 									},
@@ -201,7 +181,7 @@
 										text : 'Delete',
 										datafield : 'Delete',
 										columntype : 'button',
-										width : 100,
+										width : '8%',
 										align : 'center',
 										cellsrenderer : function() {
 											return "Delete";
@@ -234,16 +214,16 @@
 									} ]
 						});
 
-		$('#membershipTypeForm').jqxValidator({
-			rules : [ {
-				input : '#type',
-				message : 'Membership Type is required!',
-				action : 'keyup, blur',
-				rule : 'required'
-			} ],
-			theme : theme,
-			scroll : false
-		});
+// 		$('#membershipTypeForm').jqxValidator({
+// 			rules : [ {
+// 				input : '#type',
+// 				message : 'Membership Type is required!',
+// 				action : 'keyup, blur',
+// 				rule : 'required'
+// 			} ],
+// 			theme : theme,
+// 			scroll : false
+// 		});
 
 		$("#cancelDelete").jqxButton({
 			width : "100px",
@@ -272,6 +252,7 @@
 			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
 			//             if (onSuccess) {
 			var formInput = $("#discountDeleteForm").serialize();
+			console.info("what");
 			$.ajax({
 				type : 'post',
 				url : '/hotel/discount/ajxDelete',
@@ -286,10 +267,18 @@
 			$("#popupDelete").jqxWindow('hide');
 		});
 
-		clearText();
 		
-		// delete row when the user clicks the 'Edit' button.
+		
+		
+		$("#edit").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+		
+		// edit row when the user clicks the 'Edit' button.
+		
 		$("#edit").click(function() {
+			
 			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
 			//             if (onSuccess) {
 			var formInput = $("#discountEditForm").serialize();
@@ -307,85 +296,20 @@
 			$("#popupEdit").jqxWindow('hide');
 		});
 
-		clearText();
-	}
+		
+		}
 
-	function clearText() {
-		$("#membershipTypeId").val('');
-		$("#membershipType").val('');
-		$('#membershipTypeForm').jqxValidator('hide');
-	}
+	
 </script>
+
+<div>
+	<input type="button" value="Add Discount" id='jqxButton' />
+</div>
+<div class="clr" style="height: 8px; width: '100%'"></div>
 
 
 <div id="jqxgrid" style="float: left;"></div>
-<div style="overflow: hidden; position: relative;">
-	<form method="post" action="" id="membershipTypeForm"
-		style="margin-left: 80px; margin-top: 20px;">
-		<table>
-			<tr>
-				<td colspan="2" align="center"><b>Discount</b></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">&nbsp;<input type="hidden"
-					id="discounttId" name="discounttId" readonly="readonly" /></td>
-			</tr>
-			<tr>
-				<td>type</td>
-				<td><input type="text" id="type" name="type" class="text-input"
-					title="type" /></td>
-			</tr>
-			<tr>
-				<td>Initialized Date</td>
-				<td><div id="initializedDate"></div>
-					</td>
-			</tr>
-			<tr>
-				<td>Closed Date</td>
-				<td><div id="closedDate"></div>
-					</td>
-			</tr>
 
-			<tr>
-				<td>F n B percentage</td>
-				<td><input type="text" id="f_bpercentage" name="f_bpercentage"
-					class="text-input" title="f_bpercentage" /></td>
-			</tr>
-
-
-			<tr>
-				<td>Minibar percentage</td>
-				<td><input type="text" id="minibarpercentage"
-					name="minibarpercentage" class="text-input"
-					title="minibarpercentage" /></td>
-			</tr>
-			<tr>
-				<td>Room percentage</td>
-				<td><input type="text" id="roompercentage"
-					name="roompercentage" class="text-input" title="Room percentage" /></td>
-			</tr>
-			<tr>
-				<td>Other Discount Percentage</td>
-				<td><input type="text" id="otherDiscountPercentage"
-					name="otherDiscountPercentage" class="text-input"
-					title="otherDiscountPercentage" /></td>
-			</tr>
-
-			<tr>
-				<td>status</td>
-				<td><input type="text" id="status" name="status"
-					class="text-input" title="status Type" /></td>
-			</tr>
-
-			<tr>
-				<td>&nbsp;</td>
-				<td style="padding-top: 10px;"><input type="button" id="save"
-					value="Save" style="margin-right: 5px;" /> <input id="clear"
-					type="button" value="Clear" /></td>
-			</tr>
-		</table>
-	</form>
-</div>
 
 <div id="popupEdit">
 	<div>Delete Membership Type</div>
@@ -536,3 +460,4 @@
 		</form>
 	</div>
 </div>
+ <div class="clr"></div>
