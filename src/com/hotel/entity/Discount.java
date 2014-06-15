@@ -74,7 +74,7 @@ public class Discount implements Serializable {
 		return this.f_bpercentage;
 	}
 
-	public void setF_bpercentage(float f_bpercentage) {
+	public void setF_bpercentage(double f_bpercentage) {
 		this.f_bpercentage = f_bpercentage;
 	}
 
@@ -90,7 +90,7 @@ public class Discount implements Serializable {
 		return this.minibarpercentage;
 	}
 
-	public void setMinibarpercentage(float minibarpercentage) {
+	public void setMinibarpercentage(double minibarpercentage) {
 		this.minibarpercentage = minibarpercentage;
 	}
 
@@ -106,7 +106,7 @@ public class Discount implements Serializable {
 		return this.roompercentage;
 	}
 
-	public void setRoompercentage(float roompercentage) {
+	public void setRoompercentage(double roompercentage) {
 		this.roompercentage = roompercentage;
 	}
 
