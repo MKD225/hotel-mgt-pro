@@ -25,6 +25,12 @@
 		<put-attribute name="title" value="Guest" />
 		<put-attribute name="body" value="/pages/guest/home.jsp" />
 	</definition>
+	
+	<!-- Guest insert	 -->
+	<definition name="/GuestInsert.tile" extends="baseLayout">
+		<put-attribute name="title" value="New Guest" />
+		<put-attribute name="body" value="/pages/guest/insert.jsp" />
+	</definition>
 
 <!-- DiscountHome Page -->
 	<definition name="/DiscountHome.tile" extends="baseLayout">
