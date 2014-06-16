@@ -23,6 +23,9 @@ public class Guest implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="guestId")
 	private int guestId;
+	
+	@Column(name="title")
+	private String title;
 
 	@Column(name="anniversary")
 	private String anniversary;
@@ -83,6 +86,15 @@ public class Guest implements Serializable {
 	public void setGuestId(int guestId) {
 		this.guestId = guestId;
 	}
+	
+	public String gettitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 
 	public String getAnniversary() {
 		return anniversary;
