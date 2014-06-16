@@ -31,6 +31,10 @@
 		<action name="home">
 			<result name="success" type="tiles">/GuestHome.tile</result>
 		</action>
+		
+		<action name="insert">
+			<result name="success" type="tiles">/GuestInsert.tile</result>
+		</action>
 
 	</package>
 
