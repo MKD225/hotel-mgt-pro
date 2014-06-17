@@ -17,13 +17,13 @@
 
 
 
-		$("#popupDelete").jqxWindow({
+		$("#popupView").jqxWindow({
 			width : 400,
 			resizable : false,
 			theme : theme,
 			isModal : true,
 			autoOpen : false,
-			cancelButton : $("#cancelDelete"),
+			cancelButton : $("#cancelView"),
 			modalOpacity : 0.5,
 			showAnimationDuration : 500,
 			animationType : 'fade'
@@ -107,10 +107,17 @@
 		// initialize jqxGrid
 		$("#jqxgrid").jqxGrid(
 				{
-					width : '100%',
-					source : dataAdapter,
-					theme : theme,
-					autoheight : true,
+					width: '100%',
+		            autoheight: true,
+		            source: dataAdapter,
+		            showfilterrow: true,
+		            filterable: true,
+		            columnsresize: true,
+		            pageable: true,
+		            pagesize: 20,
+		            autorowheight: true,
+		            rowsheight: 80,
+		            theme: theme,
 					columns : [
 							{
 								text : 'Title',
@@ -238,53 +245,53 @@
 								}
 							},
 							{
-								text : 'Delete',
-								datafield : 'Delete',
+								text : 'View',
+								datafield : 'View',
 								columntype : 'button',
 								width : 100,
 								align : 'center',
 								cellsrenderer : function() {
-									return "Delete";
+									return "View";
 								},
 								buttonclick : function(row) {
 									//get the clicked row's data and initialize the input fields.
 									var dataRecord = $("#jqxgrid").jqxGrid(
 											'getrowdata', row);
-									$("#guestIdDelete").val(
+									$("#guestIdView").val(
 											dataRecord.guestId);
-									$("#titleDelete").val(
+									$("#titleView").val(
 											dataRecord.title);
-									$("#firstNameDelete").val(
+									$("#firstNameView").val(
 											dataRecord.firstName);
-									$("#lastNameDelete").val(
+									$("#lastNameView").val(
 											dataRecord.lastName);
-									$("#dateOfBirthDelete").val(
+									$("#dateOfBirthView").val(
 											dataRecord.dateOfBirth);
-									$("#cityDelete").val(
+									$("#cityView").val(
 											dataRecord.city);							
-									$("#countryDelete").val(
+									$("#countryView").val(
 											dataRecord.country);
-									$("#countryCodeDelete").val(
+									$("#countryCodeView").val(
 											dataRecord.countryCode);
-									$("#telephoneNumberDelete").val(
+									$("#telephoneNumberView").val(
 											dataRecord.telephoneNumber);
-									$("#emailAddressDelete").val(
+									$("#emailAddressView").val(
 											dataRecord.emailAddress);
-									$("#faxDelete").val(
+									$("#faxView").val(
 											dataRecord.fax);
-									$("#mailAddressDelete").val(
+									$("#mailAddressView").val(
 											dataRecord.mailAddress);
-									$("#nationalityDelete").val(
+									$("#nationalityView").val(
 											dataRecord.nationality);
-									$("#nicNumberDelete").val(
+									$("#nicNumberView").val(
 											dataRecord.nicNumber);									
-									$("#passportNumberDelete").val(
+									$("#passportNumberView").val(
 											dataRecord.passportNumber);
-									$("#anniversaryDelete").val(
+									$("#anniversaryView").val(
 											dataRecord.anniversary);
-									$("#remarksDelete").val(
+									$("#remarksView").val(
 											dataRecord.remarks);
-									$("#popupDelete").jqxWindow('open');
+									$("#popupView").jqxWindow('open');
 								}
 							} ]
 				});
@@ -300,13 +307,13 @@
 // 			scroll : false
 // 		});
 
-		$("#cancelDelete").jqxButton({
+		$("#cancelView").jqxButton({
 			width : "100px",
 			theme : theme
 		});
 
-		$("#cancelDelete").click(function() {
-			$("#popupDelete").jqxWindow('hide');
+		$("#cancelView").click(function() {
+			$("#popupView").jqxWindow('hide');
 		});
 		
 		$("#cancelEdit").jqxButton({
@@ -318,29 +325,29 @@
 			$("#popupEdit").jqxWindow('hide');
 		});
 
-		$("#delete").jqxButton({
-			width : "100px",
-			theme : theme
-		});
-		// delete row when the user clicks the 'Delete' button.
-		$("#delete").click(function() {
-			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
-			//             if (onSuccess) {
-			var formInput = $("#guestDeleteForm").serialize();
-			console.info("what");
-			$.ajax({
-				type : 'post',
-				url : '/hotel/guest/ajxDelete',
-				data : formInput,
-				success : function(data) {
-					var dataAdapter = new $.jqx.dataAdapter(source);
-					$("#jqxgrid").jqxGrid({
-						source : dataAdapter
-					});
-				}
-			});
-			$("#popupDelete").jqxWindow('hide');
-		});
+// 		$("#delete").jqxButton({
+// 			width : "100px",
+// 			theme : theme
+// 		});
+// 		// delete row when the user clicks the 'Delete' button.
+// 		$("#delete").click(function() {
+// 			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
+// 			//             if (onSuccess) {
+// 			var formInput = $("#guestDeleteForm").serialize();
+// 			console.info("what");
+// 			$.ajax({
+// 				type : 'post',
+// 				url : '/hotel/guest/ajxDelete',
+// 				data : formInput,
+// 				success : function(data) {
+// 					var dataAdapter = new $.jqx.dataAdapter(source);
+// 					$("#jqxgrid").jqxGrid({
+// 						source : dataAdapter
+// 					});
+// 				}
+// 			});
+// 			$("#popupDelete").jqxWindow('hide');
+// 		});
 
 		
 		
@@ -502,10 +509,10 @@
 	</div>
 </div>
 
-<div id="popupDelete">
+<div id="popupView">
 	<div>Delete Membership Type</div>
 	<div style="overflow: hidden;">
-		<form method="post" action="" id="guestDeleteForm">
+		<form method="post" action="" id="guestViewForm">
 			<table>
 				<tr>
 					<td colspan="2">Do you really want to <b>Delete</b> following
@@ -513,102 +520,102 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="hidden" id="guestIdDelete"
+					<td colspan="2"><input type="hidden" id="guestIdView"
 						name="guestId" class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>Title</td>
-					<td><input type="text" id="titleDelete" name="title"
+					<td><input type="text" id="titleView" name="title"
 						class="text-input" title="title" readonly="readonly" /></td>
 				</tr>
 				
 				<tr>
 					<td>First Name</td>
-					<td><input type="text" id="firstNameDelete" name="firstName"
+					<td><input type="text" id="firstNameView" name="firstName"
 						class="text-input" title="firstName Type" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>Last Name</td>
-					<td><input type="text" id="lastNameDelete" name="lastName"
+					<td><input type="text" id="lastNameView" name="lastName"
 						class="text-input" title="lastName Type" readonly="readonly" /></td>
 				</tr>
 
 				<tr>
 					<td>dateOfBirth</td>
-					<td><input type="text" id="dateOfBirthDelete"
+					<td><input type="text" id="dateOfBirthView"
 						name="dateOfBirth" class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>city</td>
-					<td><input type="text" id="cityDelete" name="city"
+					<td><input type="text" id="cityView" name="city"
 						class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>country</td>
-					<td><input type="text" id="countryDelete" name="country"
+					<td><input type="text" id="countryView" name="country"
 						class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>countryCode</td>
-					<td><input type="text" id="countryCodeDelete"
+					<td><input type="text" id="countryCodeView"
 						name="countryCode" class="text-input" readonly="readonly" /></td>
 				</tr>
 
 				<tr>
 					<td>telephoneNumber</td>
-					<td><input type="text" id="telephoneNumberDelete"
+					<td><input type="text" id="telephoneNumberView"
 						name="telephoneNumber" class="text-input" readonly="readonly" /></td>
 				</tr>
 
 				<tr>
 					<td>emailAddress</td>
-					<td><input type="text" id="emailAddressDelete"
+					<td><input type="text" id="emailAddressView"
 						name="emailAddress" class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>Fax No</td>
-					<td><input type="text" id="faxDelete" name="fax"
+					<td><input type="text" id="faxView" name="fax"
 						class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>Mail Address Type</td>
-					<td><input type="text" id="mailAddressDelete" name="mailAddress"
+					<td><input type="text" id="mailAddressView" name="mailAddress"
 						class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>Nationality</td>
-					<td><input type="text" id="nationalityDelete" name="nationality"
+					<td><input type="text" id="nationalityView" name="nationality"
 						class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>nicNumber</td>
-					<td><input type="text" id="nicNumberDelete" name="nicNumber"
+					<td><input type="text" id="nicNumberView" name="nicNumber"
 						class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>passportNumber</td>
-					<td><input type="text" id="passportNumberDelete"
+					<td><input type="text" id="passportNumberView"
 						name="passportNumber" class="text-input" readonly="readonly" /></td>
 				</tr>
 
 				<tr>
 					<td>anniversary</td>
-					<td><input type="text" id="anniversaryDelete" name="anniversary"
+					<td><input type="text" id="anniversaryView" name="anniversary"
 						class="text-input" readonly="readonly" /></td>
 				</tr>
 
 				<tr>
 					<td>remarks</td>
-					<td><input type="text" id="remarksDelete" name="remarks"
+					<td><input type="text" id="remarksView" name="remarks"
 						class="text-input" readonly="readonly" /></td>
 				</tr>
 
 
 				<tr>
 					<td style="padding-top: 10px;" align="center" colspan="2"><input
-						style="margin-right: 5px;" type="button" id="delete"
-						value="Delete" /><input id="cancelDelete" type="button"
-						value="Cancel" /></td>
+						style="margin-right: 5px;" type="button" id="view"
+						value="View" /><input id="cancelView" type="button"
+						value="Close" /></td>
 				</tr>
 				<tr>
 					<td colspan="2">&nbsp;</td>
