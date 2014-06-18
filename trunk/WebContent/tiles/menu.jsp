@@ -64,6 +64,11 @@ function createMenu(theme){
                 "text": "Roomcalander",
                 "parentid": "2",
                 "path": "/hotel/roomcalander/home"
+            }, {
+                "id": "15",
+                "text": "Shift",
+                "parentid": "4",
+                "path": "/hotel/shift/home"
             }];
             var source = {
                 datatype: "json",
