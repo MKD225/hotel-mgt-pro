@@ -26,6 +26,7 @@
 		<mapping class="com.hotel.entity.Roomtype" />
 		<mapping class="com.hotel.entity.Room" />
 		<mapping class="com.hotel.entity.Roomcalander" />
+		<mapping class="com.hotel.entity.Shift" />
 		
 
 	</session-factory>
