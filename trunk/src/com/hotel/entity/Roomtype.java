@@ -10,6 +10,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="roomtype")
 public class Roomtype implements Serializable {
 	private static final long serialVersionUID = 1L;
 
