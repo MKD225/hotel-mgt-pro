@@ -30,6 +30,7 @@
 	<include file="/hotel/spouse.xml"></include>
 	<include file="/hotel/room.xml"></include>
 	<include file="/hotel/roomcalander.xml"></include>
+	<include file="/hotel/shift.xml"></include>
 	
 	
 
