@@ -69,6 +69,11 @@ function createMenu(theme){
                 "text": "Shift",
                 "parentid": "4",
                 "path": "/hotel/shift/home"
+            }, {
+                "id": "16",
+                "text": "External Driver",
+                "parentid": "4",
+                "path": "/hotel/externaldriver/home"
             }];
             var source = {
                 datatype: "json",
