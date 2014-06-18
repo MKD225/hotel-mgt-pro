@@ -18,14 +18,10 @@ public class Shift implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int shiftId;
-
-	private String description;
-
-	private String endTime;
-
 	private String shiftName;
-
 	private String startTime;
+	private String endTime;		
+	private String description;
 
 //	//bi-directional many-to-one association to Employeeroaster
 //	@OneToMany(mappedBy="shift", fetch=FetchType.EAGER)
