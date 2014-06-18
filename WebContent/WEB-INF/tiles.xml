@@ -92,4 +92,16 @@
 		<put-attribute name="body" value="/pages/shift/home.jsp" />
 	</definition>
 
+<!-- ExternaldriverHome Page -->
+	<definition name="/ExternaldriverHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="External Driver" />
+		<put-attribute name="body" value="/pages/externaldriver/home.jsp" />
+	</definition>
+	
+	<!-- ExternaldriverInsert Page -->
+	<definition name="/ExternaldriverInsert.tile" extends="baseLayout">
+		<put-attribute name="title" value="New External Driver" />
+		<put-attribute name="body" value="/pages/externaldriver/insert.jsp" />
+	</definition>
+
 </tiles-definitions>
