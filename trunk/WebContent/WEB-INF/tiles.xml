@@ -85,5 +85,11 @@
 		<put-attribute name="title" value="Roomcalander" />
 		<put-attribute name="body" value="/pages/roomcalander/home.jsp" />
 	</definition>
+	
+	<!-- ShiftHome Page -->
+	<definition name="/ShiftHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Shift" />
+		<put-attribute name="body" value="/pages/shift/home.jsp" />
+	</definition>
 
 </tiles-definitions>
