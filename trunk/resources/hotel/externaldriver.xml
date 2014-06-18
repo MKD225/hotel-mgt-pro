@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="ajxExternaldriver" namespace="/externaldriver" extends="json-default">
+
+		<action name="ajxSearch" class="com.hotel.action.ExternaldriverAction"
+			method="search">
+			<result type="json">
+				<param name="root">externaldrivers</param>
+			</result>
+		</action>
+		
+		<action name="ajxAddOrUpdate" class="com.hotel.action.ExternaldriverAction"
+			method="addOrUpdate">
+			<result type="json"></result>
+		</action>
+		
+		<action name="ajxDelete" class="com.hotel.action.ExternaldriverAction"
+			method="delete">
+			<result type="json"></result>
+		</action>
+
+	</package>
+
+	<package name="ActExternaldriver" namespace="/externaldriver" extends="default">
+
+		<action name="home">
+			<result name="success" type="tiles">/ExternaldriverHome.tile</result>
+		</action>
+		
+		<!-- Add agent button to insert page -->
+		<action name="insert">
+			<result name="success" type="tiles">/ExternaldriverInsert.tile</result>
+		</action>
+
+	</package>
+
+</struts>
