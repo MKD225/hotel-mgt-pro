@@ -42,6 +42,15 @@ public class RoomcalanderAction extends ActionSupport implements ModelDriven {
 		}
 		return SUCCESS;
 	}
+	
+	public String delete(){
+		try {
+			new RoomcalanderManager().delete(this.roomcalander);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
 
 	@Override
 	public Object getModel() {
