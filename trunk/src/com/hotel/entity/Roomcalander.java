@@ -2,6 +2,9 @@ package com.hotel.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.opensymphony.xwork2.inject.Factory;
+
 import java.util.Date;
 
 /**
@@ -13,8 +16,6 @@ import java.util.Date;
 public class Roomcalander implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int roomCalanderId;
 
 	private String endDateTime;
@@ -30,6 +31,8 @@ public class Roomcalander implements Serializable {
 	public Roomcalander() {
 	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "roomCalanderId")
 	public int getRoomCalanderId() {
 		return this.roomCalanderId;
@@ -75,8 +78,8 @@ public class Roomcalander implements Serializable {
 		this.status = status;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "roomId")
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "roomNumber", nullable =false)
 	public Room getRoom() {
 		return this.room;
 	}
