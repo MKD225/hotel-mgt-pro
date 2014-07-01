@@ -5,7 +5,8 @@
 
 <struts>
 
-	<package name="ajxRoomcalander" namespace="/roomcalander" extends="json-default">
+	<package name="ajxRoomcalander" namespace="/roomcalander"
+		extends="json-default">
 
 		<action name="ajxSearch" class="com.hotel.action.RoomcalanderAction"
 			method="search">
@@ -13,15 +14,21 @@
 				<param name="root">roomcalanders</param>
 			</result>
 		</action>
-		
+
 		<action name="ajxAddOrUpdate" class="com.hotel.action.RoomcalanderAction"
 			method="addOrUpdate">
 			<result type="json"></result>
 		</action>
 
+		<action name="ajxDelete" class="com.hotel.action.RoomcalanderAction"
+			method="delete">
+			<result type="json"></result>
+		</action>
+
 	</package>
 
-	<package name="ActRoomcalander" namespace="/roomcalander" extends="default">
+	<package name="ActRoomcalander" namespace="/roomcalander"
+		extends="default">
 
 		<action name="home">
 			<result name="success" type="tiles">/RoomcalanderHome.tile</result>
