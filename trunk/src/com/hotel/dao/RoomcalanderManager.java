@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import com.hotel.entity.Roomcalander;
+import com.hotel.entity.Roomtype;
 import com.hotel.util.HibernateUtil;
 
 public class RoomcalanderManager {
@@ -42,6 +43,18 @@ public class RoomcalanderManager {
 		return roomcalanders;
 	}
 	
-	
+	public Roomcalander delete(Roomcalander roomcalander) {
+		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		try {
+			session.delete(roomcalander);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();		}
+		return roomcalander;
+	}
+
 
 }
