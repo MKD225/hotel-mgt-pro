@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <script type="text/javascript">
+/**
+ * 
+ */
 	function initialize(theme) {
 
 		$('.text-input').jqxInput({
@@ -21,9 +24,9 @@
 
 		// update the edited row when the user clicks the 'Save' button.
 		$("#save").click(function() {
-			var onSuccess = $('#membershipTypeForm').jqxValidator('validate');
+			var onSuccess = $('#roomForm').jqxValidator('validate');
 			if (onSuccess) {
-				var formInput = $("#membershipTypeForm").serialize();
+				var formInput = $("#roomForm").serialize();
 				$.ajax({
 					type : 'post',
 					url : '/hotel/room/ajxAddOrUpdate',
@@ -195,9 +198,9 @@
 							} ]
 				});
 
-		$('#membershipTypeForm').jqxValidator({
+		$('#roomForm').jqxValidator({
 			rules : [ {
-				input : '#description',
+				input : '#telephoneNumber',
 				message : 'Membership Type is required!',
 				action : 'keyup, blur',
 				rule : 'required'
@@ -223,7 +226,7 @@
 		$("#delete").click(function() {
 			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
 			//             if (onSuccess) {
-			var formInput = $("#membershipTypeDeleteForm").serialize();
+			var formInput = $("#roomDeleteForm").serialize();
 			$.ajax({
 				type : 'post',
 				url : '/slia/MembershipType/ajxDelete',
@@ -244,14 +247,14 @@
 	function clearText() {
 		$("#membershipTypeId").val('');
 		$("#membershipType").val('');
-		$('#membershipTypeForm').jqxValidator('hide');
+		$('#roomForm').jqxValidator('hide');
 	}
 </script>
 
 
 <div id="jqxgrid" style="float: left;"></div>
 <div style="overflow: hidden; position: relative;">
-	<form method="post" action="" id="membershipTypeForm"
+	<form method="post" action="" id="roomForm"
 		style="margin-left: 80px; margin-top: 20px;">
 		<table>
 			<tr>
@@ -305,7 +308,7 @@
 <div id="popupDelete">
 	<div>Delete Membership Type</div>
 	<div style="overflow: hidden;">
-		<form method="post" action="" id="membershipTypeDeleteForm">
+		<form method="post" action="" id="roomDeleteForm">
 			<table>
 				<tr>
 					<td colspan="2">Do you really want to <b>Delete</b> following
