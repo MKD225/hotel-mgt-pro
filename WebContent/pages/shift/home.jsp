@@ -9,6 +9,29 @@
 			theme : theme
 		});
 		$('.text-input').addClass('jqx-rc-all');
+		
+		 $('.text-area').jqxInput({
+	        	width: 250,
+	        	height: 50,
+	            theme: theme
+	        });
+		 
+	        $('.text-area').addClass('jqx-rc-all');
+	        
+		
+		$("#startTime").jqxDateTimeInput({
+			width: '220px', 
+			height: '25px',
+			formatString: 'T', 
+			showCalendarButton: false,
+			theme: theme });
+		
+		$("#endTime").jqxDateTimeInput({
+			width: '220px', 
+			height: '25px',
+			formatString: 'T', 
+			showCalendarButton: false,
+			theme: theme });
 
 		$("#save").jqxButton({
 			width : "100px",
@@ -294,20 +317,21 @@
 			
 			<tr>
 				<td> Start Time</td>
-				<td><input type="text" id="startTime" name="startTime"
-					class="text-input" title="startTime" /></td>
+				<td><div id="startTime" ></div>
+					</td>
 			</tr>
 
 			<tr>
 				<td> End Time</td>
-				<td><input type="text" id="endTime" name="endTime"
-					class="text-input" title="endTime " /></td>
+				<td><div id="endTime" ></div>
+					</td>
 			</tr>
 			
 			<tr>
 				<td>Description</td>
-				<td><input type="text" id="description" name="description"
-					class="text-input" title="description " /></td>
+				<td>
+				<textarea id="description" name="description" class="text-area"></textarea>
+				</td>
 			</tr>
 			
 			<tr>
