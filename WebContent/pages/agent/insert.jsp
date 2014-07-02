@@ -69,9 +69,9 @@
 
 		// save row when the user clicks the 'Save' button.
 		$("#save").click(function() {
-			var onSuccess = $('#membershipTypeForm').jqxValidator('validate');
+			var onSuccess = $('#agentForm').jqxValidator('validate');
 			if (onSuccess) {
-				var formInput = $("#membershipTypeForm").serialize();
+				var formInput = $("#agentForm").serialize();
 				$.ajax({
 					type : 'post',
 					url : '/hotel/agent/ajxAddOrUpdate',
@@ -95,7 +95,7 @@
 
 		
 
-		$('#membershipTypeForm').jqxValidator({
+		$('#agentForm').jqxValidator({
 			rules : [ {
 				input : '#firstName',
 				message : 'Membership Type is required!',
@@ -120,14 +120,14 @@
 		$("#remarks").val('');
 		$("#status").val('');
 		
-		$('#membershipTypeForm').jqxValidator('hide');
+		$('#agentForm').jqxValidator('hide');
 	}
 </script>
 
 
 <div id="jqxgrid" style="float: left;"></div>
 <div style="overflow: hidden; position: relative;">
-	<form method="post" action="" id="membershipTypeForm"
+	<form method="post" action="" id="agentForm"
 		style="margin-left: 80px; margin-top: 20px;">
 		<table>
 			<tr>
