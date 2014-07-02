@@ -32,7 +32,8 @@
 	<include file="/hotel/roomcalander.xml"></include>
 	<include file="/hotel/shift.xml"></include>
 	<include file="/hotel/externaldriver.xml"></include>
-	
+	<include file="/hotel/menu.xml"></include>
+	<include file="/hotel/privilege.xml"></include>
 	
 
 </struts>
