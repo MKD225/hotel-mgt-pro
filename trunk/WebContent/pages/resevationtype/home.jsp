@@ -21,9 +21,9 @@
 
 		// update the edited row when the user clicks the 'Save' button.
 		$("#save").click(function() {
-			var onSuccess = $('#membershipTypeForm').jqxValidator('validate');
+			var onSuccess = $('#reservationTypeForm').jqxValidator('validate');
 			if (onSuccess) {
-				var formInput = $("#membershipTypeForm").serialize();
+				var formInput = $("#reservationTypeForm").serialize();
 				$.ajax({
 					type : 'post',
 					url : '/hotel/resevationtype/ajxAddOrUpdate',
@@ -167,7 +167,7 @@
 							} ]
 				});
 
-		$('#membershipTypeForm').jqxValidator({
+		$('#reservationTypeForm').jqxValidator({
 			rules : [ {
 				input : '#reservationTypeName',
 				message : 'Membership Type is required!',
@@ -205,7 +205,7 @@
 		$("#delete").click(function() {
 			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
 			//             if (onSuccess) {
-			var formInput = $("#membershipTypeDeleteForm").serialize();
+			var formInput = $("#reservationTypeFormDeleteForm").serialize();
 			$.ajax({
 				type : 'post',
 				url : '/hotel/resevationtype/ajxDelete',
@@ -251,18 +251,17 @@
 
 	function clearText() {
 		$("#resevationTypeId").val('');
-		$("#membershipType").val('');
 		$("#reservationTypeCode").val('');
 		$("#reservationTypeName").val('');
 		$("#description").val('');
-		$('#membershipTypeForm').jqxValidator('hide');
+		$('#reservationTypeForm').jqxValidator('hide');
 	}
 </script>
 
 
 <div id="jqxgrid" style="float: left;"></div>
 <div style="overflow: hidden; position: relative;">
-	<form method="post" action="" id="membershipTypeForm"
+	<form method="post" action="" id="reservationTypeForm"
 		style="margin-left: 80px; margin-top: 20px;">
 		<table>
 			<tr>
@@ -303,7 +302,7 @@
 <div id="popupDelete">
 	<div>Delete Membership Type</div>
 	<div style="overflow: hidden;">
-		<form method="post" action="" id="membershipTypeDeleteForm">
+		<form method="post" action="" id="reservationTypeFormDeleteForm">
 			<table>
 				<tr>
 					<td colspan="2">Do you really want to <b>Delete</b> following
