@@ -105,7 +105,7 @@
 		$('#guestAddForm').jqxValidator({
 			rules : [ {
 				input : '#firstName',
-				message : 'Membership Type is required!',
+				message : 'First Name is required!',
 				action : 'keyup, blur',
 				rule : 'required'
 			} ],
