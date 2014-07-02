@@ -30,9 +30,9 @@
 
      // update the edited row when the user clicks the 'Save' button.
 		$("#save").click(function() {
-			var onSuccess = $('#membershipTypeForm').jqxValidator('validate');
+			var onSuccess = $('#discountForm').jqxValidator('validate');
 			if (onSuccess) {
-				var formInput = $("#membershipTypeForm").serialize();
+				var formInput = $("#discountForm").serialize();
 				$.ajax({
 					type : 'post',
 					url : '/hotel/discount/ajxAddOrUpdate',
@@ -54,7 +54,7 @@
 
 
 		
-		$('#membershipTypeForm').jqxValidator({
+		$('#discountForm').jqxValidator({
 			rules : [ {
 				input : '#type',
 				message : 'Membership Type is required!',
@@ -69,16 +69,22 @@
 	}
 
 	function clearText() {
-		$("#membershipTypeId").val('');
-		$("#membershipType").val('');
-		$('#membershipTypeForm').jqxValidator('hide');
+		$("#type").val('');
+		$("#initializedDate").val('');
+		$("#closedDate").val('');
+		$("#f_bpercentage").val('');
+		$("#minibarpercentage").val('');
+		$("#roompercentage").val('');
+		$("#otherDiscountPercentage").val('');
+		$("#status").val('');
+		$('#discountForm').jqxValidator('hide');
 	}
 </script>
 
 
 <div id="jqxgrid" style="float: left;"></div>
 <div style="overflow: hidden; position: relative;">
-	<form method="post" action="" id="membershipTypeForm"
+	<form method="post" action="" id="discountForm"
 		style="margin-left: 80px; margin-top: 20px;">
 		<table>
 			<tr>
