@@ -29,6 +29,8 @@
 		<mapping class="com.hotel.entity.Shift" />
 		<mapping class="com.hotel.entity.Externaldriver" />
 		<mapping class="com.hotel.entity.Advancepayment" />
+		<mapping class="com.hotel.entity.Menu" />
+		<mapping class="com.hotel.entity.Privilege" />
 		
 
 	</session-factory>
