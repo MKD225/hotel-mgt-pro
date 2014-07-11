@@ -245,8 +245,12 @@
 	}
 
 	function clearText() {
-		$("#membershipTypeId").val('');
-		$("#membershipType").val('');
+		$("#roomId").val('');
+		$("#roomNumber").val('');
+		$("#roomtypeConvert").val('');
+		$("#description").val('');
+		$("#status").val('');
+		$("#telephoneNumber").val('');
 		$('#roomForm').jqxValidator('hide');
 	}
 </script>
