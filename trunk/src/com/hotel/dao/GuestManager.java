@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import com.hotel.entity.Guest;
+import com.hotel.entity.Spouse;
 import com.hotel.util.HibernateUtil;
 
 public class GuestManager {
@@ -57,4 +58,15 @@ public class GuestManager {
 		
 	}
 
+	public Guest getGuestById(int id){
+		System.out.println("in dao");
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		System.out.println("**dao***");
+		Guest guest= (Guest) session.get(Guest.class,id);
+		System.out.println(guest.getCountry());
+		session.getTransaction().commit();
+		return guest;
+		
+	}
 }
