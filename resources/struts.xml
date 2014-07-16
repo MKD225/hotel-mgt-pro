@@ -34,6 +34,9 @@
 	<include file="/hotel/externaldriver.xml"></include>
 	<include file="/hotel/menu.xml"></include>
 	<include file="/hotel/privilege.xml"></include>
-	
+	<include file="/hotel/employee.xml"></include>
+	<include file="/hotel/department.xml"></include>
+	<include file="/hotel/employeeroaster.xml"></include>
+	<include file="/hotel/log.xml"></include>
 
 </struts>
