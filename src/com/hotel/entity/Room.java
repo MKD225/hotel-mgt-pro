@@ -2,7 +2,13 @@ package com.hotel.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 
 /**
@@ -10,19 +16,18 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name= "room")
+@Table(name= "Room")
 public class Room implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int roomId;
 	
+	private int roomId;
 	private String roomNumber;
 	private String telephoneNumber;
 	private String description;
-
 	private String status;
+	private Roomtype roomType;
+
 
 	
 //	//bi-directional many-to-one association to Allocationroom
@@ -33,10 +38,7 @@ public class Room implements Serializable {
 	
 //uni-directional many-to-one association to Roomtype
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="roomTypeId")
-	private Roomtype roomTypeId;
-
+	
 //	//bi-directional many-to-one association to Roomcalander
 //	@OneToMany(mappedBy="room", fetch=FetchType.EAGER)
 //	private List<Roomcalander> roomcalanders;
@@ -44,6 +46,8 @@ public class Room implements Serializable {
 	public Room() {
 	}
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "roomId")
 	public int getRoomId() {
 		return this.roomId;
@@ -61,13 +65,13 @@ public class Room implements Serializable {
 	public void setRoomNumber(String roomNumber) {
 		this.roomNumber = roomNumber;
 	}
-	@Column(name= "tephoneNumber")
+	@Column(name= "telephoneNumber")
 	public String getTephoneNumber() {
 		return this.telephoneNumber;
 	}
 
-	public void setTephoneNumber(String tephoneNumber) {
-		this.telephoneNumber = tephoneNumber;
+	public void setTephoneNumber(String telephoneNumber) {
+		this.telephoneNumber = telephoneNumber;
 	}
 
 
@@ -88,7 +92,16 @@ public class Room implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="roomTypeId", nullable= false)
+	public Roomtype getRoomtype() {
+		return this.roomType;
+	}
 
+	public void setRoomtype(Roomtype roomtype) {
+		this.roomType = roomtype;
+	}
 	
 //	public List<Allocationroom> getAllocationrooms() {
 //		return this.allocationrooms;
@@ -97,17 +110,6 @@ public class Room implements Serializable {
 //	public void setAllocationrooms(List<Allocationroom> allocationrooms) {
 //		this.allocationrooms = allocationrooms;
 //	}
-
-	@Column(name= "Roomtype")
-	public Roomtype getRoomtype() {
-		return this.roomTypeId;
-	}
-
-	public void setRoomtype(Roomtype roomtype) {
-		this.roomTypeId = roomtype;
-	}
-
-	
 	
 
 //	public List<Roomcalander> getRoomcalanders() {
