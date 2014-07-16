@@ -7,10 +7,8 @@ import com.hotel.entity.Roomtype;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-
-@SuppressWarnings("rawtypes")
 public class RoomtypeAction extends ActionSupport implements ModelDriven {
-
+	
 	private static final long serialVersionUID = 1L;
 	private Roomtype roomtype;
 	private List<Roomtype> roomtypes;
@@ -30,7 +28,6 @@ public class RoomtypeAction extends ActionSupport implements ModelDriven {
 	}
 
 	public String addOrUpdate() {
-		System.out.println("********roomType+++++++++++");
 		try {
 			System.out.println(roomtype.getRoomTypeName());
 			this.roomtype = new RoomtypeManager().saveOrUpdate(this.roomtype);
@@ -41,7 +38,7 @@ public class RoomtypeAction extends ActionSupport implements ModelDriven {
 	}
 	public String delete(){
 		try {
-			new RoomtypeManager().delete(roomtype);
+			new RoomtypeManager().delete(this.roomtype);
 		} catch (Exception e) {
 			e.printStackTrace();
 			//error bean
@@ -55,11 +52,11 @@ public class RoomtypeAction extends ActionSupport implements ModelDriven {
 		return this.roomtype;
 	}
 
-	public Roomtype getRoomtype() {
+	public Roomtype  getRoomtype() {
 		return roomtype;
 	}
 
-	public void setRoomtype(Roomtype roomtype) {
+	public void setResevationtype(Roomtype roomtype) {
 		this.roomtype = roomtype;
 	}
 
@@ -70,5 +67,6 @@ public class RoomtypeAction extends ActionSupport implements ModelDriven {
 	public void setRoomtypes(List<Roomtype> roomtypes) {
 		this.roomtypes = roomtypes;
 	}
+
 
 }
