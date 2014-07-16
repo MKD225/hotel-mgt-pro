@@ -21,9 +21,9 @@
 
 		// update the edited row when the user clicks the 'Save' button.
 		$("#save").click(function() {
-			var onSuccess = $('#membershipTypeForm').jqxValidator('validate');
+			var onSuccess = $('#spouseForm').jqxValidator('validate');
 			if (onSuccess) {
-				var formInput = $("#membershipTypeForm").serialize();
+				var formInput = $("#spouseForm").serialize();
 				$.ajax({
 					type : 'post',
 					url : '/hotel/spouse/ajxAddOrUpdate',
@@ -54,8 +54,51 @@
 			showAnimationDuration : 500,
 			animationType : 'fade'
 		});
+		
+		$("#popupEdit").jqxWindow({
+			width : 400,
+			resizable : false,
+			theme : theme,
+			isModal : true,
+			autoOpen : false,
+			cancelButton : $("#cancelEdit"),
+			modalOpacity : 0.5,
+			showAnimationDuration : 500,
+			animationType : 'fade'
+		});
+		
+		var url = "/hotel/guest/ajxSearch";
+	    
+	    var sourceType = {
+	        datatype: "json",
+	        datafields: [{
+	            name: 'guestId'
+	        }, {
+	            name: 'firstName'
+	        }, {
+	            name: 'lastName'
+	        }],
+	        id: 'guestId',
+	        url: url
+	    };
+	    
+	    var dataAdapterType = new $.jqx.dataAdapter(sourceType);
+	    
+	    $("#guestConvert").jqxDropDownList({
+	        selectedIndex: -1,
+	        source: dataAdapterType,
+	        displayMember: "firstName",
+	       
+	        valueMember: "guestId",
+	        promptText: "Guest...",
+	        autoDropDownHeight: true,
+	        width: 250,
+	        height: 25,
+	        theme: theme
+	    });
 
-		// Prepare the data
+
+	 // Prepare the data
 		var url = "/hotel/spouse/ajxSearch";
 		var source = {
 			datatype : "json",
@@ -65,49 +108,36 @@
 				type : 'int'
 			}, {
 				name : 'title',
-				type : 'String'
-			}, {
+				type : 'String',
 				
+			}, {
 				name : 'firstName',
-				type : 'String'
+				type : 'String',
+				
 			}, {
 				name : 'lastName',
-				type : 'String'
+				type : 'String',
+				
 			}, {
 				name : 'dateOfBirth',
-				type : 'String'
-			}, {
+				type : 'String',
 				
+			}, {
 				name : 'passportNumber',
-				type : 'String'
+				type : 'String',
+						
 			}, {
-				
 				name : 'country',
-				type : 'String'
+				type : 'String',
+				
 			}, {
 				name : 'nationality',
-				type : 'String'
+				type : 'String',
 			}, {
 				name : 'remarks',
-				type : 'String'
-			}, {
-				name : 'fax',
-				type : 'String'
-			}, {
-				name : 'mailAddress',
-				type : 'String'
-			}, {
-				name : 'nationality',
-				type : 'String'
-			}, {
-				name : 'nicNumber',
-				type : 'String'
-			}, {
-				name : 'passportNumber',
-				type : 'String'
-			}, {
-				name : 'remarks',
-				type : 'String'
+				type : 'String',
+					
+			
 			} ],
 			id : 'spouseId',
 			url : url,
@@ -118,81 +148,61 @@
 		// initialize jqxGrid
 		$("#jqxgrid").jqxGrid(
 				{
-					width : '50%',
+					width : '56%',
 					source : dataAdapter,
 					theme : theme,
 					autoheight : true,
 					columns : [
 							{
-								text : 'Title',
+								text : 'title',
 								datafield : 'title',
-								align : 'left'
+								align : 'left',
+								width : '30%' 
 							},
+							
 							{
-								text : 'firstName',
+								text : 'First Name',
 								datafield : 'firstName',
-								align : 'left'
+								align : 'left',
+								width : '30%' 
 							},
 							{
-								text : 'lastName',
+								text : 'Last Name',
 								datafield : 'lastName',
-								align : 'left'
+								align : 'left',
+								width : '30%' 
 							},
 							{
-								text : 'dateOfBirth',
+								text : 'Date Of Birth',
 								datafield : 'dateOfBirth',
-								align : 'left'
+								align : 'left',
+								width : '30%' 
 							},
 							{
-								text : 'passportNumber',
+								text : 'Passport Number',
 								datafield : 'passportNumber',
-								align : 'left'
+								align : 'left',
+								width : '30%' 
 							},
 							{
-								text : 'country',
+								text : 'Country',
 								datafield : 'country',
-								align : 'left'
-							},
-							{
-								text : 'nationality',
-								datafield : 'nationality',
-								align : 'left'
-							},
-							{
-								text : 'remarks',
-								datafield : 'remarks',
-								align : 'left'
-							},
-							{
-								text : 'Fax',
-								datafield : 'fax',
-								align : 'left'
-							},
-							{
-								text : 'MailAddress',
-								datafield : 'mailAddress',
-								align : 'left'
+								align : 'left',
+								width : '30%' 
 							},
 							{
 								text : 'Nationality',
 								datafield : 'nationality',
-								align : 'left'
-							},
-							{
-								text : 'NicNumber',
-								datafield : 'nicNumber',
-								align : 'left'
-							},
-							{
-								text : 'PassportNumber',
-								datafield : 'passportNumber',
-								align : 'left'
+								align : 'left',
+								width : '30%' 
 							},
 							{
 								text : 'Remarks',
 								datafield : 'remarks',
-								align : 'left'
+								align : 'left',
+								width : '30%' 
 							},
+							
 							{
 								text : 'Edit',
 								datafield : 'Edit',
@@ -206,10 +216,25 @@
 									//get the clicked row's data and initialize the input fields.
 									var dataRecord = $("#jqxgrid").jqxGrid(
 											'getrowdata', row);
-									$("#membershipTypeId").val(
-											dataRecord.membershipTypeId);
-									$("#membershipType").val(
-											dataRecord.membershipType);
+									$("#spouseIdEdit").val(
+											dataRecord.spouseId);
+									$("#titleEdit").val(
+											dataRecord.title);
+									$("#firstNamedEdit").val(
+											dataRecord.firstName);
+									$("#lastNameEdit").val(
+											dataRecord.lastName);
+									$("#dateOfBirthEdit").val(
+											dataRecord.dateOfBirth);
+									$("#passportNumberEdit").val(
+											dataRecord.passportNumber);
+									$("#countryEdit").val(
+											dataRecord.country);
+									$("#nationalityEdit").val(
+											dataRecord.nationality);
+									$("#remarksEdit").val(
+											dataRecord.remarks);
+									$("#popupEdit").jqxWindow('open');
 								}
 							},
 							{
@@ -225,19 +250,36 @@
 									//get the clicked row's data and initialize the input fields.
 									var dataRecord = $("#jqxgrid").jqxGrid(
 											'getrowdata', row);
-									$("#membershipTypeIdDelete").val(
-											dataRecord.membershipTypeId);
-									$("#membershipTypeDelete").val(
-											dataRecord.membershipType);
+									$("#spouseIdDelete").val(
+											dataRecord.spouseId);
+									$("#titleDelete").val(
+											dataRecord.title);
+									$("#firstNameDelete").val(
+											dataRecord.firstName);
+									$("#lastNameDelete").val(
+											dataRecord.lastName);
+									$("#dateOfBirthDelete").val(
+											dataRecord.dateOfBirth);
+									$("#passportNumberDelete").val(
+											dataRecord.passportNumber);
+									$("#countryDelete").val(
+											dataRecord.country);
+									$("#nationalityDelete").val(
+											dataRecord.nationality);
+									$("#remarksDelete").val(
+											dataRecord.remarks);
+									
+									
 									$("#popupDelete").jqxWindow('open');
 								}
 							} ]
 				});
 
-		$('#membershipTypeForm').jqxValidator({
+
+		$('#spouseForm').jqxValidator({
 			rules : [ {
 				input : '#firstName',
-				message : 'Membership Type is required!',
+				message : 'first Name is required!',
 				action : 'keyup, blur',
 				rule : 'required'
 			} ],
@@ -253,6 +295,16 @@
 		$("#cancelDelete").click(function() {
 			$("#popupDelete").jqxWindow('hide');
 		});
+		
+		 $("#cancelEdit").jqxButton({
+				width : "100px",
+				theme : theme
+			});
+
+			$("#cancelEdit").click(function() {
+				$("#popupEdit").jqxWindow('hide');
+			});
+
 
 		$("#delete").jqxButton({
 			width : "100px",
@@ -262,10 +314,10 @@
 		$("#delete").click(function() {
 			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
 			//             if (onSuccess) {
-			var formInput = $("#membershipTypeDeleteForm").serialize();
+			var formInput = $("#spouseDeleteForm").serialize();
 			$.ajax({
 				type : 'post',
-				url : '/slia/MembershipType/ajxDelete',
+				url : '/hotel/spouse/ajxDelete',
 				data : formInput,
 				success : function(data) {
 					var dataAdapter = new $.jqx.dataAdapter(source);
@@ -277,28 +329,59 @@
 			$("#popupDelete").jqxWindow('hide');
 		});
 
-		clearText();
+	$("#edit").jqxButton({
+		width : "100px",
+		theme : theme
+	});
+	// delete row when the user clicks the 'Edit' button.
+	$("#edit").click(function() {
+		//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
+		//             if (onSuccess) {
+		var formInput = $("#spouseEditForm").serialize();
+		$.ajax({
+			type : 'post',
+			url : '/hotel/spouse/ajxUpdate',
+			data : formInput,
+			success : function(data) {
+				var dataAdapter = new $.jqx.dataAdapter(source);
+				$("#jqxgrid").jqxGrid({
+					source : dataAdapter
+				});
+			}
+		});
+		$("#popupEdit").jqxWindow('hide');
+	});
+
+	clearText();
 	}
 
 	function clearText() {
-		$("#membershipTypeId").val('');
-		$("#membershipType").val('');
-		$('#membershipTypeForm').jqxValidator('hide');
+		$("#guestConvert").val('');
+		$("#title").val('');
+		$("#firstName").val('');
+		$("#lastName").val('');
+		$("#dateOfBirth").val('');
+		$("#passportNumber").val('');
+		$("#country").val('');
+		$("#nationality").val('');
+		$("#remarks").val('');
+		$('#spouseForm').jqxValidator('hide');
 	}
 </script>
 
 
 <div id="jqxgrid" style="float: left;"></div>
 <div style="overflow: hidden; position: relative;">
-	<form method="post" action="" id="membershipTypeForm"
+	<form method="post" action="" id="spouseForm"
 		style="margin-left: 80px; margin-top: 20px;">
 		<table>
 			<tr>
-				<td colspan="2" align="center"><b>Guest</b></td>
+				<td colspan="2" align="center"><b>Spouse</b></td>
 			</tr>
+						
 			<tr>
-				<td colspan="2" align="center">&nbsp;<input type="hidden"
-					id="spouseId" name="spouseId" readonly="readonly" /></td>
+				<td>Guest</td>
+				<td><div id="guestConvert"> </div></td>
 			</tr>
 			<tr>
 				<td>Title</td>
@@ -357,7 +440,7 @@
 <div id="popupDelete">
 	<div>Delete Membership Type</div>
 	<div style="overflow: hidden;">
-		<form method="post" action="" id="membershipTypeDeleteForm">
+		<form method="post" action="" id="spouseDeleteForm">
 			<table>
 				<tr>
 					<td colspan="2">Do you really want to <b>Delete</b> following
@@ -366,18 +449,126 @@
 				</tr>
 				<tr>
 					<td colspan="2"><input type="hidden"
-						id="membershipTypeIdDelete" name="membershipTypeId"
+						id="spouseIdDelete" name="spouseId"
 						class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
-					<td>Membership Type :</td>
-					<td><input type="text" id="membershipTypeDelete"
-						name="membershipType" class="text-input" readonly="readonly" /></td>
+					<td>title :</td>
+					<td><input type="text" id="titleDelete"
+						name="title" class="text-input" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>First Name :</td>
+					<td><input type="text" id="firstNameDelete"
+						name="firstName" class="text-input" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Last Name :</td>
+					<td><input type="text" id="lastNameDelete"
+						name="lastName" class="text-input" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Date Of Birth :</td>
+					<td><input type="text" id="dateOfBirthDelete"
+						name="dateOfBirth" class="text-input" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Passport Number :</td>
+					<td><input type="text" id="passportNumberDelete"
+						name="passportNumber" class="text-input" readonly="readonly" /></td>
+				</tr>
+				
+				<tr>
+					<td>Country :</td>
+					<td><input type="text" id="countryDelete"
+						name="country" class="text-input" readonly="readonly" /></td>
+				</tr>
+				
+				
+				<tr>
+					<td>Nationality :</td>
+					<td><input type="text" id="nationalityDelete"
+						name="nationality" class="text-input" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Remarks :</td>
+					<td><input type="text" id="remarksDelete"
+						name="remarks" class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td style="padding-top: 10px;" align="center" colspan="2"><input
 						style="margin-right: 5px;" type="button" id="delete"
 						value="Delete" /><input id="cancelDelete" type="button"
+						value="Cancel" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">&nbsp;</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+<div id="popupEdit">
+	<div>Edit Shift</div>
+	<div style="overflow: hidden;">
+		<form method="post" action="" id="spouseEditForm">
+			<table>
+				<tr>
+					<td colspan="2">Do you really want to <b>Edit</b> following
+						<b>Membership Type</b>?
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2"><input type="hidden"
+						id="spouseIdEdit" name="spouseId"
+						class="text-input" readonly="readonly" /></td>
+				</tr>
+			<tr>
+				<td>Title</td>
+				<td><input type="text" id="titleEdit" name="title"
+					class="text-input"  /></td>
+			</tr>
+			<tr>
+				<td>First Name</td>
+				<td><input type="text" id="firstNameEdit" name="firstName"
+					class="text-input"/></td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td><input type="text" id="lastNameEdit" name="lastName"
+					class="text-input"  /></td>
+			</tr>
+
+			
+			<tr>
+				<td>Date Of Birth</td>
+				<td><input type="text" id="dateOfBirthEdit" name="dateOfBirth"
+					class="text-input"  /></td>
+			
+			<tr>
+				<td>country</td>
+				<td><input type="text" id="countryEdit" name="country"
+					class="text-input"  /></td>
+			</tr>
+			<tr>
+				<td>Nationality</td>
+				<td><input type="text" id="nationalityEdit" name="nationality"
+					class="text-input"/></td>
+			</tr>
+			<tr>
+				<td>Remarks</td>
+				<td><input type="text" id="remarksEdit" name="remarks"
+					class="text-input"  /></td>
+			</tr>
+
+			
+			
+				<tr>
+					<td style="padding-top: 10px;" align="center" colspan="2"><input
+						style="margin-right: 5px;" type="button" id="edit"
+						value="Edit" /><input id="cancelEdit" type="button"
 						value="Cancel" /></td>
 				</tr>
 				<tr>
