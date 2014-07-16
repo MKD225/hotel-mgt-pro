@@ -74,6 +74,36 @@ function createMenu(theme){
                 "text": "External Driver",
                 "parentid": "4",
                 "path": "/hotel/externaldriver/home"
+            }, {
+                "id": "17",
+                "text": "Menu",
+                "parentid": "4",
+                "path": "/hotel/menu/home"
+            }, {
+                "id": "18",
+                "text": "Privilege",
+                "parentid": "4",
+                "path": "/hotel/privilege/home"
+            }, {
+                "id": "19",
+                "text": "Department",
+                "parentid": "4",
+                "path": "/hotel/department/home"
+            }, {
+                "id": "20",
+                "text": "Employee",
+                "parentid": "4",
+                "path": "/hotel/employee/home"
+            }, {
+                "id": "21",
+                "text": "Employee Roaster",
+                "parentid": "4",
+                "path": "/hotel/employeeroaster/home"
+            }, {
+                "id": "22",
+                "text": "Log",
+                "parentid": "4",
+                "path": "/hotel/log/home"
             }];
             var source = {
                 datatype: "json",
