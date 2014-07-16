@@ -13,7 +13,7 @@ public class RoomtypeConversion extends StrutsTypeConverter {
 	@Override
 	public Object convertFromString(Map arg0, String[] arg1, Class arg2) {
 		System.out.println("converter*****************************");
-		Roomtype roomtype = new RoomtypeManager().getRoomById(Integer.parseInt(arg1[0]));
+		Roomtype roomtype = new RoomtypeManager().getRoomtypeById(Integer.parseInt(arg1[0]));
 		System.out.println(roomtype.getRoomTypeName()+"*****************************");
 		return roomtype;
 		
