@@ -31,6 +31,11 @@
 		<mapping class="com.hotel.entity.Advancepayment" />
 		<mapping class="com.hotel.entity.Menu" />
 		<mapping class="com.hotel.entity.Privilege" />
+		<mapping class="com.hotel.entity.Employee" />
+		<mapping class="com.hotel.entity.Department" />
+		<mapping class="com.hotel.entity.Spouse" />
+		<mapping class="com.hotel.entity.Employeeroaster" />
+		<mapping class="com.hotel.entity.Log" />
 		
 
 	</session-factory>
