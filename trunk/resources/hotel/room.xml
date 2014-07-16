@@ -18,6 +18,12 @@
 			method="addOrUpdate">
 			<result type="json"></result>
 		</action>
+		
+		<action name="ajxDelete" class="com.hotel.action.RoomAction"
+			method="delete">
+			<result type="json"></result>
+		</action>
+		
 
 		</package>
 	<package name="ActRoom" namespace="/room" extends="default">
