@@ -303,7 +303,7 @@
 		style="margin-left: 80px; margin-top: 20px;">
 		<table>
 			<tr>
-				<td colspan="2" align="center"><b>Reservation Type</b></td>
+				<td colspan="2" align="center"><b>Shift</b></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">&nbsp;<input type="hidden"
@@ -397,7 +397,7 @@
 </div>
 
 <div id="popupEdit">
-	<div>Delete Membership Type</div>
+	<div>Edit Shift</div>
 	<div style="overflow: hidden;">
 		<form method="post" action="" id="shiftEditForm">
 			<table>
