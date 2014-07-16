@@ -9,15 +9,14 @@
 			theme : theme
 		});
 		$('.text-input').addClass('jqx-rc-all');
-		
+
 		$('.text-area').jqxInput({
-        	width: '207px',
-        	height: '50px',
-            theme: theme
-        });
-	 
-        $('.text-area').addClass('jqx-rc-all');
-        
+			width : '207px',
+			height : '50px',
+			theme : theme
+		});
+
+		$('.text-area').addClass('jqx-rc-all');
 
 		$("#save").jqxButton({
 			width : "100px",
@@ -87,14 +86,13 @@
 				name : 'name',
 				type : 'String'
 			}, {
-				
+
 				name : 'action',
 				type : 'String'
 			}, {
 				name : 'description',
 				type : 'String'
-			
-				
+
 			} ],
 			id : 'menuId',
 			url : url,
@@ -103,88 +101,62 @@
 		var dataAdapter = new $.jqx.dataAdapter(source);
 
 		// initialize jqxGrid
-		$("#jqxgrid").jqxGrid(
-				{
-					width : '61%',
-					source : dataAdapter,
-					theme : theme,
-					autoheight : true,
-					columns : [
-							
-							{
-								text : 'Name',
-								datafield : 'name',
-								align : 'left'
-							},
-							{
-								text : 'Action',
-								datafield : 'action',
-								align : 'left'
-							
-							},
-							{
-								text : 'Description',
-								datafield : 'description',
-								align : 'left'
-							},
-							{
-								text : 'Edit',
-								datafield : 'Edit',
-								columntype : 'button',
-								width : 100,
-								align : 'center',
-								cellsrenderer : function() {
-									return "Edit";
-								},
-								buttonclick : function(row) {
-									//get the clicked row's data and initialize the input fields.
-									var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', row);
-									$("#menuIdEdit").val(
-											dataRecord.menuId);
-									$("#nameEdit").val(
-											dataRecord.name);
-									$("#actionEdit").val(
-											dataRecord.action);
-									$("#descriptionEdit").val(
-											dataRecord.description);
-									$("#popupEdit").jqxWindow('open');
-								}
-							},
-							{
-								text : 'Delete',
-								datafield : 'Delete',
-								columntype : 'button',
-								width : 100,
-								align : 'center',
-								cellsrenderer : function() {
-									return "Delete";
-								},
-								buttonclick : function(row) {
-									//get the clicked row's data and initialize the input fields.
-									var dataRecord = $("#jqxgrid").jqxGrid(
-											'getrowdata', row);
-									$("#menuIdDelete").val(
-											dataRecord.menuId);
-									$("#nameDelete").val(
-											dataRecord.name);
-									$("#actionDelete").val(
-											dataRecord.action);
-									$("#descriptionDelete").val(
-											dataRecord.description);
-									$("#popupDelete").jqxWindow('open');
-								}
-							} ]
-				});
-
-		$('#menuForm').jqxValidator({
-			rules : [ {
-				input : '#name',
-				message : 'Name is required!',
-				action : 'keyup, blur',
-				rule : 'required'
-			} ],
+		$("#jqxgrid").jqxGrid({
+			width : '61%',
+			source : dataAdapter,
 			theme : theme,
-			scroll : false
+			autoheight : true,
+			columns : [
+
+			{
+				text : 'Name',
+				datafield : 'name',
+				align : 'left'
+			}, {
+				text : 'Action',
+				datafield : 'action',
+				align : 'left'
+			}, {
+				text : 'Description',
+				datafield : 'description',
+				align : 'left'
+			}, {
+				text : 'Edit',
+				datafield : 'Edit',
+				columntype : 'button',
+				width : 100,
+				align : 'center',
+				cellsrenderer : function() {
+					return "Edit";
+				},
+				buttonclick : function(row) {
+					//get the clicked row's data and initialize the input fields.
+					var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', row);
+					$("#menuIdEdit").val(dataRecord.menuId);
+					$("#nameEdit").val(dataRecord.name);
+					$("#actionEdit").val(dataRecord.action);
+					$("#descriptionEdit").val(dataRecord.description);
+					$("#popupEdit").jqxWindow('open');
+				}
+			}, {
+				text : 'Delete',
+				datafield : 'Delete',
+				columntype : 'button',
+				width : 100,
+				align : 'center',
+				cellsrenderer : function() {
+					return "Delete";
+				},
+				buttonclick : function(row) {
+					//get the clicked row's data and initialize the input fields.
+					var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', row);
+					$("#menuIdDelete").val(dataRecord.menuId);
+					$("#nameDelete").val(dataRecord.name);
+					$("#actionDelete").val(dataRecord.action);
+					$("#descriptionDelete").val(dataRecord.description);
+					$("#popupDelete").jqxWindow('open');
+				}
+			} ]
 		});
 
 		$("#cancelDelete").jqxButton({
@@ -195,21 +167,26 @@
 		$("#cancelDelete").click(function() {
 			$("#popupDelete").jqxWindow('hide');
 		});
-		
-		 $("#cancelEdit").jqxButton({
-				width : "100px",
-				theme : theme
-			});
-
-			$("#cancelEdit").click(function() {
-				$("#popupEdit").jqxWindow('hide');
-			});
-
 
 		$("#delete").jqxButton({
 			width : "100px",
 			theme : theme
 		});
+
+		$("#cancelEdit").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+
+		$("#cancelEdit").click(function() {
+			$("#popupEdit").jqxWindow('hide');
+		});
+
+		$("#edit").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+
 		// delete row when the user clicks the 'Delete' button.
 		$("#delete").click(function() {
 			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
@@ -230,33 +207,39 @@
 		});
 
 		clearText();
-	
-		
-	$("#edit").jqxButton({
-		width : "100px",
-		theme : theme
-	});
-	// delete row when the user clicks the 'Edit' button.
-	$("#edit").click(function() {
-		//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
-		//             if (onSuccess) {
-		var formInput = $("#menuEditForm").serialize();
-		$.ajax({
-			type : 'post',
-			url : '/hotel/menu/ajxAddOrUpdate',
-			data : formInput,
-			success : function(data) {
-				var dataAdapter = new $.jqx.dataAdapter(source);
-				$("#jqxgrid").jqxGrid({
-					source : dataAdapter
-				});
-			}
-		});
-		$("#popupEdit").jqxWindow('hide');
-	});
 
-	clearText();
+		// delete row when the user clicks the 'Edit' button.
+		$("#edit").click(function() {
+			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
+			//             if (onSuccess) {
+			var formInput = $("#menuEditForm").serialize();
+			$.ajax({
+				type : 'post',
+				url : '/hotel/menu/ajxAddOrUpdate',
+				data : formInput,
+				success : function(data) {
+					var dataAdapter = new $.jqx.dataAdapter(source);
+					$("#jqxgrid").jqxGrid({
+						source : dataAdapter
+					});
+				}
+			});
+			$("#popupEdit").jqxWindow('hide');
+		});
+
+		clearText();
 	}
+
+	$('#menuForm').jqxValidator({
+		rules : [ {
+			input : '#name',
+			message : 'Name is required!',
+			action : 'keyup, blur',
+			rule : 'required'
+		} ],
+		theme : theme,
+		scroll : false
+	});
 
 	function clearText() {
 		$("#menuId").val('');
@@ -280,23 +263,24 @@
 				<td colspan="2" align="center">&nbsp;<input type="hidden"
 					id="menuId" name="menuId" readonly="readonly" /></td>
 			</tr>
-			
+
 			<tr>
-				<td> Menu Name</td>
-				<td><input type="text" id="name" name="name"
-					class="text-input" title="name" /></td>
+				<td>Menu Name</td>
+				<td><input type="text" id="name" name="name" class="text-input"
+					title="name" /></td>
 			</tr>
 
 			<tr>
-				<td> Action</td>
+				<td>Action</td>
 				<td><input type="text" id="action" name="action"
 					class="text-input" title="action " /></td>
 			</tr>
 			<tr>
 				<td>Description</td>
-				<td><textarea id="description" name="description" class="text-area" ></textarea></td>
+				<td><textarea id="description" name="description"
+						class="text-area"></textarea></td>
 			</tr>
-			
+
 			<tr>
 				<td>&nbsp;</td>
 				<td style="padding-top: 10px;"><input type="button" id="save"
@@ -317,27 +301,28 @@
 						<b>Membership Type</b>?
 					</td>
 				</tr>
-				
-				<tr>
-				<td colspan="2"><input type="hidden"
-					id="menuIdDelete" name="menuId" readonly="readonly" /></td>
-			</tr>
-			<tr>
-				<td>Menu Name</td>
-				<td><input type="text" id="nameDelete" name="name"
-					class="text-input" readonly="readonly" /></td>
-			</tr>
-			<tr>
-				<td>Action</td>
-				<td><input type="text" id="actionDelete" name="action"
-					class="text-input" readonly="readonly" /></td>
-			</tr>
 
-			<tr>
-				<td>Description</td>
-				<td><textarea id="descriptionDelete" name="description" class="text-area" readonly="readonly"></textarea></td>
-			</tr>
-			
+				<tr>
+					<td colspan="2"><input type="hidden" id="menuIdDelete"
+						name="menuId" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Menu Name</td>
+					<td><input type="text" id="nameDelete" name="name"
+						class="text-input" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Action</td>
+					<td><input type="text" id="actionDelete" name="action"
+						class="text-input" readonly="readonly" /></td>
+				</tr>
+
+				<tr>
+					<td>Description</td>
+					<td><textarea id="descriptionDelete" name="description"
+							class="text-area" readonly="readonly"></textarea></td>
+				</tr>
+
 				<tr>
 					<td style="padding-top: 10px;" align="center" colspan="2"><input
 						style="margin-right: 5px;" type="button" id="delete"
@@ -358,36 +343,36 @@
 		<form method="post" action="" id="menuEditForm">
 			<table>
 				<tr>
-					<td colspan="2">Do you really want to <b>Edit</b> following
-						<b>Membership Type</b>?
+					<td colspan="2">Do you really want to <b>Edit</b> following <b>Membership
+							Type</b>?
 					</td>
 				</tr>
-				
-				<tr>
-				<td colspan="2"><input type="hidden"
-					id="menuIdEdit" name="menuId" /></td>
-			</tr>
-			<tr>
-				<td>Menu Name</td>
-				<td><input type="text" id="nameEdit" name="name"
-					class="text-input"/></td>
-			</tr>
-			<tr>
-				<td>Action</td>
-				<td><input type="text" id="actionEdit" name="action"
-					class="text-input"  /></td>
-			</tr>
 
-			<tr>
-				<td>Description</td>
-				<td><textarea id="descriptionEdit" name="description" class="text-area"></textarea></td>
-			</tr>
-			
+				<tr>
+					<td colspan="2"><input type="hidden" id="menuIdEdit"
+						name="menuId" /></td>
+				</tr>
+				<tr>
+					<td>Menu Name</td>
+					<td><input type="text" id="nameEdit" name="name"
+						class="text-input" /></td>
+				</tr>
+				<tr>
+					<td>Action</td>
+					<td><input type="text" id="actionEdit" name="action"
+						class="text-input" /></td>
+				</tr>
+
+				<tr>
+					<td>Description</td>
+					<td><textarea id="descriptionEdit" name="description"
+							class="text-area"></textarea></td>
+				</tr>
+
 				<tr>
 					<td style="padding-top: 10px;" align="center" colspan="2"><input
-						style="margin-right: 5px;" type="button" id="edit"
-						value="Edit" /><input id="cancelEdit" type="button"
-						value="Cancel" /></td>
+						style="margin-right: 5px;" type="button" id="edit" value="Edit" /><input
+						id="cancelEdit" type="button" value="Cancel" /></td>
 				</tr>
 				<tr>
 					<td colspan="2">&nbsp;</td>
