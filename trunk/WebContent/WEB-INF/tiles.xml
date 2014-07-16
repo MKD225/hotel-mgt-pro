@@ -103,5 +103,65 @@
 		<put-attribute name="title" value="New External Driver" />
 		<put-attribute name="body" value="/pages/externaldriver/insert.jsp" />
 	</definition>
+	
+	<!-- MenuHome Page -->
+	<definition name="/MenuHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Menu" />
+		<put-attribute name="body" value="/pages/menu/home.jsp" />
+	</definition>
+	
+	<!-- PrivilegeHome Page -->
+	<definition name="/PrivilegeHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Privilege" />
+		<put-attribute name="body" value="/pages/privilege/home.jsp" />
+	</definition>
+	
+	<!-- DepartmentHome Page -->
+	<definition name="/DepartmentHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Department" />
+		<put-attribute name="body" value="/pages/department/home.jsp" />
+	</definition>
+	
+	<!-- DepartmentInsert Page -->
+	<definition name="/DepartmentInsert.tile" extends="baseLayout">
+		<put-attribute name="title" value="New Department" />
+		<put-attribute name="body" value="/pages/department/insert.jsp" />
+	</definition>
+	
+	<!-- EmployeeHome Page -->
+	<definition name="/EmployeeHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Employee" />
+		<put-attribute name="body" value="/pages/employee/home.jsp" />
+	</definition>
+	
+	<!-- EmployeeInsert Page -->
+	<definition name="/EmployeeInsert.tile" extends="baseLayout">
+		<put-attribute name="title" value="New Employee" />
+		<put-attribute name="body" value="/pages/employee/insert.jsp" />
+	</definition>
+
+<!-- EmployeeroasterHome Page -->
+	<definition name="/EmployeeroasterHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Employeeroaster" />
+		<put-attribute name="body" value="/pages/employeeroaster/home.jsp" />
+	</definition>
+	
+	<!-- EmployeeroasterInsert Page -->
+	<definition name="/EmployeeroasterInsert.tile" extends="baseLayout">
+		<put-attribute name="title" value="New Employeeroaster" />
+		<put-attribute name="body" value="/pages/employeeroaster/insert.jsp" />
+	</definition>
+
+<!-- LogHome Page -->
+	<definition name="/LogHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Log" />
+		<put-attribute name="body" value="/pages/log/home.jsp" />
+	</definition>
+	
+	<!-- LogInsert Page -->
+	<definition name="/LogInsert.tile" extends="baseLayout">
+		<put-attribute name="title" value="New Log" />
+		<put-attribute name="body" value="/pages/log/insert.jsp" />
+	</definition>
 
 </tiles-definitions>
