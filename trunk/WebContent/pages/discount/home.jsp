@@ -13,9 +13,6 @@
 		$("#jqxButton").on('click', function () {
 			window.location.replace("/hotel/discount/insert");
         });
-		
-
-
 
 		$("#popupDelete").jqxWindow({
 			width : 400,
@@ -214,17 +211,11 @@
 									} ]
 						});
 
-// 		$('#membershipTypeForm').jqxValidator({
-// 			rules : [ {
-// 				input : '#type',
-// 				message : 'Membership Type is required!',
-// 				action : 'keyup, blur',
-// 				rule : 'required'
-// 			} ],
-// 			theme : theme,
-// 			scroll : false
-// 		});
-
+		$("#delete").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+		
 		$("#cancelDelete").jqxButton({
 			width : "100px",
 			theme : theme
@@ -234,6 +225,10 @@
 			$("#popupDelete").jqxWindow('hide');
 		});
 		
+		$("#edit").jqxButton({
+			width : "100px",
+			theme : theme
+		});
 		$("#cancelEdit").jqxButton({
 			width : "100px",
 			theme : theme
@@ -243,10 +238,7 @@
 			$("#popupEdit").jqxWindow('hide');
 		});
 
-		$("#delete").jqxButton({
-			width : "100px",
-			theme : theme
-		});
+		
 		// delete row when the user clicks the 'Delete' button.
 		$("#delete").click(function() {
 			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
@@ -266,17 +258,8 @@
 			});
 			$("#popupDelete").jqxWindow('hide');
 		});
-
-		
-		
-		
-		$("#edit").jqxButton({
-			width : "100px",
-			theme : theme
-		});
-		
+	
 		// edit row when the user clicks the 'Edit' button.
-		
 		$("#edit").click(function() {
 			
 			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
@@ -295,6 +278,19 @@
 			});
 			$("#popupEdit").jqxWindow('hide');
 		});
+		
+
+// 		$('#membershipTypeForm').jqxValidator({
+// 			rules : [ {
+// 				input : '#type',
+// 				message : 'Membership Type is required!',
+// 				action : 'keyup, blur',
+// 				rule : 'required'
+// 			} ],
+// 			theme : theme,
+// 			scroll : false
+// 		});
+
 
 		
 		}
@@ -317,66 +313,64 @@
 		<form method="post" action="" id="discountEditForm">
 			<table>
 				<tr>
-					<td colspan="2">Do you really want to <b>Edit</b> following
-						<b>Discount Type</b>?
+					<td colspan="2">Do you really want to <b>Edit</b> following <b>Discount
+							Type</b>?
 					</td>
 				</tr>
 
 				<tr>
 					<td colspan="2"><input type="hidden" id="discounttIdEdit"
-						name="discounttId" class="text-input"  /></td>
+						name="discounttId" class="text-input" /></td>
 				</tr>
 				<tr>
 					<td>type</td>
 					<td><input type="text" id="typeEdit" name="type"
-						class="text-input"  /></td>
+						class="text-input" /></td>
 				</tr>
 				<tr>
 					<td>Initialized Date</td>
 					<td><input type="text" id="initializedDateEdit"
-						name="initializedDate" class="text-input"  /></td>
+						name="initializedDate" class="text-input" /></td>
 				</tr>
 				<tr>
 					<td>Closed Date</td>
 					<td><input type="text" id="closedDateEdit" name="closedDate"
-						class="text-input"  /></td>
+						class="text-input" /></td>
 				</tr>
 
 				<tr>
 					<td>F n B percentage</td>
 					<td><input type="text" id="f_bpercentageEdit"
-						name="f_bpercentage" class="text-input"  /></td>
+						name="f_bpercentage" class="text-input" /></td>
 				</tr>
 
 
 				<tr>
 					<td>Minibar percentage</td>
 					<td><input type="text" id="minibarpercentageEdit"
-						name="minibarpercentage" class="text-input"  /></td>
+						name="minibarpercentage" class="text-input" /></td>
 				</tr>
 				<tr>
 					<td>Room percentage</td>
 					<td><input type="text" id="roompercentageEdit"
-						name="roompercentage" class="text-input"  /></td>
+						name="roompercentage" class="text-input" /></td>
 				</tr>
 				<tr>
 					<td>Other Discount Percentage</td>
 					<td><input type="text" id="otherDiscountPercentageEdit"
-						name="otherDiscountPercentage" class="text-input"
-						 /></td>
+						name="otherDiscountPercentage" class="text-input" /></td>
 				</tr>
 
 				<tr>
 					<td>status</td>
 					<td><input type="text" id="statusEdit" name="status"
-						class="text-input"  /></td>
+						class="text-input" /></td>
 				</tr>
 
 				<tr>
 					<td style="padding-top: 10px;" align="center" colspan="2"><input
-						style="margin-right: 5px;" type="button" id="edit"
-						value="Edit" /><input id="cancelEdit" type="button"
-						value="Cancel" /></td>
+						style="margin-right: 5px;" type="button" id="edit" value="Edit" /><input
+						id="cancelEdit" type="button" value="Cancel" /></td>
 				</tr>
 				<tr>
 					<td colspan="2">&nbsp;</td>
@@ -460,4 +454,4 @@
 		</form>
 	</div>
 </div>
- <div class="clr"></div>
+<div class="clr"></div>
