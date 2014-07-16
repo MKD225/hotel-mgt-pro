@@ -5,10 +5,8 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import com.hotel.entity.Room;
 import com.hotel.entity.Roomtype;
 import com.hotel.util.HibernateUtil;
-
 
 public class RoomtypeManager {
 
@@ -57,13 +55,17 @@ public class RoomtypeManager {
 		}
 		return roomtype;
 	}
-
-	public Roomtype getRoomById(int id){
-	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-	session.beginTransaction();
-	Roomtype roomtype = (Roomtype) session.get(Room.class,id);
-	session.getTransaction().commit();
-	return roomtype;
+	
+	public Roomtype getRoomtypeById(int id){
+		System.out.println("in dao");
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		System.out.println("**dao***");
+		Roomtype roomtype= (Roomtype) session.get(Roomtype.class,id);
+		System.out.println(roomtype.getRoomTypeName());
+		session.getTransaction().commit();
+		return roomtype;
 		
 	}
+	
 }
