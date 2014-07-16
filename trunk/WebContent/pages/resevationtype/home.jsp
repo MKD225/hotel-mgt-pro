@@ -78,14 +78,13 @@
 				name : 'description',
 				type : 'String'
 			}, {
-				
+
 				name : 'reservationTypeCode',
 				type : 'String'
 			}, {
 				name : 'reservationTypeName',
 				type : 'String'
-			
-				
+
 			} ],
 			id : 'resevationTypeId',
 			url : url,
@@ -101,7 +100,7 @@
 					theme : theme,
 					autoheight : true,
 					columns : [
-							
+
 							{
 								text : 'Code',
 								datafield : 'reservationTypeCode',
@@ -111,7 +110,7 @@
 								text : 'Name',
 								datafield : 'reservationTypeName',
 								align : 'left'
-							
+
 							},
 							{
 								text : 'Description',
@@ -129,7 +128,8 @@
 								},
 								buttonclick : function(row) {
 									//get the clicked row's data and initialize the input fields.
-									var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', row);
+									var dataRecord = $("#jqxgrid").jqxGrid(
+											'getrowdata', row);
 									$("#resevationTypeIdEdit").val(
 											dataRecord.resevationTypeId);
 									$("#descriptionEdit").val(
@@ -186,21 +186,26 @@
 		$("#cancelDelete").click(function() {
 			$("#popupDelete").jqxWindow('hide');
 		});
-		
-		 $("#cancelEdit").jqxButton({
-				width : "100px",
-				theme : theme
-			});
-
-			$("#cancelEdit").click(function() {
-				$("#popupEdit").jqxWindow('hide');
-			});
-
 
 		$("#delete").jqxButton({
 			width : "100px",
 			theme : theme
 		});
+
+		$("#cancelEdit").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+
+		$("#cancelEdit").click(function() {
+			$("#popupEdit").jqxWindow('hide');
+		});
+
+		$("#edit").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+
 		// delete row when the user clicks the 'Delete' button.
 		$("#delete").click(function() {
 			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
@@ -221,32 +226,27 @@
 		});
 
 		clearText();
-	
-		
-	$("#edit").jqxButton({
-		width : "100px",
-		theme : theme
-	});
-	// delete row when the user clicks the 'Edit' button.
-	$("#edit").click(function() {
-		//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
-		//             if (onSuccess) {
-		var formInput = $("#resevationtypeEditForm").serialize();
-		$.ajax({
-			type : 'post',
-			url : '/hotel/resevationtype/ajxAddOrUpdate',
-			data : formInput,
-			success : function(data) {
-				var dataAdapter = new $.jqx.dataAdapter(source);
-				$("#jqxgrid").jqxGrid({
-					source : dataAdapter
-				});
-			}
-		});
-		$("#popupEdit").jqxWindow('hide');
-	});
 
-	clearText();
+		// delete row when the user clicks the 'Edit' button.
+		$("#edit").click(function() {
+			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
+			//             if (onSuccess) {
+			var formInput = $("#resevationtypeEditForm").serialize();
+			$.ajax({
+				type : 'post',
+				url : '/hotel/resevationtype/ajxAddOrUpdate',
+				data : formInput,
+				success : function(data) {
+					var dataAdapter = new $.jqx.dataAdapter(source);
+					$("#jqxgrid").jqxGrid({
+						source : dataAdapter
+					});
+				}
+			});
+			$("#popupEdit").jqxWindow('hide');
+		});
+
+		clearText();
 	}
 
 	function clearText() {
@@ -271,24 +271,26 @@
 				<td colspan="2" align="center">&nbsp;<input type="hidden"
 					id="resevationTypeId" name="resevationTypeId" readonly="readonly" /></td>
 			</tr>
-			
+
 			<tr>
-				<td> Code</td>
-				<td><input type="text" id="reservationTypeCode" name="reservationTypeCode"
-					class="text-input" title="reservationTypeCode" /></td>
+				<td>Code</td>
+				<td><input type="text" id="reservationTypeCode"
+					name="reservationTypeCode" class="text-input"
+					title="reservationTypeCode" /></td>
 			</tr>
 
 			<tr>
-				<td> Name</td>
-				<td><input type="text" id="reservationTypeName" name="reservationTypeName"
-					class="text-input" title="reservationTypeName " /></td>
+				<td>Name</td>
+				<td><input type="text" id="reservationTypeName"
+					name="reservationTypeName" class="text-input"
+					title="reservationTypeName " /></td>
 			</tr>
 			<tr>
 				<td>Description</td>
 				<td><input type="text" id="description" name="description"
 					class="text-input" title="description " /></td>
 			</tr>
-			
+
 			<tr>
 				<td>&nbsp;</td>
 				<td style="padding-top: 10px;"><input type="button" id="save"
@@ -309,28 +311,29 @@
 						<b>Membership Type</b>?
 					</td>
 				</tr>
-				
-				<tr>
-				<td colspan="2"><input type="hidden"
-					id="resevationTypeIdDelete" name="resevationTypeId" readonly="readonly" /></td>
-			</tr>
-			<tr>
-				<td>Description</td>
-				<td><input type="text" id="descriptionDelete" name="description"
-					class="text-input" readonly="readonly" /></td>
-			</tr>
-			<tr>
-				<td>Reservation Type Code</td>
-				<td><input type="text" id="reservationTypeCodeDelete" name="reservationTypeCode"
-					class="text-input" readonly="readonly" /></td>
-			</tr>
 
-			<tr>
-				<td>Reservation Type Name</td>
-				<td><input type="text" id="reservationTypeNameDelete" name="reservationTypeName"
-					class="text-input" readonly="readonly" /></td>
-			</tr>
-			
+				<tr>
+					<td colspan="2"><input type="hidden"
+						id="resevationTypeIdDelete" name="resevationTypeId"
+						readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Description</td>
+					<td><input type="text" id="descriptionDelete"
+						name="description" class="text-input" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Reservation Type Code</td>
+					<td><input type="text" id="reservationTypeCodeDelete"
+						name="reservationTypeCode" class="text-input" readonly="readonly" /></td>
+				</tr>
+
+				<tr>
+					<td>Reservation Type Name</td>
+					<td><input type="text" id="reservationTypeNameDelete"
+						name="reservationTypeName" class="text-input" readonly="readonly" /></td>
+				</tr>
+
 				<tr>
 					<td style="padding-top: 10px;" align="center" colspan="2"><input
 						style="margin-right: 5px;" type="button" id="delete"
@@ -351,37 +354,36 @@
 		<form method="post" action="" id="resevationtypeEditForm">
 			<table>
 				<tr>
-					<td colspan="2">Do you really want to <b>Edit</b> following
-						<b>Membership Type</b>?
+					<td colspan="2">Do you really want to <b>Edit</b> following <b>Membership
+							Type</b>?
 					</td>
 				</tr>
-				
-				<tr>
-				<td colspan="2"><input type="hidden"
-					id="resevationTypeIdEdit" name="resevationTypeId" /></td>
-			</tr>
-			<tr>
-				<td>Description</td>
-				<td><input type="text" id="descriptionEdit" name="description"
-					class="text-input"/></td>
-			</tr>
-			<tr>
-				<td>Reservation Type Code</td>
-				<td><input type="text" id="reservationTypeCodeEdit" name="reservationTypeCode"
-					class="text-input"  /></td>
-			</tr>
 
-			<tr>
-				<td>Reservation Type Name</td>
-				<td><input type="text" id="reservationTypeNameEdit" name="reservationTypeName"
-					class="text-input"  /></td>
-			</tr>
-			
+				<tr>
+					<td colspan="2"><input type="hidden" id="resevationTypeIdEdit"
+						name="resevationTypeId" /></td>
+				</tr>
+				<tr>
+					<td>Description</td>
+					<td><input type="text" id="descriptionEdit" name="description"
+						class="text-input" /></td>
+				</tr>
+				<tr>
+					<td>Reservation Type Code</td>
+					<td><input type="text" id="reservationTypeCodeEdit"
+						name="reservationTypeCode" class="text-input" /></td>
+				</tr>
+
+				<tr>
+					<td>Reservation Type Name</td>
+					<td><input type="text" id="reservationTypeNameEdit"
+						name="reservationTypeName" class="text-input" /></td>
+				</tr>
+
 				<tr>
 					<td style="padding-top: 10px;" align="center" colspan="2"><input
-						style="margin-right: 5px;" type="button" id="edit"
-						value="Edit" /><input id="cancelEdit" type="button"
-						value="Cancel" /></td>
+						style="margin-right: 5px;" type="button" id="edit" value="Edit" /><input
+						id="cancelEdit" type="button" value="Cancel" /></td>
 				</tr>
 				<tr>
 					<td colspan="2">&nbsp;</td>
