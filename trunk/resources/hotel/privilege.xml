@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="ajxPrivilege" namespace="/privilege"
+		extends="json-default">
+
+		<action name="ajxSearch" class="com.hotel.action.PrivilegeAction"
+			method="search">
+			<result type="json">
+				<param name="root">privileges</param>
+			</result>
+		</action>
+
+		<action name="ajxAddOrUpdate" class="com.hotel.action.PrivilegeAction"
+			method="addOrUpdate">
+			<result type="json"></result>
+		</action>
+
+		<action name="ajxDelete" class="com.hotel.action.PrivilegeAction"
+			method="delete">
+			<result type="json"></result>
+		</action>
+
+	</package>
+
+	<package name="ActPrivilege" namespace="/privilege"
+		extends="default">
+
+		<action name="home">
+			<result name="success" type="tiles">/PrivilegeHome.tile</result>
+		</action>
+
+	</package>
+
+</struts>
