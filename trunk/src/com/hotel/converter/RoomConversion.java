@@ -7,14 +7,17 @@ import org.apache.struts2.util.StrutsTypeConverter;
 import com.hotel.dao.RoomManager;
 import com.hotel.entity.Room;
 
-public class RoomConversion extends StrutsTypeConverter{
+public class RoomConversion extends StrutsTypeConverter {
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object convertFromString(Map arg0, String[] arg1, Class arg2) {
 		// TODO Auto-generated method stub
+		System.out.println("in room conversion"
+				+ "*****************************");
 		Room room = new RoomManager().getRoomById(Integer.parseInt(arg1[0]));
-		System.out.println(room.getTephoneNumber()+"*****************************");
+		System.out.println(room.getTephoneNumber()
+				+ "*****************************");
 		return room;
 	}
 
@@ -24,6 +27,5 @@ public class RoomConversion extends StrutsTypeConverter{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
 }
