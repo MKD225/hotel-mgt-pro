@@ -9,15 +9,22 @@
 			theme : theme
 		});
 		$('.text-input').addClass('jqx-rc-all');
-		
-		 var date = new Date();
-         date.setFullYear(2000, 0, 1);
-         $('#dateOfBirth').jqxDateTimeInput({ theme: theme, height: 22, value: $.jqx._jqxDateTimeInput.getDateTime(date) });
-		
-         var date = new Date();
-         date.setFullYear(2000, 0, 1);
-         $('#anniversary').jqxDateTimeInput({ theme: theme, height: 22, value: $.jqx._jqxDateTimeInput.getDateTime(date) });
-		
+
+		var date = new Date();
+		date.setFullYear(2000, 0, 1);
+		$('#dateOfBirth').jqxDateTimeInput({
+			theme : theme,
+			height : 22,
+			value : $.jqx._jqxDateTimeInput.getDateTime(date)
+		});
+
+		var date = new Date();
+		date.setFullYear(2000, 0, 1);
+		$('#anniversary').jqxDateTimeInput({
+			theme : theme,
+			height : 22,
+			value : $.jqx._jqxDateTimeInput.getDateTime(date)
+		});
 
 		$("#save").jqxButton({
 			width : "100px",
@@ -27,56 +34,57 @@
 			width : "100px",
 			theme : theme
 		});
-		
-		
-		var url = "/hotel/pages/sampleData/memberTitles.txt";
-        // prepare the data
-        var source =
-        {
-            datatype: "json",
-            datafields: [{ name: 'memberTitle' }],
-            url: url,
-            async: false
-        };
-        var dataAdapter = new $.jqx.dataAdapter(source);
 
-        // Create a jqxDropDownList
-        $("#title").jqxDropDownList({
-            selectedIndex: -1,
-            source: dataAdapter,
-            displayMember: "memberTitle",
-            valueMember: "memberTitle",
-            promptText: "Select title...",
-            autoDropDownHeight: true,
-            width: 150,
-            height: 25,
-            theme: theme
-        });
-		
-        var url = "/hotel/pages/sampleData/country.txt";
-        // prepare the data
-        var source =
-        {
-            datatype: "json",
-            datafields: [{ name: 'name' }],
-            url: url,
-            async: false
-        };
-        var dataAdapter = new $.jqx.dataAdapter(source);
-        // Create a jqxComboBox
-        $("#country").jqxComboBox({ 
-        	selectedIndex: -1,
-        	source: dataAdapter,
-        	displayMember: "name",
-        	valueMember: "name",
-        	promptText: "Select country...",
-        	autoComplete: true,
-        	width: 210,
-        	height: 25,
-            theme: theme
-        });
-		
-     // update the edited row when the user clicks the 'Save' button.
+		var url = "/hotel/pages/sampleData/memberTitles.txt";
+		// prepare the data
+		var source = {
+			datatype : "json",
+			datafields : [ {
+				name : 'memberTitle'
+			} ],
+			url : url,
+			async : false
+		};
+		var dataAdapter = new $.jqx.dataAdapter(source);
+
+		// Create a jqxDropDownList
+		$("#title").jqxDropDownList({
+			selectedIndex : -1,
+			source : dataAdapter,
+			displayMember : "memberTitle",
+			valueMember : "memberTitle",
+			promptText : "Select title...",
+			autoDropDownHeight : true,
+			width : 150,
+			height : 25,
+			theme : theme
+		});
+
+		var url = "/hotel/pages/sampleData/country.txt";
+		// prepare the data
+		var source = {
+			datatype : "json",
+			datafields : [ {
+				name : 'name'
+			} ],
+			url : url,
+			async : false
+		};
+		var dataAdapter = new $.jqx.dataAdapter(source);
+		// Create a jqxComboBox
+		$("#country").jqxComboBox({
+			selectedIndex : -1,
+			source : dataAdapter,
+			displayMember : "name",
+			valueMember : "name",
+			promptText : "Select country...",
+			autoComplete : true,
+			width : 210,
+			height : 25,
+			theme : theme
+		});
+
+		// update the edited row when the user clicks the 'Save' button.
 		$("#save").click(function() {
 			var onSuccess = $('#guestAddForm').jqxValidator('validate');
 			if (onSuccess) {
@@ -100,8 +108,6 @@
 			clearText();
 		});
 
-
-		
 		$('#guestAddForm').jqxValidator({
 			rules : [ {
 				input : '#firstName',
@@ -113,7 +119,6 @@
 			scroll : false
 		});
 
-		
 	}
 
 	function clearText() {
