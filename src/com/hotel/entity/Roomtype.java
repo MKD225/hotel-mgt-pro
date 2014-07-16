@@ -14,24 +14,22 @@ import java.util.List;
 public class Roomtype implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="roomTypeId")
+	
 	private int roomTypeId;
 
-	@Column(name="`a/c`")
+	
 	private boolean a_c;
 
-	@Column(name="description")
+	
 	private String description;
 
-	@Column(name="roomRate")
+	
 	private double roomRate;
 
-	@Column(name="roomTypeName")
+	
 	private String roomTypeName;
 
-	@Column(name="view")
+	
 	private String view;
 
 //	//bi-directional many-to-one association to Allocateroomtype
@@ -45,6 +43,9 @@ public class Roomtype implements Serializable {
 	public Roomtype() {
 	}
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="roomTypeId")
 	public int getRoomTypeId() {
 		return this.roomTypeId;
 	}
@@ -53,6 +54,7 @@ public class Roomtype implements Serializable {
 		this.roomTypeId = roomTypeId;
 	}
 
+	@Column(name="`a/c`")
 	public boolean getA_c() {
 		return this.a_c;
 	}
@@ -61,6 +63,7 @@ public class Roomtype implements Serializable {
 		this.a_c = a_c;
 	}
 
+	@Column(name="description")
 	public String getDescription() {
 		return this.description;
 	}
@@ -69,6 +72,7 @@ public class Roomtype implements Serializable {
 		this.description = description;
 	}
 
+	@Column(name="roomRate")
 	public double getRoomRate() {
 		return this.roomRate;
 	}
@@ -77,6 +81,7 @@ public class Roomtype implements Serializable {
 		this.roomRate = roomRate;
 	}
 
+	@Column(name="roomTypeName")
 	public String getRoomTypeName() {
 		return this.roomTypeName;
 	}
@@ -85,6 +90,7 @@ public class Roomtype implements Serializable {
 		this.roomTypeName = roomTypeName;
 	}
 
+	@Column(name="view")
 	public String getView() {
 		return this.view;
 	}
