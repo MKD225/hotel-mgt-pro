@@ -1,9 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <script type="text/javascript">
-/**
- * 
- */
 	function initialize(theme) {
 
 		$('.text-input').jqxInput({
@@ -58,33 +55,43 @@
 			animationType : 'fade'
 		});
 
-		
+		$("#popupEdit").jqxWindow({
+			width : '75%',
+			resizable : false,
+			theme : theme,
+			isModal : true,
+			autoOpen : false,
+			cancelButton : $("#cancelEdit"),
+			showAnimationDuration : 1000,
+			modalOpacity : 0.45
+		});
+
 		var url = "/hotel/roomtype/ajxSearch";
-		        
-		        var sourceType = {
-		            datatype: "json",
-		            datafields: [{
-		                name: 'roomTypeId'
-		            }, {
-		                name: 'roomTypeName'
-		            }],
-		            id: 'roomTypeId',
-		            url: url
-		        };
-		        
-		        var dataAdapterType = new $.jqx.dataAdapter(sourceType);
-		        
-		        $("#roomtypeConvert").jqxDropDownList({
-		            selectedIndex: -1,
-		            source: dataAdapterType,
-		            displayMember: "roomTypeName",
-		            valueMember: "roomTypeId",
-		            promptText: "Room Type Number...",
-		            autoDropDownHeight: true,
-		            width: 250,
-		            height: 25,
-		            theme: theme
-		        });
+
+		var sourceType = {
+			datatype : "json",
+			datafields : [ {
+				name : 'roomTypeId'
+			}, {
+				name : 'roomTypeName'
+			} ],
+			id : 'roomTypeId',
+			url : url
+		};
+
+		var dataAdapterType = new $.jqx.dataAdapter(sourceType);
+
+		$("#roomtypeConvert").jqxDropDownList({
+			selectedIndex : -1,
+			source : dataAdapterType,
+			displayMember : "roomTypeName",
+			valueMember : "roomTypeId",
+			promptText : "Room Type Number...",
+			autoDropDownHeight : true,
+			width : 250,
+			height : 25,
+			theme : theme
+		});
 
 		// Prepare the data
 		var url = "/hotel/room/ajxSearch";
@@ -92,7 +99,7 @@
 			datatype : "json",
 			mtype : 'POST',
 			datafields : [ {
-				
+
 				name : 'roomId',
 				type : 'String'
 			}, {
@@ -100,7 +107,8 @@
 				type : 'String'
 			}, {
 				name : 'roomTypeName',
-				type : 'int'
+				type : 'int',
+				map : 'roomtype>roomTypeName'
 			}, {
 				name : 'description',
 				type : 'String'
@@ -111,8 +119,6 @@
 			}, {
 				name : 'telephoneNumber',
 				type : 'String'
-			
-				
 
 			} ],
 			id : 'roomId',
@@ -135,10 +141,11 @@
 								align : 'left'
 
 							},
+
 							{
-								text : 'roomTypeName',
+								text : 'Room Type',
 								datafield : 'roomTypeName',
-								align : 'left'
+								align : 'left',
 
 							},
 							{
@@ -147,7 +154,7 @@
 								align : 'left'
 							},
 							{
-								text : 'Status',
+								text : 'status',
 								datafield : 'status',
 								align : 'left'
 							},
@@ -170,10 +177,17 @@
 									//get the clicked row's data and initialize the input fields.
 									var dataRecord = $("#jqxgrid").jqxGrid(
 											'getrowdata', row);
-									$("#membershipTypeId").val(
-											dataRecord.membershipTypeId);
-									$("#membershipType").val(
-											dataRecord.membershipType);
+									$("#roomIdEdit").val(dataRecord.roomId);
+									$("#roomNumberEdit").val(
+											dataRecord.roomNumber);
+									$("#roomTypeNameEdit").val(
+											dataRecord.roomTypeName);
+									$("#descriptionEdit").val(
+											dataRecord.description);
+									$("#statusEdit").val(dataRecord.status);
+									$("#telephoneNumberEdit").val(
+											dataRecord.telephoneNumber);
+									$("#popupEdit").jqxWindow('open');
 								}
 							},
 							{
@@ -189,25 +203,20 @@
 									//get the clicked row's data and initialize the input fields.
 									var dataRecord = $("#jqxgrid").jqxGrid(
 											'getrowdata', row);
-									$("#membershipTypeIdDelete").val(
-											dataRecord.membershipTypeId);
-									$("#membershipTypeDelete").val(
-											dataRecord.membershipType);
+									$("#roomIdDelete").val(dataRecord.roomId);
+									$("#roomTypeNameDelete").val(
+											dataRecord.roomNumber);
+									$("#roomTypeNameDelete").val(
+											dataRecord.roomTypeName);
+									$("#descriptionDelete").val(
+											dataRecord.description);
+									$("#statusDelete").val(dataRecord.status);
+									$("#telephoneNumberDelete").val(
+											dataRecord.telephoneNumber);
 									$("#popupDelete").jqxWindow('open');
 								}
 							} ]
 				});
-
-		$('#roomForm').jqxValidator({
-			rules : [ {
-				input : '#telephoneNumber',
-				message : 'Membership Type is required!',
-				action : 'keyup, blur',
-				rule : 'required'
-			} ],
-			theme : theme,
-			scroll : false
-		});
 
 		$("#cancelDelete").jqxButton({
 			width : "100px",
@@ -222,6 +231,44 @@
 			width : "100px",
 			theme : theme
 		});
+
+		$("#cancelEdit").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+
+		$("#cancelEdit").click(function() {
+			$("#popupEdit").jqxWindow('hide');
+		});
+
+		// edit row when the user clicks the 'Edit' button.
+		$("#edit").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+
+		// edit row when the user clicks the 'Edit' button.
+
+		$("#edit").click(function() {
+
+			// 				            var onSuccess = $('#roomEditForm').jqxValidator('validate');
+			// 				            if (onSuccess) {
+			var formInput = $("#roomEditForm").serialize();
+			$.ajax({
+				type : 'post',
+				url : '/hotel/room/ajxAddOrUpdate',
+				data : formInput,
+				success : function(data) {
+					var dataAdapter = new $.jqx.dataAdapter(source);
+					$("#jqxgrid").jqxGrid({
+						source : dataAdapter
+					});
+				}
+			});
+			$("#popupEdit").jqxWindow('hide');
+
+		});
+
 		// delete row when the user clicks the 'Delete' button.
 		$("#delete").click(function() {
 			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
@@ -229,7 +276,7 @@
 			var formInput = $("#roomDeleteForm").serialize();
 			$.ajax({
 				type : 'post',
-				url : '/slia/MembershipType/ajxDelete',
+				url : '/hotel/room/ajxDelete',
 				data : formInput,
 				success : function(data) {
 					var dataAdapter = new $.jqx.dataAdapter(source);
@@ -242,16 +289,27 @@
 		});
 
 		clearText();
+
+		$('#roomForm').jqxValidator({
+			rules : [ {
+				input : '#roomNumber',
+				message : 'Membership Type is required!',
+				action : 'keyup, blur',
+				rule : 'required'
+			} ],
+			theme : theme,
+			scroll : false
+		});
+
 	}
 
 	function clearText() {
 		$("#roomId").val('');
 		$("#roomNumber").val('');
-		$("#roomtypeConvert").val('');
+		$('#roomtypeConvert').jqxValidator('hide');
 		$("#description").val('');
 		$("#status").val('');
-		$("#telephoneNumber").val('');
-		$('#roomForm').jqxValidator('hide');
+		$('#telephoneNumber').jqxValidator('hide');
 	}
 </script>
 
@@ -276,7 +334,7 @@
 			</tr>
 			<tr>
 				<td>Room Type Name</td>
-				<td><div id ="roomtypeConvert"></div></td>
+				<td><div id="roomtypeConvert"></div></td>
 			</tr>
 
 			<tr>
@@ -320,15 +378,39 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="hidden"
-						id="membershipTypeIdDelete" name="membershipTypeId"
+					<td colspan="2"><input type="hidden" id="roomIdDelete"
+						name="roomId" class="text-input" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Room Number :</td>
+					<td><input type="text" id="roomNumberDelete" name="roomNumber"
+						class="text-input" readonly="readonly" /></td>
+				</tr>
+
+				<tr>
+					<td>Room Type :</td>
+					<td><input type="text" id="roomTypeNameDelete"
+						name="roomTypeName" class="text-input" readonly="readonly" /></td>
+				</tr>
+
+				<tr>
+					<td>Description:</td>
+					<td><input type="text" id="descriptionDelete"
+						name="description" class="text-input" readonly="readonly" /></td>
+				</tr>
+
+				<tr>
+					<td>Status :</td>
+					<td><input type="text" id="statusDelete" name="status"
 						class="text-input" readonly="readonly" /></td>
 				</tr>
 				<tr>
-					<td>Membership Type :</td>
-					<td><input type="text" id="membershipTypeDelete"
-						name="membershipType" class="text-input" readonly="readonly" /></td>
+					<td>Telephone Number :</td>
+					<td><input type="text" id="telephoneNumberDelete"
+						name="telephoneNumber" class="text-input" readonly="readonly" /></td>
 				</tr>
+
+
 				<tr>
 					<td style="padding-top: 10px;" align="center" colspan="2"><input
 						style="margin-right: 5px;" type="button" id="delete"
@@ -343,3 +425,61 @@
 	</div>
 </div>
 
+<!-- edit form -->
+<div id="popupEdit">
+	<div>Edit Agent</div>
+	<div style="overflow-y: scroll;">
+		<div id='detailPannel'>
+			<div style="overflow: hidden;">
+				<form method="post" action="" id="roomEditForm"
+					style="margin-left: 80px; margin-top: 20px;">
+					<table>
+						<tr>
+							<td colspan="2" align="center"><b>Agent</b></td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center">&nbsp;<input type="hidden"
+								id="roomIdEdit" name="roomId" readonly="readonly" /></td>
+						</tr>
+
+						<tr>
+							<td>Title</td>
+							<td><input type="text" id="roomNumberEdit" name="roomNumber"
+								class="text-input" title="title" /></td>
+						</tr>
+						<tr>
+							<td>Room Type Name</td>
+							<td><input type="text" id="roomTypeNameEdit"
+								name="roomTypeName" class="text-input" title="roomTypeName" /></td>
+						</tr>
+						<tr>
+							<td>Description</td>
+							<td><input type="text" id="descriptionEdit"
+								name="description" class="text-input" title="description" /></td>
+						</tr>
+
+						<tr>
+							<td>Status</td>
+							<td><input type="text" id="statusEdit" name="status"
+								class="text-input" title="status" /></td>
+						</tr>
+
+						<tr>
+							<td>Telephone Number</td>
+							<td><input type="text" id="telephoneNumberEdit"
+								name="telephoneNumber" class="text-input"
+								title="telephoneNumber " /></td>
+						</tr>
+
+						<tr>
+							<td>&nbsp;</td>
+							<td style="padding-top: 10px;"><input type="button"
+								id="edit" value="Save" style="margin-right: 5px;" /> <input
+								id="cancelEdit" type="button" value="Cancel" /></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
