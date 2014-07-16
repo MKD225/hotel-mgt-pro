@@ -43,11 +43,7 @@
 
 		$("#clear").click(function() {
 			clearText();
-		});
-
-		
-
-		
+		});	
 
 		$('#ExternaldriverForm').jqxValidator({
 			rules : [ {
@@ -59,7 +55,6 @@
 			theme : theme,
 			scroll : false
 		});
-
 		
 	}
 
@@ -89,11 +84,11 @@
 				<td colspan="2" align="center">&nbsp;<input type="hidden"
 					id="externalDriverId" name="externalDriverId" readonly="readonly" /></td>
 			</tr>
-			
+
 			<tr>
 				<td>Name</td>
-				<td><input type="text" id="name" name="name"
-					class="text-input" title="name" /></td>
+				<td><input type="text" id="name" name="name" class="text-input"
+					title="name" /></td>
 			</tr>
 			<tr>
 				<td>Licence No</td>
@@ -101,7 +96,6 @@
 					class="text-input" title="licenceNo" /></td>
 			</tr>
 
-			
 			<tr>
 				<td>Mail Address</td>
 				<td><input type="text" id="address" name="address"
@@ -109,15 +103,15 @@
 			</tr>
 			<tr>
 				<td>Email Address</td>
-				<td><input type="text" id="emailAddress"
-					name="emailAddress" class="text-input" title="emailAddress " /></td>
+				<td><input type="text" id="emailAddress" name="emailAddress"
+					class="text-input" title="emailAddress " /></td>
 			</tr>
 			<tr>
 				<td>Telephone Number</td>
-				<td><input type="text" id="telephoneNumber" name="telephoneNumber"
-					class="text-input" title="telephoneNumber" /></td>
+				<td><input type="text" id="telephoneNumber"
+					name="telephoneNumber" class="text-input" title="telephoneNumber" /></td>
 			</tr>
-			
+
 
 
 			<tr>
