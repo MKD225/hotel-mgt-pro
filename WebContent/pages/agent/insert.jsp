@@ -9,7 +9,6 @@
 			theme : theme
 		});
 		$('.text-input').addClass('jqx-rc-all');
-		
 
 		$("#save").jqxButton({
 			width : "100px",
@@ -19,53 +18,55 @@
 			width : "100px",
 			theme : theme
 		});
-		
-		var url = "/hotel/pages/sampleData/memberTitles.txt";
-        // prepare the data
-        var source =
-        {
-            datatype: "json",
-            datafields: [{ name: 'memberTitle' }],
-            url: url,
-            async: false
-        };
-        var dataAdapter = new $.jqx.dataAdapter(source);
 
-        // Create a jqxDropDownList
-        $("#title").jqxDropDownList({
-            selectedIndex: -1,
-            source: dataAdapter,
-            displayMember: "memberTitle",
-            valueMember: "memberTitle",
-            promptText: "Select title...",
-            autoDropDownHeight: true,
-            width: 150,
-            height: 25,
-            theme: theme
-        });
-		
-        var url = "/hotel/pages/sampleData/country.txt";
-        // prepare the data
-        var source =
-        {
-            datatype: "json",
-            datafields: [{ name: 'name' }],
-            url: url,
-            async: false
-        };
-        var dataAdapter = new $.jqx.dataAdapter(source);
-        // Create a jqxComboBox
-        $("#country").jqxComboBox({ 
-        	selectedIndex: -1,
-        	source: dataAdapter,
-        	displayMember: "name",
-        	valueMember: "name",
-        	promptText: "Select country...",
-        	autoComplete: true,
-        	width: 210,
-        	height: 25,
-            theme: theme
-        });
+		var url = "/hotel/pages/sampleData/memberTitles.txt";
+		// prepare the data
+		var source = {
+			datatype : "json",
+			datafields : [ {
+				name : 'memberTitle'
+			} ],
+			url : url,
+			async : false
+		};
+		var dataAdapter = new $.jqx.dataAdapter(source);
+
+		// Create a jqxDropDownList
+		$("#title").jqxDropDownList({
+			selectedIndex : -1,
+			source : dataAdapter,
+			displayMember : "memberTitle",
+			valueMember : "memberTitle",
+			promptText : "Select title...",
+			autoDropDownHeight : true,
+			width : 150,
+			height : 25,
+			theme : theme
+		});
+
+		var url = "/hotel/pages/sampleData/country.txt";
+		// prepare the data
+		var source = {
+			datatype : "json",
+			datafields : [ {
+				name : 'name'
+			} ],
+			url : url,
+			async : false
+		};
+		var dataAdapter = new $.jqx.dataAdapter(source);
+		// Create a jqxComboBox
+		$("#country").jqxComboBox({
+			selectedIndex : -1,
+			source : dataAdapter,
+			displayMember : "name",
+			valueMember : "name",
+			promptText : "Select country...",
+			autoComplete : true,
+			width : 210,
+			height : 25,
+			theme : theme
+		});
 
 		// save row when the user clicks the 'Save' button.
 		$("#save").click(function() {
@@ -76,12 +77,12 @@
 					type : 'post',
 					url : '/hotel/agent/ajxAddOrUpdate',
 					data : formInput,
-// 					success : function(data) {
-// 						var dataAdapter = new $.jqx.dataAdapter(source);
-// 						$("#jqxgrid").jqxGrid({
-// 							source : dataAdapter
-// 						});
-// 					}
+				// 					success : function(data) {
+				// 						var dataAdapter = new $.jqx.dataAdapter(source);
+				// 						$("#jqxgrid").jqxGrid({
+				// 							source : dataAdapter
+				// 						});
+				// 					}
 				});
 				clearText();
 			}
@@ -90,10 +91,6 @@
 		$("#clear").click(function() {
 			clearText();
 		});
-
-		
-
-		
 
 		$('#agentForm').jqxValidator({
 			rules : [ {
@@ -106,7 +103,6 @@
 			scroll : false
 		});
 
-		
 	}
 
 	function clearText() {
@@ -119,7 +115,7 @@
 		$("#permitNumber").val('');
 		$("#remarks").val('');
 		$("#status").val('');
-		
+
 		$('#agentForm').jqxValidator('hide');
 	}
 </script>
