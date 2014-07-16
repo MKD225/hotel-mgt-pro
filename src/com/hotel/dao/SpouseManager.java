@@ -5,6 +5,8 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
+import com.hotel.entity.Department;
+import com.hotel.entity.Spouse;
 import com.hotel.entity.Spouse;
 import com.hotel.util.HibernateUtil;
 
@@ -40,6 +42,32 @@ public class SpouseManager {
 		}
 		session.getTransaction().commit();
 		return spouses;
+	}
+	
+	public Spouse delete(Spouse spouse) {
+		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		try {
+			session.delete(spouse);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();		}
+		return spouse;
+	}
+
+	
+	public Spouse getSpouseById(int id){
+		System.out.println("in dao");
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		System.out.println("**dao***");
+		Spouse spouse= (Spouse) session.get(Spouse.class,id);
+		System.out.println(spouse.getCountry());
+		session.getTransaction().commit();
+		return spouse;
+		
 	}
 
 }
