@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
+import com.hotel.entity.Menu;
 import com.hotel.entity.Room;
 import com.hotel.util.HibernateUtil;
 
@@ -28,7 +29,6 @@ public class RoomManager {
 	@SuppressWarnings("unchecked")
 	public List<Room> search() throws Exception {
 		// TODO Auto-generated method stub
-		//System.out.println("in dao");
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		List<Room> rooms = null;
@@ -43,16 +43,28 @@ public class RoomManager {
 		return rooms;
 	}
 	
+	public Room delete(Room room) {
+		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		try {
+			session.delete(room);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();		}
+		return room;
+	}
+
 	public Room getRoomById(int id){
 		System.out.println("in dao");
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		System.out.println("**dao***");
-		Room room = (Room) session.get(Room.class,id);
-		System.out.println(room.getRoomtype());
+		Room room= (Room) session.get(Room.class,id);
+		System.out.println(room.getRoomNumber());
 		session.getTransaction().commit();
 		return room;
 		
 	}
-
 }
