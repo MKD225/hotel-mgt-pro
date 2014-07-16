@@ -11,20 +11,16 @@ import com.opensymphony.xwork2.ModelDriven;
 @SuppressWarnings("rawtypes")
 public class RoomAction extends ActionSupport implements ModelDriven {
 
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4330058585502759076L;
+	private static final long serialVersionUID = 1L;
 	private Room room;
 	private List<Room> rooms;
 	private Roomtype roomtypeConvert;
-
-	
+		
 
 	public RoomAction() {
 		super();
 		this.room = new Room();
+
 	}
 
 	public String search() {
@@ -38,10 +34,19 @@ public class RoomAction extends ActionSupport implements ModelDriven {
 
 	public String addOrUpdate() {
 		try {
-			System.out.println(room.getStatus());
+			System.out.println("*****in calander add");
+			System.out.println(room.getRoomId());
 			this.room.setRoomtype(roomtypeConvert);
-			System.out.println(roomtypeConvert);
-			this.room= new RoomManager().saveOrUpdate(this.room);
+			this.room = new RoomManager().saveOrUpdate(this.room);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+
+	public String delete() {
+		try {
+			this.room = new RoomManager().delete(this.room);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -70,11 +75,12 @@ public class RoomAction extends ActionSupport implements ModelDriven {
 		this.rooms = rooms;
 	}
 
-	public Roomtype getRoomtypeConversion() {
+	public Roomtype getRoomtypeConvert() {
 		return roomtypeConvert;
 	}
 
-	public void setRoomtypeConversion(Roomtype roomtypeConversion) {
-		this.roomtypeConvert = roomtypeConversion;
+	public void setRoomtypeConvert(Roomtype roomtypeConvert) {
+		this.roomtypeConvert = roomtypeConvert;
 	}
+
 }
