@@ -1,9 +1,11 @@
 package com.hotel.entity;
 
+
+
+
+
 import java.io.Serializable;
 import javax.persistence.*;
-
-import java.util.Date;
 
 
 /**
@@ -16,7 +18,6 @@ public class Spouse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "spouseId")
 	private int spouseId;
 
@@ -46,19 +47,30 @@ public class Spouse implements Serializable {
 
 	
 
-	//bi-directional one-to-one association to Spouse
-	@OneToOne
-	@JoinColumn(name="spouseId")
-	private Spouse spouse;
+//	@OneToOne
+//	@JoinColumn(name="guestId")
+//	private Guest guest;
 
 	public Spouse() {
 	}
 
 	public int getSpouseId() {
-		return this.spouseId;
+		return spouseId;
 	}
 
 	public void setSpouseId(int spouseId) {
+		this.spouseId = spouseId;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public int getSpouse() {
+		return this.spouseId;
+	}
+
+	public void setSpouse(int spouseId) {
 		this.spouseId = spouseId;
 	}
 
@@ -125,12 +137,12 @@ public class Spouse implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Spouse getSpouse() {
-		return this.spouse;
-	}
-
-	public void setSpouse(Spouse spouse) {
-		this.spouse = spouse;
-	}
+//	public Guest getGuest() {
+//		return this.guest;
+//	}
+//
+//	public void setGuest(Guest guest) {
+//		this.guest = guest;
+//	}
 
 }
