@@ -18,41 +18,48 @@
 			width : "100px",
 			theme : theme
 		});
-		
-		$("#AcYes").jqxRadioButton({ width: 70, height: 25});
-        $("#AcNo").jqxRadioButton({ width: 70, height: 25});
-		
+
+		$("#AcYes").jqxRadioButton({
+			width : 70,
+			height : 25
+		});
+		$("#AcNo").jqxRadioButton({
+			width : 70,
+			height : 25
+		});
+
 		//get data from view.text
 		var url = "/hotel/pages/sampleData/roomViews.txt";
-        // prepare the data
-        var source =
-        {
-            datatype: "json",
-            datafields: [{ name: 'roomView' }],
-            url: url,
-            async: false
-        };
-        var dataAdapter = new $.jqx.dataAdapter(source);
+		// prepare the data
+		var source = {
+			datatype : "json",
+			datafields : [ {
+				name : 'roomView'
+			} ],
+			url : url,
+			async : false
+		};
+		var dataAdapter = new $.jqx.dataAdapter(source);
 		console.info(source);
-       
-        // Create a jqxDropDownList
-        $("#view").jqxDropDownList({
-            selectedIndex: -1,
-            source: dataAdapter,
-            displayMember: "roomView",
-            valueMember: "roomView",
-            promptText: "Select room view...",
-            autoDropDownHeight: true,
-            width: 150,
-            height: 25,
-            theme: theme
-        });
+
+		// Create a jqxDropDownList
+		$("#view").jqxDropDownList({
+			selectedIndex : -1,
+			source : dataAdapter,
+			displayMember : "roomView",
+			valueMember : "roomView",
+			promptText : "Select room view...",
+			autoDropDownHeight : true,
+			width : 150,
+			height : 25,
+			theme : theme
+		});
 
 		// update the edited row when the user clicks the 'Save' button.
 		$("#save").click(function() {
-			var onSuccess = $('#membershipTypeForm').jqxValidator('validate');
+			var onSuccess = $('#roomTypeForm').jqxValidator('validate');
 			if (onSuccess) {
-				var formInput = $("#membershipTypeForm").serialize();
+				var formInput = $("#roomTypeForm").serialize();
 				$.ajax({
 					type : 'post',
 					url : '/hotel/roomtype/ajxAddOrUpdate',
@@ -70,7 +77,7 @@
 
 		$("#clear").click(function() {
 			clearText();
-			
+
 		});
 
 		$("#popupDelete").jqxWindow({
@@ -85,7 +92,6 @@
 			animationType : 'fade'
 		});
 
-		
 		$("#popupEdit").jqxWindow({
 			width : 400,
 			resizable : false,
@@ -97,7 +103,7 @@
 			showAnimationDuration : 500,
 			animationType : 'fade'
 		});
-		
+
 		// Prepare the data
 		var url = "/hotel/roomtype/ajxSearch";
 		var source = {
@@ -141,25 +147,24 @@
 				text : 'Name',
 				datafield : 'roomTypeName',
 				align : 'left',
-				width: '15%',
+				width : '15%',
 			}, {
 				text : 'a_c',
 				datafield : 'a_c',
 				align : 'left'
 			}, {
-				
+
 				text : 'Rate',
 				datafield : 'roomRate',
 				align : 'left'
-			},{
+			}, {
 				text : 'View',
 				datafield : 'view',
 				align : 'left'
 			}, {
-					text : 'Description',
-					datafield : 'description',
-					align : 'left'
-				
+				text : 'Description',
+				datafield : 'description',
+				align : 'left'
 
 			}, {
 				text : 'Edit',
@@ -179,7 +184,7 @@
 					$("#viewEdit").val(dataRecord.view);
 					$("#roomRateEdit").val(dataRecord.roomRate);
 					$("#descriptionEdit").val(dataRecord.description);
-					
+
 					$("#popupEdit").jqxWindow('open');
 				}
 			}, {
@@ -206,7 +211,7 @@
 			} ]
 		});
 
-		$('#membershipTypeForm').jqxValidator({
+		$('#roomTypeForm').jqxValidator({
 			rules : [ {
 				input : '#roomTypeName',
 				message : 'Membership Type is required!',
@@ -225,15 +230,15 @@
 		$("#cancelDelete").click(function() {
 			$("#popupDelete").jqxWindow('hide');
 		});
-		
-		 $("#cancelEdit").jqxButton({
-				width : "100px",
-				theme : theme
-			});
 
-			$("#cancelEdit").click(function() {
-				$("#popupEdit").jqxWindow('hide');
-			});
+		$("#cancelEdit").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+
+		$("#cancelEdit").click(function() {
+			$("#popupEdit").jqxWindow('hide');
+		});
 
 		$("#delete").jqxButton({
 			width : "100px",
@@ -259,45 +264,44 @@
 		});
 
 		clearText();
-	
-		
-	$("#edit").jqxButton({
-		width : "100px",
-		theme : theme
-	});
-	// delete row when the user clicks the 'Edit' button.
-	$("#edit").click(function() {
-		//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
-		//             if (onSuccess) {
-		var formInput = $("#agentEditForm").serialize();
-		$.ajax({
-			type : 'post',
-			url : '/hotel/roomtype/ajxAddOrUpdate',
-			data : formInput,
-			success : function(data) {
-				var dataAdapter = new $.jqx.dataAdapter(source);
-				$("#jqxgrid").jqxGrid({
-					source : dataAdapter
-				});
-			}
-		});
-		$("#popupEdit").jqxWindow('hide');
-	});
 
-	clearText();
-	
-	 $('#memberForm').jqxValidator({
-         animationDuration: 50,
-         rules: [{
-        	 input: '#a_c',
-             message: 'Please select gender!',
-             action: 'change',
-             rule: function(input, commit) {
-                 return ($("#AcYes").val() || $("#AcNo").val());
-             }
-         }],
-         theme: theme
-     });
+		$("#edit").jqxButton({
+			width : "100px",
+			theme : theme
+		});
+		// delete row when the user clicks the 'Edit' button.
+		$("#edit").click(function() {
+			//             var onSuccess = $('#admissionTypeDelete').jqxValidator('validate');
+			//             if (onSuccess) {
+			var formInput = $("#agentEditForm").serialize();
+			$.ajax({
+				type : 'post',
+				url : '/hotel/roomtype/ajxAddOrUpdate',
+				data : formInput,
+				success : function(data) {
+					var dataAdapter = new $.jqx.dataAdapter(source);
+					$("#jqxgrid").jqxGrid({
+						source : dataAdapter
+					});
+				}
+			});
+			$("#popupEdit").jqxWindow('hide');
+		});
+
+		clearText();
+
+		$('#roomTypeForm').jqxValidator({
+			animationDuration : 50,
+			rules : [ {
+				input : '#a_c',
+				message : 'Please select gender!',
+				action : 'change',
+				rule : function(input, commit) {
+					return ($("#AcYes").val() || $("#AcNo").val());
+				}
+			} ],
+			theme : theme
+		});
 	}
 	function clearText() {
 		$("#roomTypeId").val('');
@@ -306,17 +310,15 @@
 		$("#roomRate").val('');
 		$("#view").val('');
 		$("#description").val('');
-		
-		$('#membershipTypeForm').jqxValidator('hide');
+
+		$('#roomTypeForm').jqxValidator('hide');
 	}
-	
-	
 </script>
 
 
 <div id="jqxgrid" style="float: left;"></div>
 <div style="overflow: hidden; position: relative;">
-	<form method="post" action="" id="membershipTypeForm"
+	<form method="post" action="" id="roomTypeForm"
 		style="margin-left: 80px; margin-top: 20px;">
 		<table>
 			<tr>
@@ -334,22 +336,32 @@
 			</tr>
 			<tr>
 				<td>A/C</td>
-				
+
 				<td><div id='a_c' class='rad'>
-                    <table><tr><td><div id='AcYes' name="AcYes" value="true" style="margin-top: 5px;"><span>Yes</span></div></td>
-                    <td><div id='AcNo' name="AcNo" value="false" style="margin-top: 5px;"><span>No</span></div></td></tr></table>
-                    </div></td>
-			 </tr>
-			
+						<table>
+							<tr>
+								<td><div id='AcYes' name="AcYes" value="true"
+										style="margin-top: 5px;">
+										<span>Yes</span>
+									</div></td>
+								<td><div id='AcNo' name="AcNo" value="false"
+										style="margin-top: 5px;">
+										<span>No</span>
+									</div></td>
+							</tr>
+						</table>
+					</div></td>
+			</tr>
+
 			<tr>
 				<td>Room Rate</td>
 				<td><input type="text" id="roomRate" name="roomRate"
 					class="text-input" title="roomRate" /></td>
 			</tr>
-			
+
 			<tr>
 				<td>View</td>
-				<td><div id="view" ></div></td>
+				<td><div id="view"></div></td>
 			</tr>
 
 			<tr>
@@ -432,8 +444,8 @@
 		<form method="post" action="" id="agentEditForm">
 			<table>
 				<tr>
-					<td colspan="2">Do you really want to <b>Edit</b> following
-						<b>Room Type</b>?
+					<td colspan="2">Do you really want to <b>Edit</b> following <b>Room
+							Type</b>?
 					</td>
 				</tr>
 
@@ -442,9 +454,9 @@
 						id="roomTypeIdEdit" name="roomTypeId" /></td>
 				</tr>
 				<tr>
-					<td> Name</td>
+					<td>Name</td>
 					<td><input type="text" id="roomTypeNameEdit"
-						name="roomTypeName" class="text-input"  /></td>
+						name="roomTypeName" class="text-input" /></td>
 				</tr>
 				<tr>
 					<td>A/C</td>
@@ -454,26 +466,25 @@
 				<tr>
 					<td>View</td>
 					<td><input type="text" id="viewEdit" name="view"
-						class="text-input"  /></td>
+						class="text-input" /></td>
 				</tr>
 				<tr>
 					<td>Description</td>
-					<td><input type="text" id="descriptionEdit"
-						name="description" class="text-input"  /></td>
+					<td><input type="text" id="descriptionEdit" name="description"
+						class="text-input" /></td>
 				</tr>
 				<tr>
 					<td>Room Rate</td>
 					<td><input type="text" id="roomRateEdit" name="roomRate"
 						class="text-input" /></td>
 				</tr>
-				
-				
+
+
 
 				<tr>
 					<td style="padding-top: 10px;" align="center" colspan="2"><input
-						style="margin-right: 5px;" type="button" id="edit"
-						value="Edit" /><input id="cancelEdit" type="button"
-						value="Cancel" /></td>
+						style="margin-right: 5px;" type="button" id="edit" value="Edit" /><input
+						id="cancelEdit" type="button" value="Cancel" /></td>
 				</tr>
 				<tr>
 					<td colspan="2">&nbsp;</td>
