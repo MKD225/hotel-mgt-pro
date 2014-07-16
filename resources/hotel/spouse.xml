@@ -18,7 +18,17 @@
 			method="addOrUpdate">
 			<result type="json"></result>
 		</action>
+		
+		<action name="ajxDelete" class="com.hotel.action.SpouseAction"
+			method="delete">
+			<result type="json"></result>
+		</action>
 
+		<action name="ajxUpdate" class="com.hotel.action.SpouseAction"
+			method="Update">
+			<result type="json"></result>
+		</action>
+		
 	</package>
 
 	<package name="ActSpouse" namespace="/spouse" extends="default">
