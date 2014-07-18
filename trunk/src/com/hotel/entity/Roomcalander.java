@@ -79,7 +79,7 @@ public class Roomcalander implements Serializable {
 	}
 
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "roomNumber", nullable =false)
+	@JoinColumn(name = "roomId", nullable =false)
 	public Room getRoom() {
 		return this.room;
 	}
