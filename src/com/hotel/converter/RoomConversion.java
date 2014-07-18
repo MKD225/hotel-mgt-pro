@@ -13,11 +13,9 @@ public class RoomConversion extends StrutsTypeConverter {
 	@Override
 	public Object convertFromString(Map arg0, String[] arg1, Class arg2) {
 		// TODO Auto-generated method stub
-		System.out.println("in room conversion"
-				+ "*****************************");
+		System.out.println("in room conversion"+ "*****************************");
 		Room room = new RoomManager().getRoomById(Integer.parseInt(arg1[0]));
-		System.out.println(room.getTephoneNumber()
-				+ "*****************************");
+		System.out.println(room.getDescription()+ "*****************************");
 		return room;
 	}
 
