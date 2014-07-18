@@ -62,7 +62,7 @@ public class RoomManager {
 		session.beginTransaction();
 		System.out.println("**dao***");
 		Room room= (Room) session.get(Room.class,id);
-		System.out.println(room.getRoomNumber());
+		System.out.println(room.getRoomNumber()+"this is room number");
 		session.getTransaction().commit();
 		return room;
 		
