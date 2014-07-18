@@ -321,7 +321,7 @@
 </script>
 
 <div>
-	<input type="button" value="Add Discount" id='jqxButton' />
+	<input type="button" value="Add Guest" id='jqxButton' />
 </div>
 <div class="clr" style="height: 8px; width: '100%'"></div>
 
@@ -330,7 +330,7 @@
 
 
 <div id="popupEdit">
-	<div>Delete Membership Type</div>
+	<div>Delete Guest</div>
 	<div style="overflow: hidden;">
 		<form method="post" action="" id="guestEditForm">
 			<table>
