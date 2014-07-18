@@ -2,7 +2,6 @@ package com.hotel.action;
 
 import java.util.List;
 
-import com.hotel.converter.RoomConversion;
 import com.hotel.dao.RoomcalanderManager;
 import com.hotel.entity.Room;
 import com.hotel.entity.Roomcalander;
@@ -35,7 +34,7 @@ public class RoomcalanderAction extends ActionSupport implements ModelDriven {
 		try {
 			System.out.println("*****in calander add");
 			System.out.println(roomcalander.getStartDateTime());
-			this.roomcalander.setRoom(roomConvert);
+			this.roomcalander.setRoom(getRoomConvert());
 			this.roomcalander = new RoomcalanderManager().saveOrUpdate(this.roomcalander);
 		} catch (Exception e) {
 			e.printStackTrace();
