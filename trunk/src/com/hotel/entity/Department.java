@@ -66,7 +66,7 @@ public class Department implements Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "employeeId")
+	@JoinColumn(name = "employeeId",nullable=true)
 	public Employee getEmployee() {
 		return this.employee;
 	}
