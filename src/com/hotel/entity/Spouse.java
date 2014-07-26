@@ -1,25 +1,21 @@
 package com.hotel.entity;
 
-
-
-
-
 import java.io.Serializable;
 import javax.persistence.*;
-
 
 /**
  * The persistent class for the spouse database table.
  * 
  */
 @Entity
-@Table(name="Spouse")
+@Table(name = "Spouse")
 public class Spouse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "spouseId")
-	private int spouseId;
+	@OneToOne
+	@JoinColumn(name = "guestId")
+	private Guest guest;
 
 	@Column(name = "country")
 	private String country;
@@ -38,40 +34,40 @@ public class Spouse implements Serializable {
 
 	@Column(name = "firstName")
 	private String firstName;
-	
+
 	@Column(name = "title")
 	private String title;
-	
+
 	@Column(name = "lastName")
 	private String lastName;
 
-	
-
-//	@OneToOne
-//	@JoinColumn(name="guestId")
-//	private Guest guest;
+	// @OneToOne
+	// @JoinColumn(name="guestId")
+	// private Guest guest;
 
 	public Spouse() {
 	}
 
-	public int getSpouseId() {
-		return spouseId;
+	
+
+	public Guest getGuest() {
+		return guest;
 	}
 
-	public void setSpouseId(int spouseId) {
-		this.spouseId = spouseId;
+
+
+	public void setGuest(Guest guest) {
+		this.guest = guest;
+	}
+
+
+
+	public String getFirstName() {
+		return this.firstName;
 	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
-	}
-
-	public int getSpouse() {
-		return this.spouseId;
-	}
-
-	public void setSpouse(int spouseId) {
-		this.spouseId = spouseId;
 	}
 
 	public String getCountry() {
@@ -114,13 +110,6 @@ public class Spouse implements Serializable {
 		this.remarks = remarks;
 	}
 
-	public String getFirstName() {
-		return this.firstName;
-	}
-
-	public void setSpouseName(String firstName) {
-		this.firstName = firstName;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -137,12 +126,12 @@ public class Spouse implements Serializable {
 		this.lastName = lastName;
 	}
 
-//	public Guest getGuest() {
-//		return this.guest;
-//	}
-//
-//	public void setGuest(Guest guest) {
-//		this.guest = guest;
-//	}
+	// public Guest getGuest() {
+	// return this.guest;
+	// }
+	//
+	// public void setGuest(Guest guest) {
+	// this.guest = guest;
+	// }
 
 }

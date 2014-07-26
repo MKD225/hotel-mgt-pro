@@ -46,7 +46,7 @@
 
 <!-- AgentHome Page -->
 	<definition name="/AgentHome.tile" extends="baseLayout">
-		<put-attribute name="title" value="Agent Home" />
+		<put-attribute name="title" value="Agent" />
 		<put-attribute name="body" value="/pages/agent/home.jsp" />
 	</definition>
 	
@@ -58,7 +58,7 @@
 	
 	<!-- ResevationtypeHome Page -->
 	<definition name="/ResevationtypeHome.tile" extends="baseLayout">
-		<put-attribute name="title" value="Resevationtype" />
+		<put-attribute name="title" value="Resevation Type" />
 		<put-attribute name="body" value="/pages/resevationtype/home.jsp" />
 	</definition>
 
@@ -82,7 +82,7 @@
 	
 	<!-- RoomcalanderHome Page -->
 	<definition name="/RoomcalanderHome.tile" extends="baseLayout">
-		<put-attribute name="title" value="Roomcalander" />
+		<put-attribute name="title" value="Room Calander" />
 		<put-attribute name="body" value="/pages/roomcalander/home.jsp" />
 	</definition>
 	
@@ -142,13 +142,13 @@
 
 <!-- EmployeeroasterHome Page -->
 	<definition name="/EmployeeroasterHome.tile" extends="baseLayout">
-		<put-attribute name="title" value="Employeeroaster" />
+		<put-attribute name="title" value="Employee Roaster" />
 		<put-attribute name="body" value="/pages/employeeroaster/home.jsp" />
 	</definition>
 	
 	<!-- EmployeeroasterInsert Page -->
 	<definition name="/EmployeeroasterInsert.tile" extends="baseLayout">
-		<put-attribute name="title" value="New Employeeroaster" />
+		<put-attribute name="title" value="New Employee Roaster" />
 		<put-attribute name="body" value="/pages/employeeroaster/insert.jsp" />
 	</definition>
 
@@ -163,5 +163,46 @@
 		<put-attribute name="title" value="New Log" />
 		<put-attribute name="body" value="/pages/log/insert.jsp" />
 	</definition>
+	
+	<!-- ReservationHome Page -->
+	<definition name="/ReservationHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Reservation" />
+		<put-attribute name="body" value="/pages/reservation/home.jsp" />
+	</definition>
+	
+	<!-- ReservationInsert Page -->
+	<definition name="/ReservationInsert.tile" extends="baseLayout">
+		<put-attribute name="title" value="New Reservation" />
+		<put-attribute name="body" value="/pages/reservation/insert.jsp" />
+	</definition>
+	
+	<!-- CreditcardtypeInsert Page -->
+	<definition name="/CreditcardtypeHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Credit card type" />
+		<put-attribute name="body" value="/pages/creditcardtype/home.jsp" />
+	</definition>
 
+<!-- allocationRoomHome Page -->
+	<definition name="/AllocationroomHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Room Allocation" />
+		<put-attribute name="body" value="/pages/allocationroom/home.jsp" />
+	</definition>
+	
+	<!-- allocationRoom insert	 -->
+	<definition name="/AllocationroomInsert.tile" extends="baseLayout">
+		<put-attribute name="title" value="New Allocation" />
+		<put-attribute name="body" value="/pages/allocationroom/insert.jsp" />
+	</definition>
+	
+	<!-- miscellaneousbillHome Page -->
+	<definition name="/MiscellaneousbillHome.tile" extends="baseLayout">
+		<put-attribute name="title" value="Miscellaneous Bill" />
+		<put-attribute name="body" value="/pages/miscellaneousbill/home.jsp" />
+	</definition>
+	
+	<!-- miscellaneousbill insert	 -->
+	<definition name="/MiscellaneousbillInsert.tile" extends="baseLayout">
+		<put-attribute name="title" value="New Miscellaneous Bill" />
+		<put-attribute name="body" value="/pages/miscellaneousbill/insert.jsp" />
+	</definition>
 </tiles-definitions>

@@ -20,11 +20,7 @@ function createMenu(theme){
                 "parentid": "2",
                 "path": "/hotel/guest/home"
             }, {
-                "id": "30",
-                "text": "Search Members",
-                "parentid": "2",
-                "path": "/slia/members"
-            }, {
+               
             	"id": "4",
             	"text": "Manager",
                 "parentid": "-1",
@@ -61,7 +57,7 @@ function createMenu(theme){
                 "path": "/hotel/room/home"
             }, {
                 "id": "14",
-                "text": "Roomcalander",
+                "text": "Room Calander",
                 "parentid": "2",
                 "path": "/hotel/roomcalander/home"
             }, {
@@ -104,6 +100,26 @@ function createMenu(theme){
                 "text": "Log",
                 "parentid": "4",
                 "path": "/hotel/log/home"
+            }, {
+                "id": "23",
+                "text": "Reservation",
+                "parentid": "2",
+                "path": "/hotel/reservation/home"
+            }, {
+                "id": "24",
+                "text": "Credit Card Type",
+                "parentid": "4",
+                "path": "/hotel/creditcardtype/home"
+            }, {
+                "id": "25",
+                "text": "Room Allocation",
+                "parentid": "4",
+                "path": "/hotel/allocationroom/home"
+            }, {
+                "id": "26",
+                "text": "Miscellaneous Bill",
+                "parentid": "2",
+                "path": "/hotel/miscellaneousbill/insert"
             }];
             var source = {
                 datatype: "json",

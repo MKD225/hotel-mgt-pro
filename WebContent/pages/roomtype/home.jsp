@@ -340,11 +340,11 @@
 				<td><div id='a_c' class='rad'>
 						<table>
 							<tr>
-								<td><div id='AcYes' name="AcYes" value="true"
+								<td><div id='AcYes'
 										style="margin-top: 5px;">
 										<span>Yes</span>
 									</div></td>
-								<td><div id='AcNo' name="AcNo" value="false"
+								<td><div id='AcNo' 
 										style="margin-top: 5px;">
 										<span>No</span>
 									</div></td>

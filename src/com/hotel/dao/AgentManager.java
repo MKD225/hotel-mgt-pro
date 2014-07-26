@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import com.hotel.entity.Agent;
+import com.hotel.entity.Agent;
 import com.hotel.util.HibernateUtil;
 
 public class AgentManager {
@@ -55,6 +56,18 @@ public class AgentManager {
 			session.getTransaction().rollback();
 			throw e;
 		}
+		return agent;
+		
+	}
+	
+	public Agent getAgentById(int id){
+		System.out.println("in dao");
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		System.out.println("**dao***");
+		Agent agent= (Agent) session.get(Agent.class,id);
+		System.out.println(agent.getFirstName()+"this is agent number");
+		session.getTransaction().commit();
 		return agent;
 		
 	}

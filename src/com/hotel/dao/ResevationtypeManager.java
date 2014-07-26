@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import com.hotel.entity.Resevationtype;
+import com.hotel.entity.Resevationtype;
 import com.hotel.util.HibernateUtil;
 
 
@@ -55,6 +56,18 @@ public class ResevationtypeManager {
 			throw e;
 		}
 		return resevationtype;
+	}
+	
+	public Resevationtype getResevationtypeById(int id){
+		System.out.println("in dao");
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		System.out.println("**dao***");
+		Resevationtype resevationtype= (Resevationtype) session.get(Resevationtype.class,id);
+		System.out.println(resevationtype.getReservationTypeName()+"this is resevationtype number");
+		session.getTransaction().commit();
+		return resevationtype;
+		
 	}
 
 }
