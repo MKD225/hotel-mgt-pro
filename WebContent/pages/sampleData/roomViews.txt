@@ -1,0 +1,6 @@
+[{
+ "roomView" : "Land View"
+}, {
+ "roomView" : "Ocean View"
+
+}]

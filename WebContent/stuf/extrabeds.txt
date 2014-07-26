@@ -1,0 +1,9 @@
+[{
+ "numberOfBeds" : "0"
+}, {
+ "numberOfBeds" : "1"
+}, {
+ "numberOfBeds" : "2"
+}, {
+ 
+}]
