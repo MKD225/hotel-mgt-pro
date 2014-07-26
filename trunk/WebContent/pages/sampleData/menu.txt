@@ -1,0 +1,30 @@
+[{
+    "id": "1",
+    "text": "Home",
+    "parentid": "-1",
+    "path": "/slia/home",
+    "subMenuWidth": '200px'
+}, {
+	"id": "2",
+    "text": "Members",
+    "parentid": "-1",
+    "subMenuWidth": '200px'
+}, {
+    "id": "3",
+    "text": "Search Members",
+    "parentid": "2",
+    "path": "/slia/Member/member",
+    "subMenuWidth": '200px'
+}, {
+	"id": "4",
+	"text": "Login",
+    "parentid": "-1",
+    "path": "/slia/login",
+    "subMenuWidth": '200px'
+}, {
+	"id": "5",
+	"text": "Logout",
+    "parentid": "-1",
+    "path": "/slia/logoutSlia",
+    "subMenuWidth": '200px'
+}]
