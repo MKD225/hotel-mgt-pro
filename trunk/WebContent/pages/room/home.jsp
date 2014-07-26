@@ -107,7 +107,7 @@
 				type : 'String'
 			}, {
 				name : 'roomTypeName',
-				type : 'int',
+				type : 'String',
 				map : 'roomtype>roomTypeName'
 			}, {
 				name : 'description',

@@ -2,13 +2,12 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Sri Lanka Institute of Architects</title>
-	<link rel="shortcut icon" href="/hotel/images/icon.png" />
+    <title>YYYYYYYYYYYYYYYYYYY</title>
 
     <link rel="stylesheet" href="/hotel/css/style.css" type="text/css" />
     <link rel="stylesheet" href="/hotel/jqwidgets/styles/jqx.base.css" type="text/css" />
@@ -93,7 +92,7 @@
 		<tiles:insertAttribute name="footer" />
     </div>
     <div align=center class="company">
-    	<p><a href="http://codesyncsolutions.com/">CodeSync Solutions Private Limited</a></p>
+    	<p><a href="#"></a></p>
     </div>
 </body>
 </html>

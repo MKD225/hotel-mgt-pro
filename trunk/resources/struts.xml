@@ -38,5 +38,8 @@
 	<include file="/hotel/department.xml"></include>
 	<include file="/hotel/employeeroaster.xml"></include>
 	<include file="/hotel/log.xml"></include>
-
+	<include file="/hotel/reservation.xml"></include>
+	<include file="/hotel/creditcardtype.xml"></include>
+	<include file="/hotel/allocationroom.xml"></include>
+	<include file="/hotel/miscellaneousbill.xml"></include>
 </struts>

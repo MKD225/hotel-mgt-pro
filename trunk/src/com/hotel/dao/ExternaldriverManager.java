@@ -6,7 +6,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import com.hotel.entity.Externaldriver;
-import com.hotel.entity.Room;
 import com.hotel.util.HibernateUtil;
 
 public class ExternaldriverManager {
@@ -55,6 +54,18 @@ public class ExternaldriverManager {
 			throw e;
 		}
 		return externaldriver;
+	}
+	
+	public Externaldriver getExternaldriverById(int id){
+		System.out.println("in dao");
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		System.out.println("**dao***");
+		Externaldriver externaldriver= (Externaldriver) session.get(Externaldriver.class,id);
+		System.out.println(externaldriver.getName()+"this is externaldriver number");
+		session.getTransaction().commit();
+		return externaldriver;
+		
 	}
 
 	

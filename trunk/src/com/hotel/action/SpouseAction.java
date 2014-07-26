@@ -37,7 +37,7 @@ public class SpouseAction extends ActionSupport implements ModelDriven {
 	public String addOrUpdate() {
 		try {
 			System.out.println(spouse.getFirstName());
-			this.spouse.setSpouse(guestConvert.getGuestId());
+			this.spouse.setGuest(guestConvert);
 			this.spouse = new SpouseManager().saveOrUpdate(this.spouse);
 		} catch (Exception e) {
 			e.printStackTrace();

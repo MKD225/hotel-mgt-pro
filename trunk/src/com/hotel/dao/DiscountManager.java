@@ -58,4 +58,16 @@ public class DiscountManager {
 		return discount;
 	}
 
+	public Discount getDiscountById(int id){
+		System.out.println("in dao");
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		System.out.println("**dao***");
+		Discount discount= (Discount) session.get(Discount.class,id);
+		System.out.println(discount.getType());
+		session.getTransaction().commit();
+		return discount;
+		
+	}
+
 }

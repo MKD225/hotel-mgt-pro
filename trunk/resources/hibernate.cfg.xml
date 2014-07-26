@@ -36,6 +36,11 @@
 		<mapping class="com.hotel.entity.Spouse" />
 		<mapping class="com.hotel.entity.Employeeroaster" />
 		<mapping class="com.hotel.entity.Log" />
+		<mapping class="com.hotel.entity.Reservation" />
+		<mapping class="com.hotel.entity.CreditCardType" />
+		<mapping class="com.hotel.entity.Reservation" />
+		<mapping class="com.hotel.entity.Allocationroom" />
+		<mapping class="com.hotel.entity.Miscellaneousbill" />
 		
 
 	</session-factory>

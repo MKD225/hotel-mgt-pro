@@ -9,22 +9,15 @@
 			theme : theme
 		});
 		$('.text-input').addClass('jqx-rc-all');
+		
+		 var date = new Date();
+         date.setFullYear(2000, 0, 1);
+         $('#initializedDate').jqxDateTimeInput({ theme: theme, height: 22, value: $.jqx._jqxDateTimeInput.getDateTime(date) });
+		
+         var date = new Date();
+         date.setFullYear(2000, 0, 1);
+         $('#closedDate').jqxDateTimeInput({ theme: theme, height: 22, value: $.jqx._jqxDateTimeInput.getDateTime(date) });
 
-		var date = new Date();
-		date.setFullYear(2000, 0, 1);
-		$('#initializedDate').jqxDateTimeInput({
-			theme : theme,
-			height : 22,
-			value : $.jqx._jqxDateTimeInput.getDateTime(date)
-		});
-
-		var date = new Date();
-		date.setFullYear(2000, 0, 1);
-		$('#closedDate').jqxDateTimeInput({
-			theme : theme,
-			height : 22,
-			value : $.jqx._jqxDateTimeInput.getDateTime(date)
-		});
 
 		$("#save").jqxButton({
 			width : "100px",
@@ -35,7 +28,7 @@
 			theme : theme
 		});
 
-		// update the edited row when the user clicks the 'Save' button.
+     // update the edited row when the user clicks the 'Save' button.
 		$("#save").click(function() {
 			var onSuccess = $('#discountForm').jqxValidator('validate');
 			if (onSuccess) {
@@ -59,6 +52,8 @@
 			clearText();
 		});
 
+
+		
 		$('#discountForm').jqxValidator({
 			rules : [ {
 				input : '#type',
@@ -70,6 +65,7 @@
 			scroll : false
 		});
 
+		
 	}
 
 	function clearText() {
@@ -100,28 +96,26 @@
 			</tr>
 			<tr>
 				<td>type</td>
-			</tr>
-			<tr>
+				</tr><tr>
 				<td><input type="text" id="type" name="type" class="text-input"
 					title="type" /></td>
 			</tr>
 			<tr>
 				<td>Initialized Date</td>
-			</tr>
-			<tr>
-				<td><div id="initializedDate"></div></td>
+				</tr><tr>
+				<td><div id="initializedDate"></div>
+					</td>
 			</tr>
 			<tr>
 				<td>Closed Date</td>
-			</tr>
-			<tr>
-				<td><div id="closedDate"></div></td>
+				</tr><tr>
+				<td><div id="closedDate"></div>
+					</td>
 			</tr>
 
 			<tr>
 				<td>F n B percentage</td>
-			</tr>
-			<tr>
+				</tr><tr>
 				<td><input type="text" id="f_bpercentage" name="f_bpercentage"
 					class="text-input" title="f_bpercentage" /></td>
 			</tr>
@@ -129,25 +123,23 @@
 
 			<tr>
 				<td>Minibar percentage</td>
-			</tr>
-			<tr>
+				</tr>
+				<tr>
 				<td><input type="text" id="minibarpercentage"
 					name="minibarpercentage" class="text-input"
 					title="minibarpercentage" /></td>
-			</tr>
-
+					</tr>
+			
 			<tr>
 				<td>Room percentage</td>
-			</tr>
-			<tr>
+				</tr><tr>
 				<td><input type="text" id="roompercentage"
 					name="roompercentage" class="text-input" title="Room percentage" /></td>
 			</tr>
-
+			
 			<tr>
 				<td>Other Discount Percentage</td>
-			</tr>
-			<tr>
+				</tr><tr>
 				<td><input type="text" id="otherDiscountPercentage"
 					name="otherDiscountPercentage" class="text-input"
 					title="otherDiscountPercentage" /></td>
@@ -155,16 +147,15 @@
 
 			<tr>
 				<td>status</td>
-			</tr>
-			<tr>
+				</tr>
+				<tr>
 				<td><input type="text" id="status" name="status"
 					class="text-input" title="status Type" /></td>
 			</tr>
 
 			<tr>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
+				<td>&nbsp;</td></tr>
+				<tr>
 				<td style="padding-top: 10px;"><input type="button" id="save"
 					value="Save" style="margin-right: 5px;" /> <input id="clear"
 					type="button" value="Clear" /></td>

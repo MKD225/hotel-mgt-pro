@@ -18,9 +18,9 @@ public class Discount implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="discounttId")
+	@Column(name="discountId")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int discounttId;
+	private int discountId;
 
 	@Column(name="closedDate")
 	private String closedDate;
@@ -53,12 +53,12 @@ public class Discount implements Serializable {
 	public Discount() {
 	}
 
-	public int getDiscounttId() {
-		return this.discounttId;
+	public int getDiscountId() {
+		return this.discountId;
 	}
 
-	public void setDiscounttId(int discounttId) {
-		this.discounttId = discounttId;
+	public void setDiscounttId(int discountId) {
+		this.discountId = discountId;
 	}
 
 	public String getClosedDate() {

@@ -255,7 +255,7 @@
 </script>
 
 <div>
-	<input type="button" value="Add Employeeroaster" id='jqxButton' />
+	<input type="button" value="Add Employee Roaster" id='jqxButton' />
 </div>
 <div class="clr" style="height: 8px; width: '100%'"></div>
 
@@ -265,7 +265,7 @@
 
 <!-- edit form -->
 <div id="popupEdit">
-	<div>Edit Agent</div>
+	<div>Edit Employee Roaster</div>
 	<div style="overflow-y: scroll;">
 		<div id='detailPannel'>
 			<div style="overflow: hidden;">
@@ -273,7 +273,7 @@
 					style="margin-left: 80px; margin-top: 20px;">
 					<table>
 						<tr>
-							<td colspan="2" align="center"><b>Agent</b></td>
+							<td colspan="2" align="center"><b>Employee Roaster</b></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">&nbsp;<input type="hidden"
@@ -326,7 +326,7 @@
 
 <div id="popupView">
 	<div>
-		View Agent<input id=fname />
+		View Employee Roaster<input id=fname />
 	</div>
 	<div style="overflow-y: scroll;">
 		<div id='detailPannel'>
